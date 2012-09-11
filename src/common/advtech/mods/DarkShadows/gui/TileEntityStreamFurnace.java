@@ -1,7 +1,9 @@
 package advtech.mods.DarkShadows.gui;
 
+import net.minecraft.src.Block;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.IInventory;
+import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.NBTTagList;
@@ -10,9 +12,18 @@ import net.minecraft.src.TileEntity;
 public class TileEntityStreamFurnace extends TileEntity implements IInventory {
 
 	private ItemStack[] inventory;
+	public int front = 0;
+	
+	public int burnTime;
+	public int freshBurnTime;
+	public int cookTime;
+	private boolean isActive;
 	
 	public TileEntityStreamFurnace() {
 		inventory = new ItemStack[4];
+		burnTime = 0;
+		freshBurnTime = 0;
+		cookTime = 0;
 	}
 	
 	@Override
@@ -54,6 +65,150 @@ public class TileEntityStreamFurnace extends TileEntity implements IInventory {
 		return stack;
 	}
 
+	public boolean isActive() {
+		return isActive;
+	}
+	
+	public int getCookProgressScaled(int i) {
+		return (cookTime * i) / 200;
+	}
+	
+	public int getBurnTimeRemainingScaled(int i) {
+		if (freshBurnTime == 0) {
+			freshBurnTime = 200;
+		}
+		
+		return (burnTime * i) / freshBurnTime;
+	}
+	
+	public boolean isBurning() {
+		return burnTime > 0;
+	}
+	
+	public static boolean isItemFuel(ItemStack stack) {
+		return getItemBurnTime(stack) > 0;
+	}
+	
+	@Override
+	public void updateEntity() {
+		boolean var1 = this.burnTime > 0;
+		boolean var2 = false;
+		
+		if (burnTime > 0) {
+			burnTime -= 1;
+		}
+		
+		if (burnTime == 0 && this.canSmelt()) {
+			freshBurnTime = burnTime = getItemBurnTime(inventory[1]);
+			
+			if (burnTime > 0) {
+				var2 = true;
+				
+				if (inventory[1] != null) {
+					inventory[1].stackSize -= 1;
+					
+					if (inventory[1].stackSize == 0) {
+						Item var3 = inventory[1].getItem().getContainerItem();
+						
+						inventory[1] = var3 == null ? null : new ItemStack(var3);
+					}
+				}
+			}
+		}
+		
+		if (isBurning() && canSmelt()) {
+			cookTime += 1;
+			
+			if (cookTime == 200) {
+				cookTime = 0;
+				smeltItem();
+				var2 = true;
+			}
+		} else {
+			cookTime = 0;
+		}
+		
+		if (var1 != burnTime > 0) {
+			var2 = true;
+		}
+		
+		boolean check = isActive();
+		isActive = isBurning();
+		if (isActive != check) {
+			this.worldObj.markBlockNeedsUpdate(xCoord, yCoord, zCoord);
+		}
+		
+		if (var2) {
+			this.onInventoryChanged();
+		}
+	}
+	
+	public static int getItemBurnTime(ItemStack stack) {
+		if (stack == null) {
+			return 0;
+		}
+		
+		int i = stack.getItem().shiftedIndex;
+		
+		if (i == Item.bucketLava.shiftedIndex) {
+			return 20000;
+		} else if (i == Item.bucketWater.shiftedIndex) {
+			return 20000;
+		} else {
+			return 0;
+		}
+	}
+	
+	private boolean canSmelt() {
+		if (inventory[0] == null) {
+			return false;
+		}
+		
+		ItemStack stack = StreamFurnaceRecipes.smelting().getSmeltingResult(inventory[0].getItem().shiftedIndex);
+		
+		 if (stack == null)
+         {
+                 return false;
+         }
+
+         if (inventory[3] == null)
+         {
+                 return true;
+         }
+
+         if (!inventory[3].isItemEqual(stack))
+         {
+                 return false;
+         }
+
+         if (inventory[3].stackSize < getInventoryStackLimit() && inventory[3].stackSize < inventory[3].getMaxStackSize())
+         {
+                 return true;
+         }
+
+         return inventory[3].stackSize < stack.getMaxStackSize();
+
+	}
+	
+	public void smeltItem() {
+		if (canSmelt()) {
+			ItemStack stack = StreamFurnaceRecipes.smelting().getSmeltingResult(inventory[0].getItem().shiftedIndex);
+			
+			if (inventory[3] == null) {
+				inventory[3] = stack.copy();
+			} else if (inventory[3].itemID == stack.itemID) {
+				inventory[3].stackSize += 1;
+			}
+			
+			inventory[0].stackSize -= 1;
+			
+			if (inventory[0].stackSize == 0) {
+				Item i = inventory[0].getItem().getContainerItem();
+				inventory[0] = i == null ? null : new ItemStack(i);			
+			}
+		}
+	}
+	
 	@Override
 	public void setInventorySlotContents(int slot, ItemStack stack) {
 		inventory[slot] = stack;
@@ -76,6 +231,14 @@ public class TileEntityStreamFurnace extends TileEntity implements IInventory {
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer player) {
 		return worldObj.getBlockTileEntity(xCoord, yCoord, zCoord) == this && player.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) < 64;
+	}
+	
+	public void setFrontDirection(int f) {
+		this.front = f;
+	}
+	
+	public int getFrontDirection() {
+		return this.front;
 	}
 
 	@Override

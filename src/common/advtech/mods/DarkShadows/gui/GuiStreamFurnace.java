@@ -8,8 +8,12 @@ import net.minecraft.src.StatCollector;
 
 public class GuiStreamFurnace extends GuiContainer {
 
+	private TileEntityStreamFurnace streamFurnace;
+	
 	public GuiStreamFurnace(InventoryPlayer playerInventory, TileEntityStreamFurnace tileEntity) {
 		super(new ContainerStreamFurnace(tileEntity, playerInventory));
+		
+		streamFurnace = tileEntity;
 	}
 
 	@Override
@@ -28,6 +32,15 @@ public class GuiStreamFurnace extends GuiContainer {
 		int y = (height - ySize) / 2;
 		
 		this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+		
+		if (streamFurnace.isBurning()) {
+			int burn = streamFurnace.getBurnTimeRemainingScaled(14);
+			drawTexturedModalRect(x + 57, y + 37, 176, 0, 14, burn);
+			int update = streamFurnace.getCookProgressScaled(15);
+	        drawTexturedModalRect(x + 89, y + 55, 176, 31, update, 17);
+	        
+	        System.out.println(burn + ", " + update);
+		}
 	}
 	
 	

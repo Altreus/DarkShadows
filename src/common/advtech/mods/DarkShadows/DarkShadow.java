@@ -3,7 +3,7 @@ package advtech.mods.DarkShadows;
 import net.minecraft.src.Block;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
-import net.minecraft.src.Material;
+import net.minecraftforge.client.MinecraftForgeClient;
 import advtech.mods.DarkShadows.gui.BlockStreamFurnace;
 import advtech.mods.DarkShadows.gui.ClientPacketHandler;
 import advtech.mods.DarkShadows.gui.CommonProxy;
@@ -30,8 +30,8 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 @SidedPacketHandler(channels = {"DarkShadow"}, packetHandler = ClientPacketHandler.class), serverPacketHandlerSpec = 
 @SidedPacketHandler(channels = {"DarkShadow"}, packetHandler = ServerPacketHandler.class))
 public class DarkShadow {
-	public static Block oreObby = new ObbyOre(201, 167);
-	public static Block streamFurnace = new BlockStreamFurnace(202, 62);
+	public static Block oreObby = new ObbyOre(201, 16);
+	public static Block streamFurnace = new BlockStreamFurnace(202, 0, false);
 	
 	public static Item portalMaker = new ItemPortalMaker(507);
 	
@@ -52,6 +52,8 @@ public class DarkShadow {
 		GameRegistry.registerBlock(oreObby);
 		LanguageRegistry.addName(oreObby, "Obsidian Ore");
 		LanguageRegistry.addName(portalMaker,"Portal Maker");
+		
+		MinecraftForgeClient.preloadTexture("/advtech/mods/DarkShadows/terrain.png");
 		
 		GameRegistry.registerWorldGenerator(new ShadowWorldGenerator());
 		

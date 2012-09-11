@@ -1,7 +1,10 @@
 package advtech.mods.DarkShadows.gui;
 
+import java.util.Iterator;
+
 import net.minecraft.src.Container;
 import net.minecraft.src.EntityPlayer;
+import net.minecraft.src.ICrafting;
 import net.minecraft.src.InventoryPlayer;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Slot;
@@ -9,17 +12,25 @@ import net.minecraft.src.Slot;
 public class ContainerStreamFurnace extends Container {
 
 	protected TileEntityStreamFurnace tileEntity;
-	
+	private int lastCookTime;
+	private int lastBurnTime;
+	private int lastFreshBurnTime;
+
 	public ContainerStreamFurnace(TileEntityStreamFurnace tileEntity, InventoryPlayer playerInventory) {
 		this.tileEntity = tileEntity;
+
+		lastCookTime = 0;
+		lastBurnTime = 0;
+		lastFreshBurnTime = 0;
+
 		addSlotToContainer(new Slot(tileEntity, 0, 56, 17));
 		addSlotToContainer(new Slot(tileEntity, 1, 47, 54));
 		addSlotToContainer(new Slot(tileEntity, 2, 65, 54));
-		addSlotToContainer(new Slot(tileEntity, 3, 116, 35));
-		
+		addSlotToContainer(new SlotStreamFurnace(playerInventory.player, tileEntity, 3, 116, 35));
+
 		bindPlayerInventory(playerInventory);
 	}
-	
+
 	protected void bindPlayerInventory(InventoryPlayer playerinventory) {
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 9; j++) {
@@ -36,31 +47,96 @@ public class ContainerStreamFurnace extends Container {
 	public boolean canInteractWith(EntityPlayer player) {
 		return tileEntity.isUseableByPlayer(player);
 	}
-	
+
 	@Override
-	public ItemStack transferStackInSlot(int slot_index) {
-		ItemStack stack = null;
-		Slot slot_object = (Slot) inventorySlots.get(slot_index);
+	public void updateCraftingResults() {
+		super.updateCraftingResults();
+		Iterator var1 = this.crafters.iterator();
 
-		if (slot_object != null && slot_object.getHasStack()) {
-			ItemStack stack_in_slot = slot_object.getStack();
-			stack = stack_in_slot.copy();
+		while (var1.hasNext()) {
+			ICrafting var2 = (ICrafting)var1.next();
 
-			if (slot_index == 0) {
-				if (!mergeItemStack(stack_in_slot, 1, inventorySlots.size(), true)) {
-					return null;
-				}
-			} else if (!mergeItemStack(stack_in_slot, 0, 1, false)) {
-				return null;
+			if (this.lastCookTime != this.tileEntity.cookTime) {
+				var2.updateCraftingInventoryInfo(this, 0, this.tileEntity.cookTime);
 			}
 
-			if (stack_in_slot.stackSize == 0) {
-				slot_object.putStack(null);
-			} else {
-				slot_object.onSlotChanged();
+			if (this.lastBurnTime != this.tileEntity.burnTime) {
+				var2.updateCraftingInventoryInfo(this, 1, this.tileEntity.burnTime);
+			}
+
+			if (this.lastFreshBurnTime != this.tileEntity.freshBurnTime) {
+				var2.updateCraftingInventoryInfo(this, 2, this.tileEntity.freshBurnTime);
 			}
 		}
 
-		return stack;
+		this.lastCookTime = this.tileEntity.cookTime;
+		this.lastBurnTime = this.tileEntity.burnTime;
+		this.lastFreshBurnTime = this.tileEntity.freshBurnTime;
+	}
+
+	@Override
+	public void updateProgressBar(int par1, int par2) {
+		if (par1 == 0) {
+			tileEntity.cookTime = par2;
+		}
+
+		if (par1 == 1) {
+			tileEntity.burnTime = par2;
+		}
+
+		if (par1 == 2) {
+			tileEntity.freshBurnTime = par2;
+		}
+	}
+
+	@Override
+	public ItemStack transferStackInSlot(int par1) {
+		ItemStack itemstack = null;
+		Slot slot = (Slot)inventorySlots.get(par1);
+
+		if (slot != null && slot.getHasStack()) {
+			ItemStack itemstack1 = slot.getStack();
+			itemstack = itemstack1.copy();
+
+			if (par1 == 2) {
+				if (!mergeItemStack(itemstack1, 3, 39, true)) {
+					return null;
+				}
+
+				slot.onSlotChange(itemstack1, itemstack);
+			} else if (par1 == 1 || par1 == 0) {
+				if (!mergeItemStack(itemstack1, 3, 39, false)) {
+					return null;
+				}
+			} else if (StreamFurnaceRecipes.smelting().getSmeltingResult(itemstack1.getItem().shiftedIndex) != null) {
+				if (!mergeItemStack(itemstack1, 0, 1, false)) {
+					return null;
+				}
+			} else if (TileEntityStreamFurnace.isItemFuel(itemstack1)) {
+				if (!mergeItemStack(itemstack1, 1, 2, false)) {
+					return null;
+				}
+			} else if (par1 >= 3 && par1 < 30) {
+				if (!mergeItemStack(itemstack1, 30, 39, false)) {
+					return null;
+				}
+			} else if (par1 >= 30 && par1 < 39 && !mergeItemStack(itemstack1, 3, 30, false)) {
+				return null;
+			}
+
+			if (itemstack1.stackSize == 0) {
+				slot.putStack(null);
+			} else {
+				slot.onSlotChanged();
+			}
+
+			if (itemstack1.stackSize != itemstack.stackSize) {
+				slot.onPickupFromSlot(itemstack1);
+			} else {
+				return null;
+			}
+		}
+
+		return itemstack;
 	}
 }

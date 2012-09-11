@@ -18,6 +18,11 @@ public class ObbyOre extends BlockOre {
 		setBlockName("Obsidian Ore");
 	}
 
+	@Override
+	public String getTextureFile() {
+		return "/advtech/mods/DarkShadows/terrain.png";
+	}
+	
 	public int idDropped(int par1, Random par2Random, int par3) {
 		return Block.obsidian.blockID;
 	}
