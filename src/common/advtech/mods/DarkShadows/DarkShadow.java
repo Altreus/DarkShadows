@@ -35,9 +35,10 @@ public class DarkShadow {
 	static EnumToolMaterial obby = EnumHelper.addToolMaterial("obby", 2, 500, 7F, 2, 14);
 	public static Block oreObby = new ObbyOre(201, 16);
 	public static Block streamFurnace = new BlockStreamFurnace(202, 0, false);
-	//public static Item ingotObby = new ItemIngotObby(506,0);
-	//public static Item obbyRivet = new ItemIngotObby(506,1)
-	//public static Item obbySword = new ItemObbySword(508, obby);
+	public static Item ingotObby = new ItemIngotObby(506);
+	public static Item obbyRivet = new ItemIngotObby(506);
+	public static Item obbyPlate = new ItemIngotObby(506);
+	public static Item obbySword = new ItemObbySword(508, obby);
 	public static Item portalMaker = new ItemPortalMaker(507);
 	
 	@Instance
@@ -59,16 +60,16 @@ public class DarkShadow {
 		LanguageRegistry.addName(oreObby, "Obsidian Ore");
 		//Item Codes
 		LanguageRegistry.addName(portalMaker,"Portal Maker");
-        //LanguageRegistry.addName(new ItemStack(DarkShadow.ingotObby,1,0), "Obsidian Ingot");
-        //LanguageRegistry.addName(new ItemStack(DarkShadow.ingotObby,1,1), "Obsidian Rivet");
-        //LanguageRegistry.addName(new ItemStack(DarkShadow.ingotObby,1,2), "Obsidian Plate");
+        LanguageRegistry.addName(new ItemStack(DarkShadow.ingotObby,1,0), "Obsidian Ingot");
+        LanguageRegistry.addName(new ItemStack(DarkShadow.ingotObby,1,1), "Obsidian Rivet");
+        LanguageRegistry.addName(new ItemStack(DarkShadow.ingotObby,1,2), "Obsidian Plate");
 		//Tools Codes
-		//LanguageRegistry.addName(obbySword, "Obsidian Sword");
+		LanguageRegistry.addName(obbySword, "Obsidian Sword");
 		//Texture File
 		MinecraftForgeClient.preloadTexture("/advtech/mods/DarkShadows/terrain.png");
 		//World Generator Code
 		GameRegistry.registerWorldGenerator(new ShadowWorldGenerator());
-		//Receipes
+		//Recipes
 		GameRegistry.addRecipe(new ItemStack(portalMaker), new Object[] {
 			"XXX", "XAX", "XXX", Character.valueOf('X'), Block.obsidian, Character.valueOf('A'), Item.redstone
 		});
@@ -77,12 +78,14 @@ public class DarkShadow {
 			"XXX", "XAX", "XXX", Character.valueOf('X'), Block.obsidian, Character.valueOf('A'), Block.stoneOvenIdle
 		});
 		
-		/*GameRegistry.addRecipe(new ItemStack(obbySword), new Object [] {
+		GameRegistry.addRecipe(new ItemStack(obbySword), new Object [] {
 			"X  "," X ", "  Z", Character.valueOf('X'), DarkShadow.ingotObby, Character.valueOf('Z'),Item.stick
-		});*/
-		//GameRegistry.addRecipe(new ItemStack(DarkShadow.ingotObby), new Object[] {"###", "###", "###", '#', DarkShadow.obbyRivet});
+		});
+		GameRegistry.addRecipe(new ItemStack(DarkShadow.ingotObby), new Object[] {"###", "###", "###", '#', DarkShadow.obbyRivet});
 		
-		//GameRegistry.addRecipe(new ItemStack(DarkShadow.obbyNugget, 9), new Object[] {"#", '#', DarkShadow.ingotObby});
+		GameRegistry.addRecipe(new ItemStack(DarkShadow.obbyRivet, 9), new Object[] {"#", '#', DarkShadow.ingotObby});
+		
+		GameRegistry.addRecipe(new ItemStack(DarkShadow.obbyPlate), new Object[]{"###","###","###", '#', DarkShadow.ingotObby});
 	}
 	
 	@PreInit

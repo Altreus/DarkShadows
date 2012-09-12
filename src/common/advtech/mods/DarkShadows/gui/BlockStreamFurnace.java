@@ -93,7 +93,7 @@ public class BlockStreamFurnace extends BlockContainer {
 	@Override
 	public void onBlockAdded(World world, int x, int y, int z) {
 		super.onBlockAdded(world, x, y, z);
-		setDefaultDirection(world, x, y, z);
+		this.setDefaultDirection(world, x, y, z);
 	}
 	
 	public void setDefaultDirection(World world, int x, int y, int z) {
