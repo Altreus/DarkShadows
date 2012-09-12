@@ -36,10 +36,10 @@ public class DarkShadow {
 	public static Block oreObby = new ObbyOre(201, 16);
 	public static Block streamFurnace = new BlockStreamFurnace(202, 0, false);
 	public static Item ingotObby = new ItemIngotObby(506);
-	public static Item obbyRivet = new ItemIngotObby(506);
-	public static Item obbyPlate = new ItemIngotObby(506);
-	public static Item obbySword = new ItemObbySword(508, obby);
-	public static Item portalMaker = new ItemPortalMaker(507);
+	public static Item obbyRivet = new ItemObbyRivet(507);
+	public static Item obbyPlate = new ItemObbyPlate(508);
+	public static Item obbySword = new ItemObbySword(509, obby);
+	public static Item portalMaker = new ItemPortalMaker(510);
 	
 	@Instance
 	public static DarkShadow instance;
@@ -60,9 +60,9 @@ public class DarkShadow {
 		LanguageRegistry.addName(oreObby, "Obsidian Ore");
 		//Item Codes
 		LanguageRegistry.addName(portalMaker,"Portal Maker");
-        LanguageRegistry.addName(new ItemStack(DarkShadow.ingotObby,1,0), "Obsidian Ingot");
-        LanguageRegistry.addName(new ItemStack(DarkShadow.ingotObby,1,1), "Obsidian Rivet");
-        LanguageRegistry.addName(new ItemStack(DarkShadow.ingotObby,1,2), "Obsidian Plate");
+        LanguageRegistry.addName(ingotObby,"Obsidian Ingot");
+        LanguageRegistry.addName(obbyRivet,"Obsidian Rivet");
+        LanguageRegistry.addName(obbyPlate,"Obsidian Plate");
 		//Tools Codes
 		LanguageRegistry.addName(obbySword, "Obsidian Sword");
 		//Texture File
