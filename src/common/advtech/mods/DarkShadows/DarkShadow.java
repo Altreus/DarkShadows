@@ -1,9 +1,11 @@
 package advtech.mods.DarkShadows;
 
 import net.minecraft.src.Block;
+import net.minecraft.src.EnumToolMaterial;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.common.EnumHelper;
 import advtech.mods.DarkShadows.gui.BlockStreamFurnace;
 import advtech.mods.DarkShadows.gui.ClientPacketHandler;
 import advtech.mods.DarkShadows.gui.CommonProxy;
@@ -30,9 +32,12 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 @SidedPacketHandler(channels = {"DarkShadow"}, packetHandler = ClientPacketHandler.class), serverPacketHandlerSpec = 
 @SidedPacketHandler(channels = {"DarkShadow"}, packetHandler = ServerPacketHandler.class))
 public class DarkShadow {
+	static EnumToolMaterial obby = EnumHelper.addToolMaterial("obby", 2, 500, 7F, 2, 14);
 	public static Block oreObby = new ObbyOre(201, 16);
 	public static Block streamFurnace = new BlockStreamFurnace(202, 0, false);
-	
+	//public static Item ingotObby = new ItemIngotObby(506,0);
+	//public static Item obbyRivet = new ItemIngotObby(506,1)
+	//public static Item obbySword = new ItemObbySword(508, obby);
 	public static Item portalMaker = new ItemPortalMaker(507);
 	
 	@Instance
@@ -44,19 +49,26 @@ public class DarkShadow {
 	
 	@Init
 	public void init(FMLInitializationEvent event) {
+		//Furnace Code
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 		GameRegistry.registerTileEntity(TileEntityStreamFurnace.class, "tileEntityStreamFurnace");
 		GameRegistry.registerBlock(streamFurnace);
-		LanguageRegistry.addName(streamFurnace, "Stream Furnace");
-		
+		LanguageRegistry.addName(streamFurnace, "Forge");
+		//Ore Code
 		GameRegistry.registerBlock(oreObby);
 		LanguageRegistry.addName(oreObby, "Obsidian Ore");
+		//Item Codes
 		LanguageRegistry.addName(portalMaker,"Portal Maker");
-		
+        //LanguageRegistry.addName(new ItemStack(DarkShadow.ingotObby,1,0), "Obsidian Ingot");
+        //LanguageRegistry.addName(new ItemStack(DarkShadow.ingotObby,1,1), "Obsidian Rivet");
+        //LanguageRegistry.addName(new ItemStack(DarkShadow.ingotObby,1,2), "Obsidian Plate");
+		//Tools Codes
+		//LanguageRegistry.addName(obbySword, "Obsidian Sword");
+		//Texture File
 		MinecraftForgeClient.preloadTexture("/advtech/mods/DarkShadows/terrain.png");
-		
+		//World Generator Code
 		GameRegistry.registerWorldGenerator(new ShadowWorldGenerator());
-		
+		//Receipes
 		GameRegistry.addRecipe(new ItemStack(portalMaker), new Object[] {
 			"XXX", "XAX", "XXX", Character.valueOf('X'), Block.obsidian, Character.valueOf('A'), Item.redstone
 		});
@@ -64,6 +76,13 @@ public class DarkShadow {
 		GameRegistry.addRecipe(new ItemStack(streamFurnace), new Object[] {
 			"XXX", "XAX", "XXX", Character.valueOf('X'), Block.obsidian, Character.valueOf('A'), Block.stoneOvenIdle
 		});
+		
+		/*GameRegistry.addRecipe(new ItemStack(obbySword), new Object [] {
+			"X  "," X ", "  Z", Character.valueOf('X'), DarkShadow.ingotObby, Character.valueOf('Z'),Item.stick
+		});*/
+		//GameRegistry.addRecipe(new ItemStack(DarkShadow.ingotObby), new Object[] {"###", "###", "###", '#', DarkShadow.obbyRivet});
+		
+		//GameRegistry.addRecipe(new ItemStack(DarkShadow.obbyNugget, 9), new Object[] {"#", '#', DarkShadow.ingotObby});
 	}
 	
 	@PreInit
