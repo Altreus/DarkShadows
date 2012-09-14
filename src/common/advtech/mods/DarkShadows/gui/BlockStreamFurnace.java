@@ -2,17 +2,21 @@ package advtech.mods.DarkShadows.gui;
 
 import java.util.Random;
 
+import cpw.mods.fml.common.Side;
+import cpw.mods.fml.common.asm.SideOnly;
 import cpw.mods.fml.common.asm.transformers.MCPMerger;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.BlockContainer;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.EntityItem;
+import net.minecraft.src.EntityLiving;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.IInventory;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
+import net.minecraft.src.MathHelper;
 import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.TileEntity;
 import net.minecraft.src.World;
@@ -21,10 +25,12 @@ import advtech.mods.DarkShadows.DarkShadow;
 public class BlockStreamFurnace extends BlockContainer {
 
 	private static boolean keepInventory = false;
+	private final boolean isActive;
 	private Random furnaceRand;
 	
 	public BlockStreamFurnace(int par1, int par2, boolean active) {
 		super(par1, par2, Material.circuits);
+		isActive= active;
 		setBlockName("streamFurnace");
 		setCreativeTab(CreativeTabs.tabDeco);
 		furnaceRand = new Random();
@@ -34,6 +40,9 @@ public class BlockStreamFurnace extends BlockContainer {
 	@Override
 	public String getTextureFile() {
 		return "/advtech/mods/DarkShadows/terrain.png";
+	}
+	public int idDropped(int i, Random random, int j){
+		return DarkShadow.streamFurnaceIdle.blockID;
 	}
 	
 	@Override
@@ -120,33 +129,88 @@ public class BlockStreamFurnace extends BlockContainer {
 		
 		((TileEntityStreamFurnace)blockEntity).setFrontDirection(byte0);
 	}
-	
-	@Override
-	public int getBlockTexture(IBlockAccess access, int x, int y, int z, int side) {
+	@SideOnly(Side.CLIENT)
+	public int getBlockTextureFromSideAndMetaData(IBlockAccess access, int x, int y, int z, int side) {
 		int front = 0;
+		int left = 1;
+		int back = 1;
+		int right = 1;
+		int top = 1;
+		int bottom = 1;
 		
 		return front;
 	}
+	
 	
 	@Override
 	public int getBlockTextureFromSide(int side) {
 		switch (side) {
 		case 0:
-			return 0;
-		case 1:
-			return 1;
-		case 2:
-			return 2;
-		case 3:
-			return 17;
-		case 4:
 			return 18;
+		case 1:
+			return 18;
+		case 2:
+			return 1;
+		case 3:
+			return 0;
+		case 4:
+			return 1;
 		case 5:
 			return 1;
 		default:
-			return 0;
+			return 1;
 		}
 	}
+	   public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLiving par5EntityLiving)
+	    {
+	        int var6 = MathHelper.floor_double((double)(par5EntityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+
+	        if (var6 == 0)
+	        {
+	            par1World.setBlockMetadataWithNotify(par2, par3, par4, 2);
+	        }
+
+	        if (var6 == 1)
+	        {
+	            par1World.setBlockMetadataWithNotify(par2, par3, par4, 5);
+	        }
+
+	        if (var6 == 2)
+	        {
+	            par1World.setBlockMetadataWithNotify(par2, par3, par4, 3);
+	        }
+
+	        if (var6 == 3)
+	        {
+	            par1World.setBlockMetadataWithNotify(par2, par3, par4, 4);
+	        }
+	    }
+
+	   public static void updateFurnaceBlockState(boolean par0, World par1World, int par2, int par3, int par4)
+	    {
+	        int var5 = par1World.getBlockMetadata(par2, par3, par4);
+	        TileEntity var6 = par1World.getBlockTileEntity(par2, par3, par4);
+	        keepInventory = true;
+
+	        if (par0)
+	        {
+	            par1World.setBlockWithNotify(par2, par3, par4, DarkShadow.streamFurnaceActive.blockID);
+	        }
+	        else
+	        {
+	            par1World.setBlockWithNotify(par2, par3, par4, DarkShadow.streamFurnaceIdle.blockID);
+	        }
+
+	        keepInventory = false;
+	        par1World.setBlockMetadataWithNotify(par2, par3, par4, var5);
+
+	        if (var6 != null)
+	        {
+	            var6.validate();
+	            par1World.setBlockTileEntity(par2, par3, par4, var6);
+	        }
+	    }
+	
 	
 	@Override
 	public TileEntity createNewTileEntity(World var1) {

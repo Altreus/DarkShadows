@@ -8,6 +8,7 @@ import net.minecraft.src.ItemStack;
 import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.NBTTagList;
 import net.minecraft.src.TileEntity;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class TileEntityStreamFurnace extends TileEntity implements IInventory {
 
@@ -149,15 +150,18 @@ public class TileEntityStreamFurnace extends TileEntity implements IInventory {
 		}
 		
 		int i = stack.getItem().shiftedIndex;
+		Item var2 = stack.getItem();
 		
 		if (i == Item.bucketLava.shiftedIndex) {
 			return 20000;
 		} else if (i == Item.bucketWater.shiftedIndex) {
 			return 20000;
 		} else {
-			return 0;
+			return GameRegistry.getFuelValue(stack);
 		}
+		
 	}
+	
 	
 	private boolean canSmelt() {
 		if (inventory[0] == null) {

@@ -34,7 +34,8 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 public class DarkShadow {
 	static EnumToolMaterial obby = EnumHelper.addToolMaterial("obby", 3, 2000, 9F, 6, 14);
 	public static Block oreObby = new ObbyOre(201, 16);
-	public static Block streamFurnace = new BlockStreamFurnace(202, 0, false);
+	public static Block streamFurnaceIdle = new BlockStreamFurnace(202, 0, false);
+	public static Block streamFurnaceActive= new BlockStreamFurnace(203, 0, true);
 	public static Item obbySword = new ItemObbySword(509, obby);
 	public static Item obbyItem = new ObbyItems(508);
 	public static Item portalMaker = new ItemPortalMaker(510);
@@ -52,8 +53,8 @@ public class DarkShadow {
 		//Furnace Code
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 		GameRegistry.registerTileEntity(TileEntityStreamFurnace.class, "tileEntityStreamFurnace");
-		GameRegistry.registerBlock(streamFurnace);
-		LanguageRegistry.addName(streamFurnace, "Forge");
+		GameRegistry.registerBlock(streamFurnaceIdle);
+		LanguageRegistry.addName(streamFurnaceIdle, "Forge");
 		//Ore Code
 		GameRegistry.registerBlock(oreObby);
 		LanguageRegistry.addName(oreObby, "Obsidian Ore");
@@ -74,7 +75,7 @@ public class DarkShadow {
 			"XXX", "XAX", "XXX", Character.valueOf('X'), Block.obsidian, Character.valueOf('A'), Item.redstone
 		});
 		
-		GameRegistry.addRecipe(new ItemStack(streamFurnace), new Object[] {
+		GameRegistry.addRecipe(new ItemStack(streamFurnaceIdle), new Object[] {
 			"XXX", "XAX", "XXX", Character.valueOf('X'), Block.obsidian, Character.valueOf('A'), Block.stoneOvenIdle
 		});
 		
