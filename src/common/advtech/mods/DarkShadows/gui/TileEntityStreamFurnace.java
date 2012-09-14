@@ -152,13 +152,10 @@ public class TileEntityStreamFurnace extends TileEntity implements IInventory {
 		int i = stack.getItem().shiftedIndex;
 		Item var2 = stack.getItem();
 		
-		if (i == Item.bucketLava.shiftedIndex) {
-			return 20000;
-		} else if (i == Item.bucketWater.shiftedIndex) {
-			return 20000;
-		} else {
-			return GameRegistry.getFuelValue(stack);
-		}
+		if (i == Item.bucketLava.shiftedIndex)return 20000;
+		if (i == Item.bucketWater.shiftedIndex)	return 20000;
+		return GameRegistry.getFuelValue(stack);
+		
 		
 	}
 	
@@ -293,4 +290,5 @@ public class TileEntityStreamFurnace extends TileEntity implements IInventory {
 
 		tagCompound.setTag("Inventory", itemList);
 	}
+	
 }

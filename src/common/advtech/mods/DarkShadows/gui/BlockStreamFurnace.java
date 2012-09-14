@@ -2,10 +2,6 @@ package advtech.mods.DarkShadows.gui;
 
 import java.util.Random;
 
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
-import cpw.mods.fml.common.asm.transformers.MCPMerger;
-
 import net.minecraft.src.Block;
 import net.minecraft.src.BlockContainer;
 import net.minecraft.src.CreativeTabs;
@@ -21,6 +17,8 @@ import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.TileEntity;
 import net.minecraft.src.World;
 import advtech.mods.DarkShadows.DarkShadow;
+import cpw.mods.fml.common.Side;
+import cpw.mods.fml.common.asm.SideOnly;
 
 public class BlockStreamFurnace extends BlockContainer {
 
@@ -28,9 +26,9 @@ public class BlockStreamFurnace extends BlockContainer {
 	private final boolean isActive;
 	private Random furnaceRand;
 	
-	public BlockStreamFurnace(int par1, int par2, boolean active) {
+	public BlockStreamFurnace(int par1, int par2, boolean Active) {
 		super(par1, par2, Material.circuits);
-		isActive= active;
+		isActive= Active;
 		setBlockName("streamFurnace");
 		setCreativeTab(CreativeTabs.tabDeco);
 		furnaceRand = new Random();
@@ -47,14 +45,18 @@ public class BlockStreamFurnace extends BlockContainer {
 	
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int i, float f, float g, float h) {
-		TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+		if (world.isRemote){
+			return true;
 		
-		if (tileEntity == null || player.isSneaking()) {
-			return false;
 		}
-		
-		player.openGui(DarkShadow.instance, 0, world, x, y, z);
+		else{
+			TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+			
+		if (tileEntity != null || player.isSneaking()) {
+			player.openGui(DarkShadow.instance, 0, world, x, y, z);
+		}
 		return true;
+		}
 	}
 	
 	@Override
@@ -186,28 +188,61 @@ public class BlockStreamFurnace extends BlockContainer {
 	        }
 	    }
 
-	   public static void updateFurnaceBlockState(boolean par0, World par1World, int par2, int par3, int par4)
+	   public static void updateFurnaceBlockState(boolean par0, World world, int i, int j, int k)
 	    {
-	        int var5 = par1World.getBlockMetadata(par2, par3, par4);
-	        TileEntity var6 = par1World.getBlockTileEntity(par2, par3, par4);
+	        int var5 = world.getBlockMetadata(i, j, k);
+	        TileEntity var6 = world.getBlockTileEntity(i, j, k);
 	        keepInventory = true;
 
 	        if (par0)
 	        {
-	            par1World.setBlockWithNotify(par2, par3, par4, DarkShadow.streamFurnaceActive.blockID);
+	            world.setBlockWithNotify(i, j, k, DarkShadow.streamFurnaceActive.blockID);
 	        }
 	        else
 	        {
-	            par1World.setBlockWithNotify(par2, par3, par4, DarkShadow.streamFurnaceIdle.blockID);
+	            world.setBlockWithNotify(i, j, k, DarkShadow.streamFurnaceIdle.blockID);
 	        }
 
 	        keepInventory = false;
-	        par1World.setBlockMetadataWithNotify(par2, par3, par4, var5);
+	        world.setBlockMetadataWithNotify(i, j, k, var5);
 
 	        if (var6 != null)
 	        {
 	            var6.validate();
-	            par1World.setBlockTileEntity(par2, par3, par4, var6);
+	            world.setBlockTileEntity(i, j, k, var6);
+	        }
+	    }
+	   public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random)
+	    {
+	        if (this.isActive)
+	        {
+	            int var6 = par1World.getBlockMetadata(par2, par3, par4);
+	            float var7 = (float)par2 + 0.5F;
+	            float var8 = (float)par3 + 0.0F + par5Random.nextFloat() * 6.0F / 16.0F;
+	            float var9 = (float)par4 + 0.5F;
+	            float var10 = 0.52F;
+	            float var11 = par5Random.nextFloat() * 0.6F - 0.3F;
+
+	            if (var6 == 4)
+	            {
+	                par1World.spawnParticle("smoke", (double)(var7 - var10), (double)var8, (double)(var9 + var11), 0.0D, 0.0D, 0.0D);
+	                par1World.spawnParticle("flame", (double)(var7 - var10), (double)var8, (double)(var9 + var11), 0.0D, 0.0D, 0.0D);
+	            }
+	            else if (var6 == 5)
+	            {
+	                par1World.spawnParticle("smoke", (double)(var7 + var10), (double)var8, (double)(var9 + var11), 0.0D, 0.0D, 0.0D);
+	                par1World.spawnParticle("flame", (double)(var7 + var10), (double)var8, (double)(var9 + var11), 0.0D, 0.0D, 0.0D);
+	            }
+	            else if (var6 == 2)
+	            {
+	                par1World.spawnParticle("smoke", (double)(var7 + var11), (double)var8, (double)(var9 - var10), 0.0D, 0.0D, 0.0D);
+	                par1World.spawnParticle("flame", (double)(var7 + var11), (double)var8, (double)(var9 - var10), 0.0D, 0.0D, 0.0D);
+	            }
+	            else if (var6 == 3)
+	            {
+	                par1World.spawnParticle("smoke", (double)(var7 + var11), (double)var8, (double)(var9 + var10), 0.0D, 0.0D, 0.0D);
+	                par1World.spawnParticle("flame", (double)(var7 + var11), (double)var8, (double)(var9 + var10), 0.0D, 0.0D, 0.0D);
+	            }
 	        }
 	    }
 	
