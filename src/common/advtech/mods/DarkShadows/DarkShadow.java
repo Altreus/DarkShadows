@@ -35,10 +35,8 @@ public class DarkShadow {
 	static EnumToolMaterial obby = EnumHelper.addToolMaterial("obby", 3, 2000, 9F, 6, 14);
 	public static Block oreObby = new ObbyOre(201, 16);
 	public static Block streamFurnace = new BlockStreamFurnace(202, 0, false);
-	public static Item ingotObby = new ItemIngotObby(506);
-	public static Item obbyRivet = new ItemObbyRivet(507);
-	public static Item obbyPlate = new ItemObbyPlate(508);
 	public static Item obbySword = new ItemObbySword(509, obby);
+	public static Item obbyItem = new ObbyItems(508);
 	public static Item portalMaker = new ItemPortalMaker(510);
 	public static Item obbyHammer = new ItemObbyHammer(511);
 	
@@ -61,9 +59,9 @@ public class DarkShadow {
 		LanguageRegistry.addName(oreObby, "Obsidian Ore");
 		//Item Codes
 		LanguageRegistry.addName(portalMaker,"Portal Maker");
-        LanguageRegistry.addName(ingotObby,"Obsidian Ingot");
-        LanguageRegistry.addName(obbyRivet,"Obsidian Rivet");
-        LanguageRegistry.addName(obbyPlate,"Obsidian Plate");
+		LanguageRegistry.addName(new ItemStack(obbyItem,1,0),"Obsidian Ingot");
+		LanguageRegistry.addName(new ItemStack(obbyItem,1,1),"Obsidian Rivet");
+		LanguageRegistry.addName(new ItemStack(obbyItem,1,2),"Obsidian Plate");
 		//Tools Codes
 		LanguageRegistry.addName(obbySword, "Obsidian Sword");
 		LanguageRegistry.addName(obbyHammer, "Obsidian Hammer");
@@ -81,17 +79,17 @@ public class DarkShadow {
 		});
 		
 		GameRegistry.addRecipe(new ItemStack(obbySword), new Object [] {
-			"X  "," X ", "  Z", Character.valueOf('X'), DarkShadow.ingotObby, Character.valueOf('Z'),Item.stick
+			"X  "," X ", "  Z", Character.valueOf('X'), new ItemStack(DarkShadow.obbyItem,1,0), Character.valueOf('Z'),Item.stick
 		});
 		
 		GameRegistry.addRecipe(new ItemStack(obbyHammer), new Object [] {
-			"XXX","XXX", " Z ", Character.valueOf('X'), DarkShadow.ingotObby, Character.valueOf('Z'),Item.stick
+			"XXX","XXX", " Z ", Character.valueOf('X'), new ItemStack(DarkShadow.obbyItem,1,0), Character.valueOf('Z'),Item.stick
 		});
-		GameRegistry.addRecipe(new ItemStack(DarkShadow.ingotObby), new Object[] {"###", "###", "###", '#', DarkShadow.obbyRivet});
+		GameRegistry.addRecipe(new ItemStack(obbyItem,1,0), new Object[] {"###", "###", "###", '#', new ItemStack(DarkShadow.obbyItem,1,1)});
 		
-		GameRegistry.addRecipe(new ItemStack(DarkShadow.obbyRivet, 9), new Object[] {"#", '#', DarkShadow.ingotObby});
+		GameRegistry.addRecipe(new ItemStack(DarkShadow.obbyItem,9,1), new Object[] {"#", '#', new ItemStack(DarkShadow.obbyItem,1,0)});
 		
-		GameRegistry.addRecipe(new ItemStack(DarkShadow.obbyPlate), new Object[]{" * ","###","###", Character.valueOf('*'),DarkShadow.obbyHammer, Character.valueOf('#'), DarkShadow.ingotObby});
+		GameRegistry.addRecipe(new ItemStack(DarkShadow.obbyItem,1,2), new Object[]{" * ","###","###", Character.valueOf('*'),DarkShadow.obbyHammer, Character.valueOf('#'), new ItemStack(DarkShadow.obbyItem,1,0)});
 	}
 	
 	@PreInit
