@@ -22,6 +22,7 @@ public class StreamFurnaceRecipes {
 	
 	private StreamFurnaceRecipes() {
 		addSmelting(DarkShadow.oreObby.blockID, new ItemStack(Block.obsidian), 0.7F);
+		addSmelting(Block.obsidian.blockID, new ItemStack(DarkShadow.obbyItem,1,0),0.7F);
 	}
 	
 	public void addSmelting(int id, ItemStack stack, float experience) {

@@ -91,47 +91,66 @@ public class TileEntityStreamFurnace extends TileEntity implements IInventory {
 	}
 	
 	@Override
-	public void updateEntity() {
-		boolean var1 = this.burnTime > 0;
-		boolean var2 = false;
-		
-		if (burnTime > 0) {
-			burnTime -= 1;
-		}
-		
-		if (burnTime == 0 && this.canSmelt()) {
-			freshBurnTime = burnTime = getItemBurnTime(inventory[1]);
-			
-			if (burnTime > 0) {
-				var2 = true;
-				
-				if (inventory[1] != null) {
-					inventory[1].stackSize -= 1;
-					
-					if (inventory[1].stackSize == 0) {
-						Item var3 = inventory[1].getItem().getContainerItem();
-						
-						inventory[1] = var3 == null ? null : new ItemStack(var3);
-					}
-				}
-			}
-		}
-		
-		if (isBurning() && canSmelt()) {
-			cookTime += 1;
-			
-			if (cookTime == 200) {
-				cookTime = 0;
-				smeltItem();
-				var2 = true;
-			}
-		} else {
-			cookTime = 0;
-		}
-		
-		if (var1 != burnTime > 0) {
-			var2 = true;
-		}
+	public void updateEntity()
+    {
+        boolean var1 = this.burnTime > 0;
+        boolean var2 = false;
+
+        if (this.burnTime > 0)
+        {
+            --this.burnTime;
+        }
+
+        if (!this.worldObj.isRemote)
+        {
+            if (this.burnTime == 0 && this.canSmelt())
+            {
+                this.freshBurnTime = this.burnTime = getItemBurnTime(this.inventory[1]);
+
+                if (this.burnTime > 0)
+                {
+                    var2 = true;
+
+                    if (this.inventory[1] != null)
+                    {
+                        --this.inventory[1].stackSize;
+
+                        if (this.inventory[1].stackSize == 0)
+                        {
+                            this.inventory[1] = this.inventory[1].getItem().getContainerItemStack(inventory[1]);
+                        }
+                    }
+                }
+            }
+
+            if (this.isBurning() && this.canSmelt())
+            {
+                ++this.cookTime;
+
+                if (this.cookTime == 200)
+                {
+                    this.cookTime = 0;
+                    this.smeltItem();
+                    var2 = true;
+                }
+            }
+            else
+            {
+                this.cookTime = 0;
+            }
+
+            if (var1 != this.burnTime > 0)
+            {
+                var2 = true;
+                BlockStreamFurnace.updateFurnaceBlockState(this.burnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+            }
+        }
+
+        if (var2)
+        {
+            this.onInventoryChanged();
+        }
+    
 		
 		boolean check = isActive();
 		isActive = isBurning();
@@ -148,11 +167,10 @@ public class TileEntityStreamFurnace extends TileEntity implements IInventory {
 		if (stack == null) {
 			return 0;
 		}
-		
 		int i = stack.getItem().shiftedIndex;
 		Item var2 = stack.getItem();
 		
-		if (i == Item.bucketLava.shiftedIndex)return 20000;
+		if (i == Item.bucketLava.shiftedIndex) return 20000;
 		if (i == Item.bucketWater.shiftedIndex)	return 20000;
 		return GameRegistry.getFuelValue(stack);
 		
