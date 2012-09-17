@@ -3,6 +3,8 @@
  */
 package advtech.mods.DarkShadows;
 
+import cpw.mods.fml.common.Side;
+import cpw.mods.fml.common.asm.SideOnly;
 import net.minecraft.src.Block;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.EntityPlayer;
@@ -22,10 +24,14 @@ public class ItemPortalMaker extends Item {
 	 */
 	public ItemPortalMaker(int i) {
 		super(i);
-		setIconIndex(28);
 		setItemName("Portal Maker");
 		setTabToDisplayOn(CreativeTabs.tabTools);
+		setIconIndex(0);
 	}
+    @Override
+	public String getTextureFile() {
+	return "/advtech/mods/DarkShadows/item.png";
+    }
 	
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {

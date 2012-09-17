@@ -50,6 +50,7 @@ public class DarkShadow {
 	
 	@Init
 	public void init(FMLInitializationEvent event) {
+		MinecraftForgeClient.preloadTexture("/advtech/mods/DarkShadows/item.png");
 		//Furnace Code
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 		GameRegistry.registerTileEntity(TileEntityStreamFurnace.class, "tileEntityStreamFurnace");

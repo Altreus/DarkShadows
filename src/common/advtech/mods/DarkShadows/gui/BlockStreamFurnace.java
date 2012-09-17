@@ -33,11 +33,12 @@ public class BlockStreamFurnace extends BlockContainer {
 		setCreativeTab(CreativeTabs.tabDeco);
 		furnaceRand = new Random();
 		setRequiresSelfNotify();
+		blockIndexInTexture = 8;
 	}
 	
 	@Override
 	public String getTextureFile() {
-		return "/advtech/mods/DarkShadows/terrain.png";
+		return "/advtech/mods/DarkShadows/item.png";
 	}
 	public int idDropped(int i, Random random, int j){
 		return DarkShadow.streamFurnaceIdle.blockID;
@@ -131,38 +132,24 @@ public class BlockStreamFurnace extends BlockContainer {
 		
 		((TileEntityStreamFurnace)blockEntity).setFrontDirection(byte0);
 	}
-	@SideOnly(Side.CLIENT)
-	public int getBlockTextureFromSideAndMetaData(IBlockAccess access, int x, int y, int z, int side) {
-		int front = 0;
-		int left = 1;
-		int back = 1;
-		int right = 1;
-		int top = 1;
-		int bottom = 1;
-		
-		return front;
-	}
-	
-	
-	@Override
-	public int getBlockTextureFromSide(int side) {
-		switch (side) {
-		case 0:
-			return 18;
-		case 1:
-			return 18;
-		case 2:
-			return 1;
-		case 3:
-			return 0;
-		case 4:
-			return 1;
-		case 5:
-			return 1;
-		default:
-			return 1;
-		}
-	}
+@SideOnly(Side.CLIENT)	
+    public int getBlockTexture(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
+    {
+        if (par5 == 1)
+        {
+            return this.blockIndexInTexture + 1;
+        }
+        else if (par5 == 0)
+        {
+            return this.blockIndexInTexture + 1;
+        }
+        else
+        {
+            int var6 = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
+            return par5 != var6 ? this.blockIndexInTexture : (this.isActive ? this.blockIndexInTexture -1 : this.blockIndexInTexture -1);
+        }
+    }
+
 	   public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLiving par5EntityLiving)
 	    {
 	        int var6 = MathHelper.floor_double((double)(par5EntityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
