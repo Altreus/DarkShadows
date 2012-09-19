@@ -18,31 +18,29 @@ public class GuiStreamFurnace extends GuiContainer {
 
 	@Override
 	protected void drawGuiContainerForegroundLayer() {
-		fontRenderer.drawString("Stream Furnace", 6, 6, 0xFFFFFF);
+		fontRenderer.drawString(StatCollector.translateToLocal("Forge"), 6, 6, 0xFFFFFF);
 		fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 6, ySize - 94, 0xFFFFFF);
 	}
 	
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float var1, int var2, int var3) {
-		int texture = mc.renderEngine.getTexture("/advtech/mods/DarkShadows/gui/streamFurnace.png");
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		
-		this.mc.renderEngine.bindTexture(texture);
-		int x = (width - xSize) / 2;
-		int y = (height - ySize) / 2;
-		
-		this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
-		
-		if (streamFurnace.isBurning()) {
-			int burn = streamFurnace.getBurnTimeRemainingScaled(14);
-			drawTexturedModalRect(x + 57, y + 37, 176, 0, 14, burn);
-			int update = streamFurnace.getCookProgressScaled(15);
-	        drawTexturedModalRect(x + 89, y + 55, 176, 31, update, 17);
-	        
-	        System.out.println(burn + ", " + update);
-		}
-	}
-	
-	
 
+    protected void drawGuiContainerBackgroundLayer(float i, int j, int k)
+    {
+        int texture = this.mc.renderEngine.getTexture("/advtech/mods/DarkShadows/gui/streamFurnace.png");
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        this.mc.renderEngine.bindTexture(texture);
+        int x = (width - xSize) / 2;
+        int y = (height - ySize) / 2;
+        this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+
+        if (this.streamFurnace.isBurning())
+        {
+            int burn = this.streamFurnace.getBurnTimeRemainingScaled(14);
+            this.drawTexturedModalRect(x + 57, y + 37 + 14 - burn, 176, 14 - burn, 14, burn + 2);
+        }
+
+        int update = this.streamFurnace.getCookProgressScaled(15);
+        this.drawTexturedModalRect(x + 89, y + 55, 176, 31, update + 1, 17);
+    }
 }
+

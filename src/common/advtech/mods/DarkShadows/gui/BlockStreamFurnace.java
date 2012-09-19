@@ -22,13 +22,13 @@ import cpw.mods.fml.common.asm.SideOnly;
 
 public class BlockStreamFurnace extends BlockContainer {
 
-	private static boolean keepInventory = false;
+	private static boolean keepFurnaceInventory = false;
 	private final boolean isActive;
 	private Random furnaceRand;
 	
 	public BlockStreamFurnace(int par1, int par2, boolean Active) {
 		super(par1, par2, Material.circuits);
-		isActive= Active;
+		isActive = Active;
 		setBlockName("streamFurnace");
 		setCreativeTab(CreativeTabs.tabDeco);
 		furnaceRand = new Random();
@@ -111,10 +111,10 @@ public class BlockStreamFurnace extends BlockContainer {
 	public void setDefaultDirection(World world, int x, int y, int z) {
 		TileEntity blockEntity = world.getBlockTileEntity(x, y, z);
 		
-		int i = world.getBlockId(x, y, z-1);
-		int j = world.getBlockId(x, y, z+1);
-		int k = world.getBlockId(x-1, y, z);
-		int l = world.getBlockId(x+1, y, z);
+		int i = world.getBlockId(x, y, z -1);
+		int j = world.getBlockId(x, y, z +1);
+		int k = world.getBlockId(x -1, y, z);
+		int l = world.getBlockId(x +1, y, z);
 		byte byte0 = 3;
 		
 		if (Block.opaqueCubeLookup[i] && !Block.opaqueCubeLookup[j]) {
@@ -150,38 +150,38 @@ public class BlockStreamFurnace extends BlockContainer {
         }
     }
 
-	   public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLiving par5EntityLiving)
+	   public void onBlockPlacedBy(World world, int par2, int par3, int par4, EntityLiving par5EntityLiving)
 	    {
 	        int var6 = MathHelper.floor_double((double)(par5EntityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 
 	        if (var6 == 0)
 	        {
-	            par1World.setBlockMetadataWithNotify(par2, par3, par4, 2);
+	            world.setBlockMetadataWithNotify(par2, par3, par4, 2);
 	        }
 
 	        if (var6 == 1)
 	        {
-	            par1World.setBlockMetadataWithNotify(par2, par3, par4, 5);
+	            world.setBlockMetadataWithNotify(par2, par3, par4, 5);
 	        }
 
 	        if (var6 == 2)
 	        {
-	            par1World.setBlockMetadataWithNotify(par2, par3, par4, 3);
+	            world.setBlockMetadataWithNotify(par2, par3, par4, 3);
 	        }
 
 	        if (var6 == 3)
 	        {
-	            par1World.setBlockMetadataWithNotify(par2, par3, par4, 4);
+	            world.setBlockMetadataWithNotify(par2, par3, par4, 4);
 	        }
 	    }
 
-	   public static void updateFurnaceBlockState(boolean par0, World world, int i, int j, int k)
+	   public static void updateFurnaceBlockState(boolean Active, World world, int i, int j, int k)
 	    {
-	        int var5 = world.getBlockMetadata(i, j, k);
+	        int l = world.getBlockMetadata(i, j, k);
 	        TileEntity var6 = world.getBlockTileEntity(i, j, k);
-	        keepInventory = true;
+	        keepFurnaceInventory = true;
 
-	        if (par0)
+	        if (Active)
 	        {
 	            world.setBlockWithNotify(i, j, k, DarkShadow.streamFurnaceActive.blockID);
 	        }
@@ -190,8 +190,8 @@ public class BlockStreamFurnace extends BlockContainer {
 	            world.setBlockWithNotify(i, j, k, DarkShadow.streamFurnaceIdle.blockID);
 	        }
 
-	        keepInventory = false;
-	        world.setBlockMetadataWithNotify(i, j, k, var5);
+	        keepFurnaceInventory = false;
+	        world.setBlockMetadataWithNotify(i, j, k, l);
 
 	        if (var6 != null)
 	        {
@@ -199,11 +199,11 @@ public class BlockStreamFurnace extends BlockContainer {
 	            world.setBlockTileEntity(i, j, k, var6);
 	        }
 	    }
-	   public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random)
+	   public void randomDisplayTick(World world, int par2, int par3, int par4, Random par5Random)
 	    {
 	        if (this.isActive)
 	        {
-	            int var6 = par1World.getBlockMetadata(par2, par3, par4);
+	            int var6 = world.getBlockMetadata(par2, par3, par4);
 	            float var7 = (float)par2 + 0.5F;
 	            float var8 = (float)par3 + 0.0F + par5Random.nextFloat() * 6.0F / 16.0F;
 	            float var9 = (float)par4 + 0.5F;
@@ -212,30 +212,30 @@ public class BlockStreamFurnace extends BlockContainer {
 
 	            if (var6 == 4)
 	            {
-	                par1World.spawnParticle("smoke", (double)(var7 - var10), (double)var8, (double)(var9 + var11), 0.0D, 0.0D, 0.0D);
-	                par1World.spawnParticle("flame", (double)(var7 - var10), (double)var8, (double)(var9 + var11), 0.0D, 0.0D, 0.0D);
+	                world.spawnParticle("smoke", (double)(var7 - var10), (double)var8, (double)(var9 + var11), 0.0D, 0.0D, 0.0D);
+	                world.spawnParticle("flame", (double)(var7 - var10), (double)var8, (double)(var9 + var11), 0.0D, 0.0D, 0.0D);
 	            }
 	            else if (var6 == 5)
 	            {
-	                par1World.spawnParticle("smoke", (double)(var7 + var10), (double)var8, (double)(var9 + var11), 0.0D, 0.0D, 0.0D);
-	                par1World.spawnParticle("flame", (double)(var7 + var10), (double)var8, (double)(var9 + var11), 0.0D, 0.0D, 0.0D);
+	                world.spawnParticle("smoke", (double)(var7 + var10), (double)var8, (double)(var9 + var11), 0.0D, 0.0D, 0.0D);
+	                world.spawnParticle("flame", (double)(var7 + var10), (double)var8, (double)(var9 + var11), 0.0D, 0.0D, 0.0D);
 	            }
 	            else if (var6 == 2)
 	            {
-	                par1World.spawnParticle("smoke", (double)(var7 + var11), (double)var8, (double)(var9 - var10), 0.0D, 0.0D, 0.0D);
-	                par1World.spawnParticle("flame", (double)(var7 + var11), (double)var8, (double)(var9 - var10), 0.0D, 0.0D, 0.0D);
+	                world.spawnParticle("smoke", (double)(var7 + var11), (double)var8, (double)(var9 - var10), 0.0D, 0.0D, 0.0D);
+	                world.spawnParticle("flame", (double)(var7 + var11), (double)var8, (double)(var9 - var10), 0.0D, 0.0D, 0.0D);
 	            }
 	            else if (var6 == 3)
 	            {
-	                par1World.spawnParticle("smoke", (double)(var7 + var11), (double)var8, (double)(var9 + var10), 0.0D, 0.0D, 0.0D);
-	                par1World.spawnParticle("flame", (double)(var7 + var11), (double)var8, (double)(var9 + var10), 0.0D, 0.0D, 0.0D);
+	                world.spawnParticle("smoke", (double)(var7 + var11), (double)var8, (double)(var9 + var10), 0.0D, 0.0D, 0.0D);
+	                world.spawnParticle("flame", (double)(var7 + var11), (double)var8, (double)(var9 + var10), 0.0D, 0.0D, 0.0D);
 	            }
 	        }
 	    }
 	
 	
 	@Override
-	public TileEntity createNewTileEntity(World var1) {
+	public TileEntity createNewTileEntity(World world) {
 		return new TileEntityStreamFurnace();
 	}
 }
