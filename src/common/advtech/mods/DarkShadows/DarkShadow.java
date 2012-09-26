@@ -1,6 +1,7 @@
 package advtech.mods.DarkShadows;
 
 import net.minecraft.src.Block;
+import net.minecraft.src.EnumArmorMaterial;
 import net.minecraft.src.EnumToolMaterial;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
@@ -33,13 +34,18 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 @SidedPacketHandler(channels = {"DarkShadow"}, packetHandler = ServerPacketHandler.class))
 public class DarkShadow {
 	static EnumToolMaterial obby = EnumHelper.addToolMaterial("obby", 3, 2000, 9F, 6, 14);
+	static EnumArmorMaterial obby1 = EnumHelper.addArmorMaterial("OBBY",135,new int[]{31,36,35,33},15);
 	public static Block oreObby = new ObbyOre(201, 16);
-	public static Block streamFurnaceIdle = new BlockStreamFurnace(202, 0, false);
-	public static Block streamFurnaceActive= new BlockStreamFurnace(203, 0, true);
+	public static Block streamFurnaceIdle = new BlockStreamFurnace(202, 8, false);
+	public static Block streamFurnaceActive= new BlockStreamFurnace(203, 8, true);
 	public static Item obbySword = new ItemObbySword(509, obby);
 	public static Item obbyItem = new ObbyItems(508);
 	public static Item portalMaker = new ItemPortalMaker(510);
 	public static Item obbyHammer = new ItemObbyHammer(511);
+	public static final Item helmetObby = new ItemObbyArmor(512, obby1, 0, 0).setItemName("Obsidian Helmet");
+	public static final Item chestplateObby = new ItemObbyArmor(513, obby1, 0, 1).setItemName("Obsidian ChestPlate");
+	public static final Item leggingObby = new ItemObbyArmor(514,obby1, 0, 2).setItemName("Obsidian Leggings");
+	public static final Item bootObby = new ItemObbyArmor(515,obby1, 0, 3).setItemName("Obsidian Boots");
 	
 	@Instance
 	public static DarkShadow instance;
@@ -50,7 +56,6 @@ public class DarkShadow {
 	
 	@Init
 	public void init(FMLInitializationEvent event) {
-		MinecraftForgeClient.preloadTexture("/advtech/mods/DarkShadows/item.png");
 		//Furnace Code
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 		GameRegistry.registerTileEntity(TileEntityStreamFurnace.class, "tileEntityStreamFurnace");
@@ -64,6 +69,10 @@ public class DarkShadow {
 		LanguageRegistry.addName(new ItemStack(obbyItem,1,0),"Obsidian Ingot");
 		LanguageRegistry.addName(new ItemStack(obbyItem,1,1),"Obsidian Rivet");
 		LanguageRegistry.addName(new ItemStack(obbyItem,1,2),"Obsidian Plate");
+		LanguageRegistry.addName(helmetObby, "Obsidian Helmet");
+		LanguageRegistry.addName(chestplateObby,"Obsidian ChestPlate");
+		LanguageRegistry.addName(leggingObby, "Obsidian Leggings");
+		LanguageRegistry.addName(bootObby,"Obsidian Boots");
 		//Tools Codes
 		LanguageRegistry.addName(obbySword, "Obsidian Sword");
 		LanguageRegistry.addName(obbyHammer, "Obsidian Hammer");
@@ -92,6 +101,8 @@ public class DarkShadow {
 		GameRegistry.addRecipe(new ItemStack(DarkShadow.obbyItem,9,1), new Object[] {"#", '#', new ItemStack(DarkShadow.obbyItem,1,0)});
 		
 		GameRegistry.addRecipe(new ItemStack(DarkShadow.obbyItem,1,2), new Object[]{" * ","###","###", Character.valueOf('*'),DarkShadow.obbyHammer, Character.valueOf('#'), new ItemStack(DarkShadow.obbyItem,1,0)});
+		
+		GameRegistry.addRecipe(new ItemStack(DarkShadow.chestplateObby,1), new Object[]{" # ","A#A"," # ",Character.valueOf('#'), new ItemStack(DarkShadow.obbyItem,1,2), Character.valueOf('A'), new ItemStack(DarkShadow.obbyItem,1,1)});
 	}
 	
 	@PreInit

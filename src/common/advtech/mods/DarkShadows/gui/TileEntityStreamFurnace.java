@@ -1,20 +1,16 @@
 package advtech.mods.DarkShadows.gui;
 
 import net.minecraft.src.Block;
-import net.minecraft.src.BlockFurnace;
 import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.FurnaceRecipes;
 import net.minecraft.src.IInventory;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.NBTTagList;
 import net.minecraft.src.TileEntity;
-import net.minecraftforge.common.ForgeDirection;
-import net.minecraftforge.common.ISidedInventory;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class TileEntityStreamFurnace extends TileEntity implements IInventory, ISidedInventory {
+public class TileEntityStreamFurnace extends TileEntity implements IInventory {
 
 	private ItemStack[] inventory;
 	public int front = 0;
@@ -42,50 +38,33 @@ public class TileEntityStreamFurnace extends TileEntity implements IInventory, I
 	}
 
 	@Override
-   public ItemStack decrStackSize(int slotIndex, int amount)
-   {
-       if (inventory[slotIndex] != null)
-       {
-           ItemStack var3;
+	public ItemStack decrStackSize(int slotIndex, int amount) {
+		ItemStack stack = getStackInSlot(slotIndex);
 
-           if (inventory[slotIndex].stackSize <= amount)
-           {
-               var3 = inventory[slotIndex];
-               inventory[slotIndex] = null;
-               return var3;
-           }
-           else
-           {
-               var3 = this.inventory[slotIndex].splitStack(amount);
-
-               if (inventory[slotIndex].stackSize == 0)
-               {
-                   inventory[slotIndex] = null;
-               }
-
-               return var3;
-           }
-       }
-       else
-       {
-           return null;
-       }
-   }
+		if (stack != null) {
+			if (stack.stackSize <= amount) {
+				setInventorySlotContents(slotIndex, null);
+			} else {
+				stack = stack.splitStack(amount);
+				if (stack.stackSize == 0) {
+					setInventorySlotContents(slotIndex, null);
+				}
+			}
+		}
+		
+		return stack;
+	}
 
 	@Override
-    public ItemStack getStackInSlotOnClosing(int slotIndex)
-    {
-        if (this.inventory[slotIndex] != null)
-        {
-            ItemStack stack = this.inventory[slotIndex];
-            this.inventory[slotIndex] = null;
-            return stack;
-        }
-        else
-        {
-            return null;
-        }
-    }
+	public ItemStack getStackInSlotOnClosing(int slotIndex) {
+		ItemStack stack = getStackInSlot(slotIndex);
+		
+		if (stack != null) {
+			setInventorySlotContents(slotIndex, null);
+		}
+		
+		return stack;
+	}
 
 	public boolean isActive() {
 		return isActive;
@@ -171,7 +150,19 @@ public class TileEntityStreamFurnace extends TileEntity implements IInventory, I
         {
             this.onInventoryChanged();
         }
-    }
+    
+		
+		boolean check = isActive();
+		isActive = isBurning();
+		if (isActive != check) {
+			this.worldObj.markBlockNeedsUpdate(xCoord, yCoord, zCoord);
+		}
+		
+		if (var2) {
+			this.onInventoryChanged();
+		}
+	}
+	
 	public static int getItemBurnTime(ItemStack stack) {
 		if (stack == null) {
 			return 0;
@@ -187,44 +178,52 @@ public class TileEntityStreamFurnace extends TileEntity implements IInventory, I
 	}
 	
 	
+	private boolean canSmelt() {
+		if (inventory[0] == null) {
+			return false;
+		}
+		
+		ItemStack stack = StreamFurnaceRecipes.smelting().getSmeltingResult(inventory[0].getItem().shiftedIndex);
+		
+		 if (stack == null)
+         {
+                 return false;
+         }
 
-	  private boolean canSmelt()
-	    {
-	        if (inventory[0] == null)
-	        {
-	            return false;
-	        }
-	        else
-	        {
-	            ItemStack stack = StreamFurnaceRecipes.smelting().getSmeltingResult(this.inventory[0].getItem().shiftedIndex);
-	            if (stack == null) 
-	            	return false;
-	            if (inventory[3] == null)
-	            	return true;
-	            if (!this.inventory[3].isItemEqual(stack))
-	            	return false;
-	            if (inventory[3].stackSize < getInventoryStackLimit() && inventory[3].stackSize < inventory[3].getMaxStackSize())
-	            	return true;
-	             return inventory[3].stackSize < stack.getMaxStackSize();
-	        }
-	    }
-	    
+         if (inventory[3] == null)
+         {
+                 return true;
+         }
 
+         if (!inventory[3].isItemEqual(stack))
+         {
+                 return false;
+         }
+
+         if (inventory[3].stackSize < getInventoryStackLimit() && inventory[3].stackSize < inventory[3].getMaxStackSize())
+         {
+                 return true;
+         }
+
+         return inventory[3].stackSize < stack.getMaxStackSize();
+
+	}
 	
 	public void smeltItem() {
-		if (this.canSmelt()) {
+		if (canSmelt()) {
 			ItemStack stack = StreamFurnaceRecipes.smelting().getSmeltingResult(inventory[0].getItem().shiftedIndex);
 			
 			if (inventory[3] == null) {
 				inventory[3] = stack.copy();
 			} else if (inventory[3].itemID == stack.itemID) {
-				inventory[3].stackSize += stack.stackSize;
+				inventory[3].stackSize += 1;
 			}
 			
-			--inventory[0].stackSize;
+			inventory[0].stackSize -= 1;
 			
-			if (inventory[0].stackSize <= 0) {
-				inventory[0] = null;
+			if (inventory[0].stackSize == 0) {
+				Item i = inventory[0].getItem().getContainerItem();
+				inventory[0] = i == null ? null : new ItemStack(i);			
 			}
 		}
 	}
@@ -262,67 +261,52 @@ public class TileEntityStreamFurnace extends TileEntity implements IInventory, I
 	}
 
 	@Override
-	public void openChest() {}
-
-	@Override
-	public void closeChest() {}
-	
-	@Override
-    public void readFromNBT(NBTTagCompound tagCompound)
-    {
-        super.readFromNBT(tagCompound);
-        NBTTagList tagList = tagCompound.getTagList("Inventory");
-        this.inventory = new ItemStack[this.getSizeInventory()];
-
-        for (int i = 0; i < tagList.tagCount(); ++i)
-        {
-            NBTTagCompound tag = (NBTTagCompound)tagList.tagAt(i);
-            byte slot = tag.getByte("Slot");
-
-            if (slot >= 0 && slot < this.inventory.length)
-            {
-                this.inventory[slot] = ItemStack.loadItemStackFromNBT(tag);
-            }
-        }
-
-        this.burnTime = tagCompound.getShort("BurnTime");
-        this.cookTime = tagCompound.getShort("CookTime");
-        this.freshBurnTime = getItemBurnTime(this.inventory[1]);
-    }
-
-	// Same as the latter
-	@Override
-    public void writeToNBT(NBTTagCompound tagCompound)
-    {
-        super.writeToNBT(tagCompound);
-        tagCompound.setShort("BurnTime", (short)this.burnTime);
-        tagCompound.setShort("CookTime", (short)this.cookTime);
-        NBTTagList tagList = new NBTTagList();
-
-        for (int i = 0; i < this.inventory.length; ++i)
-        {
-            if (this.inventory[i] != null)
-            {
-                NBTTagCompound tag = new NBTTagCompound();
-                tag.setByte("Slot", (byte)i);
-                this.inventory[i].writeToNBT(tag);
-                tagList.appendTag(tag);
-            }
-        }
-
-        tagCompound.setTag("Inventory", tagList);
-    }
-
-	@Override
-	public int getStartInventorySide(ForgeDirection side) {
-		if (side == ForgeDirection.UP) return 1;
-		if (side == ForgeDirection.DOWN) return 0;
-		return 2;
+	public void openChest() {
+		//
 	}
 
 	@Override
-	public int getSizeInventorySide(ForgeDirection side) {
-		return 1;
+	public void closeChest() {
+		//
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound tagCompound) {
+		super.readFromNBT(tagCompound);
+
+		NBTTagList tagList = tagCompound.getTagList("Inventory");
+
+		for (int i = 0; i < tagList.tagCount(); i++) {
+			NBTTagCompound tag = (NBTTagCompound) tagList.tagAt(i);
+
+			byte slot = tag.getByte("Slot");
+
+			if (slot >= 0 && slot < inventory.length) {
+				inventory[slot] = ItemStack.loadItemStackFromNBT(tag);
+			}
+		}
+	}
+
+	// Same as the later
+	@Override
+	public void writeToNBT(NBTTagCompound tagCompound) {
+		super.writeToNBT(tagCompound);
+
+		NBTTagList itemList = new NBTTagList();
+
+		for (int i = 0; i < inventory.length; i++) {
+			ItemStack stack = inventory[i];
+
+			if (stack != null) {
+				NBTTagCompound tag = new NBTTagCompound();
+
+				tag.setByte("Slot", (byte) i);
+				stack.writeToNBT(tag);
+				itemList.appendTag(tag);
+			}
+		}
+
+		tagCompound.setTag("Inventory", itemList);
 	}
 	
 }

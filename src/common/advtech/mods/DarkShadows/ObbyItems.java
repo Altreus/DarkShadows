@@ -27,7 +27,7 @@ public class ObbyItems extends Item {
 		super(id);
 		setHasSubtypes(true);
 		setMaxStackSize(64);
-		setTabToDisplayOn(CreativeTabs.tabMaterials);
+		setCreativeTab(CreativeTabs.tabMaterials);
 	}
 	@Override
 	public int getIconFromDamage(int damageValue){

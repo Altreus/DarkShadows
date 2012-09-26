@@ -11,7 +11,7 @@ public class ShadowWorldGenerator implements IWorldGenerator {
 
 	@Override
 	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
-		switch (world.provider.worldType) {
+		switch (world.provider.dimensionId) {
 		case -1:
 			generateNether(rand, chunkX*16, chunkZ*16, world);
 			break;

@@ -28,21 +28,17 @@ public class ItemObbySword extends ItemSword {
 
 	public ItemObbySword(int ItemID, EnumToolMaterial toolMaterial){
 		super(509, obby);
+		setIconIndex(67);
 		setItemName("obbySword");
 		this.maxStackSize=1;
-		this.setIconIndex(1);
 		this.setMaxDamage(obby.getMaxUses());
-		this.setTabToDisplayOn(CreativeTabs.tabCombat);
+		this.setCreativeTab(CreativeTabs.tabCombat);
 		this.weaponDamage = 4 + obby.getDamageVsEntity();
 		
 	}
     public float getStrVsBlock(ItemStack par1ItemStack, Block par2Block)
     {
         return par2Block.blockID == Block.web.blockID ? 15.0F : 1.5F;
-    }
-    @Override
-	public String getTextureFile() {
-	return "/advtech/mods/DarkShadows/item.png";
     }
 
     /**
