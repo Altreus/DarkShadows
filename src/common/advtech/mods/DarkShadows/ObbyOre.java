@@ -9,8 +9,8 @@ import net.minecraft.src.Material;
 
 
 public class ObbyOre extends BlockOre {
-	public ObbyOre(int par1, int par2) {
-		super(par1, par2);
+	public ObbyOre(int blockID,int par1) {
+		super(blockID, par1);
 		setCreativeTab(CreativeTabs.tabBlock);
 		setStepSound(Block.soundStoneFootstep);
 		setHardness(50F);
