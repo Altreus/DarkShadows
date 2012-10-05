@@ -7,7 +7,6 @@ import net.minecraft.src.EnumArmorMaterial;
 import net.minecraft.src.EnumToolMaterial;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
-
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
@@ -19,6 +18,8 @@ import advtech.mods.DarkShadows.gui.GuiHandler;
 import advtech.mods.DarkShadows.gui.ServerPacketHandler;
 import advtech.mods.DarkShadows.gui.TileEntityStreamFurnace;
 
+import cpw.mods.fml.client.registry.RenderingRegistry;
+
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -26,12 +27,14 @@ import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.SidedProxy;
+
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkMod.SidedPacketHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
@@ -40,21 +43,6 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 @SidedPacketHandler(channels = {"DarkShadow"}, packetHandler = ClientPacketHandler.class), serverPacketHandlerSpec = 
 @SidedPacketHandler(channels = {"DarkShadow"}, packetHandler = ServerPacketHandler.class))
 public class DarkShadow {
-<<<<<<< HEAD
-	static EnumToolMaterial obby = EnumHelper.addToolMaterial("obby", 3, 2000, 9F, 6, 14);
-	static EnumArmorMaterial obby1 = EnumHelper.addArmorMaterial("OBBY",135,new int[]{31,36,35,33},15);
-	public static Block oreObby = new ObbyOre(201, 16);
-	public static Block streamFurnaceIdle = new BlockStreamFurnace(202, 8, false);
-	public static Block streamFurnaceActive= new BlockStreamFurnace(203, 8, true);
-	public static Item obbySword = new ItemObbySword(509, obby);
-	public static Item obbyItem = new ObbyItems(508);
-	public static Item portalMaker = new ItemPortalMaker(510);
-	public static Item obbyHammer = new ItemObbyHammer(511);
-	public static final Item helmetObby = new ItemObbyArmor(512, obby1, 0, 0).setItemName("Obsidian Helmet");
-	public static final Item chestplateObby = new ItemObbyArmor(513, obby1, 0, 1).setItemName("Obsidian ChestPlate");
-	public static final Item leggingObby = new ItemObbyArmor(514,obby1, 0, 2).setItemName("Obsidian Leggings");
-	public static final Item bootObby = new ItemObbyArmor(515,obby1, 0, 3).setItemName("Obsidian Boots");
-=======
 	
 	public static Block oreObby;// = new ObbyOre(201, 16);
 	public static Block streamFurnaceIdle; //= new BlockStreamFurnace(202, 8, false);
@@ -84,7 +72,6 @@ public class DarkShadow {
 	
 	
 	public static Logger dsLog = Logger.getLogger("DarkShadow");
->>>>>>> Removed un-needed files. Changed some files
 	
 	@Instance
 	public static DarkShadow instance;
@@ -109,8 +96,6 @@ public class DarkShadow {
 		
 		GameRegistry.registerTileEntity(TileEntityStreamFurnace.class, "tileEntityStreamFurnace");
 		GameRegistry.registerBlock(streamFurnaceIdle);
-<<<<<<< HEAD
-=======
 		
 		proxy.registerRenderThings();
 		
@@ -123,7 +108,6 @@ public class DarkShadow {
 		dsLog.info("Adding Recipes");
 		
 		addRecipes();
->>>>>>> Removed un-needed files. Changed some files
 		LanguageRegistry.addName(streamFurnaceIdle, "Forge");
 		//Ore Code
 
@@ -144,30 +128,6 @@ public class DarkShadow {
 		//World Generator Code
 		GameRegistry.registerWorldGenerator(new ShadowWorldGenerator());
 		//Recipes
-<<<<<<< HEAD
-		GameRegistry.addRecipe(new ItemStack(portalMaker), new Object[] {
-			"XXX", "XAX", "XXX", Character.valueOf('X'), Block.obsidian, Character.valueOf('A'), Item.redstone
-		});
-		
-		GameRegistry.addRecipe(new ItemStack(streamFurnaceIdle), new Object[] {
-			"XXX", "XAX", "XXX", Character.valueOf('X'), Block.obsidian, Character.valueOf('A'), Block.stoneOvenIdle
-		});
-		
-		GameRegistry.addRecipe(new ItemStack(obbySword), new Object [] {
-			"X  "," X ", "  Z", Character.valueOf('X'), new ItemStack(DarkShadow.obbyItem,1,0), Character.valueOf('Z'),Item.stick
-		});
-		
-		GameRegistry.addRecipe(new ItemStack(obbyHammer), new Object [] {
-			"XXX","XXX", " Z ", Character.valueOf('X'), new ItemStack(DarkShadow.obbyItem,1,0), Character.valueOf('Z'),Item.stick
-		});
-		GameRegistry.addRecipe(new ItemStack(obbyItem,1,0), new Object[] {"###", "###", "###", '#', new ItemStack(DarkShadow.obbyItem,1,1)});
-		
-		GameRegistry.addRecipe(new ItemStack(DarkShadow.obbyItem,9,1), new Object[] {"#", '#', new ItemStack(DarkShadow.obbyItem,1,0)});
-		
-		GameRegistry.addRecipe(new ItemStack(DarkShadow.obbyItem,1,2), new Object[]{" * ","###","###", Character.valueOf('*'),DarkShadow.obbyHammer, Character.valueOf('#'), new ItemStack(DarkShadow.obbyItem,1,0)});
-		
-		GameRegistry.addRecipe(new ItemStack(DarkShadow.chestplateObby,1), new Object[]{" # ","A#A"," # ",Character.valueOf('#'), new ItemStack(DarkShadow.obbyItem,1,2), Character.valueOf('A'), new ItemStack(DarkShadow.obbyItem,1,1)});
-=======
 		
 	}
 	
@@ -196,11 +156,20 @@ public class DarkShadow {
 		GameRegistry.registerBlock(oreObby);
 		LanguageRegistry.addName(oreObby, "Obsidian Ore");
 		
-		streamFurnaceIdle = new BlockStreamFurnace(202, 8, false);
->>>>>>> Removed un-needed files. Changed some files
+		streamFurnaceIdle = new BlockStreamFurnace(streamFurnaceIdleID, 8, false);
+		GameRegistry.registerBlock(streamFurnaceIdle);
+		LanguageRegistry.addName(streamFurnaceIdle, "Forge");
+		
+		streamFurnaceActive = new BlockStreamFurnace(streamFurnaceActiveID, 8, false);
+		GameRegistry.registerBlock(streamFurnaceActive);
+		LanguageRegistry.addName(streamFurnaceActive, "Forge");
 	}
 	
 	public void addItems(){
+		helmetObby = new ObbyArmor(helmetObbyID, obbyArmorMaterial, RenderingRegistry.addNewArmourRendererPrefix("Obby"), 0).setIconIndex(15).setItemName("Obsidian Helmet");
+		chestplateObby = new ObbyArmor(chestplateObbyID, obbyArmorMaterial, RenderingRegistry.addNewArmourRendererPrefix("Obby"), 1).setIconIndex((16*1) + 15).setItemName("Obsidian Chestplate");
+		leggingObby = new ObbyArmor(leggingObbyID, obbyArmorMaterial,RenderingRegistry.addNewArmourRendererPrefix("Obby"), 2).setIconIndex((16*2)+15).setItemName("Obsidian Leggings");
+		bootObby = new ObbyArmor(bootObbyID, obbyArmorMaterial,RenderingRegistry.addNewArmourRendererPrefix("Obby"), 3).setIconIndex((16 * 3)+15).setItemName("Obsidian Boots");
 		
 	}
 	public void addRecipes(){
