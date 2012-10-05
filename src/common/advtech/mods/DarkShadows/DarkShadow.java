@@ -95,7 +95,6 @@ public class DarkShadow {
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 		
 		GameRegistry.registerTileEntity(TileEntityStreamFurnace.class, "tileEntityStreamFurnace");
-		GameRegistry.registerBlock(streamFurnaceIdle);
 		
 		proxy.registerRenderThings();
 		
@@ -108,21 +107,9 @@ public class DarkShadow {
 		dsLog.info("Adding Recipes");
 		
 		addRecipes();
-		LanguageRegistry.addName(streamFurnaceIdle, "Forge");
 		//Ore Code
 
 		//Item Codes
-		LanguageRegistry.addName(portalMaker,"Portal Maker");
-		LanguageRegistry.addName(new ItemStack(obbyItem,1,0),"Obsidian Ingot");
-		LanguageRegistry.addName(new ItemStack(obbyItem,1,1),"Obsidian Rivet");
-		LanguageRegistry.addName(new ItemStack(obbyItem,1,2),"Obsidian Plate");
-		LanguageRegistry.addName(helmetObby, "Obsidian Helmet");
-		LanguageRegistry.addName(chestplateObby,"Obsidian ChestPlate");
-		LanguageRegistry.addName(leggingObby, "Obsidian Leggings");
-		LanguageRegistry.addName(bootObby,"Obsidian Boots");
-		//Tools Codes
-		LanguageRegistry.addName(obbySword, "Obsidian Sword");
-		LanguageRegistry.addName(obbyHammer, "Obsidian Hammer");
 		//Texture File
 		MinecraftForgeClient.preloadTexture("/advtech/mods/DarkShadows/terrain.png");
 		//World Generator Code
