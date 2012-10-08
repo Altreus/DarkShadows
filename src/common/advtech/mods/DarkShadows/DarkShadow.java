@@ -56,6 +56,7 @@ public class DarkShadow {
 	public static Item chestplateObby;
 	public static Item leggingObby;
 	public static Item bootObby;
+	public static Item obbyIngot;
 	
 	public static int ObbySwordID;
 	public static int obbyItemsID;
@@ -65,6 +66,7 @@ public class DarkShadow {
 	public static int chestplateObbyID;
 	public static int leggingObbyID;
 	public static int bootObbyID;
+	public static int obbyIngotID;
 	
 	public static int oreObbyID;
 	public static int streamFurnaceIdleID;
@@ -131,10 +133,12 @@ public class DarkShadow {
 		chestplateObbyID = config.getOrCreateIntProperty(config.CATEGORY_ITEM,"Obidian Chestplate", 513).getInt(513);
 		leggingObbyID = config.getOrCreateIntProperty(config.CATEGORY_ITEM,"Obsidian Pants", 514).getInt(514);
 		bootObbyID = config.getOrCreateIntProperty(config.CATEGORY_ITEM,"Obsidian Boots", 515).getInt(515);
+		obbyIngotID = config.getOrCreateIntProperty(config.CATEGORY_ITEM,"Obsidian Ingot", 516).getInt(516);
+
 		//Blocks
 		oreObbyID = config.getOrCreateIntProperty(config.CATEGORY_BLOCK,"Obsidian Ore", 201).getInt(201);
 		streamFurnaceIdleID = config.getOrCreateIntProperty(config.CATEGORY_BLOCK,"Forge", 202).getInt(202);
-		streamFurnaceActiveID = config.getOrCreateIntProperty(config.CATEGORY_BLOCK,"Forge", 203).getInt(203);
+		streamFurnaceActiveID = config.getOrCreateIntProperty(config.CATEGORY_BLOCK,"Forge2", 203).getInt(203);
 		
 		config.save();
 	}
@@ -157,13 +161,14 @@ public class DarkShadow {
 		chestplateObby = new ObbyArmor(chestplateObbyID, obbyArmorMaterial, RenderingRegistry.addNewArmourRendererPrefix("Obby"), 1).setIconIndex((16*1) + 15).setItemName("Obsidian Chestplate");
 		leggingObby = new ObbyArmor(leggingObbyID, obbyArmorMaterial,RenderingRegistry.addNewArmourRendererPrefix("Obby"), 2).setIconIndex((16*2)+15).setItemName("Obsidian Leggings");
 		bootObby = new ObbyArmor(bootObbyID, obbyArmorMaterial,RenderingRegistry.addNewArmourRendererPrefix("Obby"), 3).setIconIndex((16 * 3)+15).setItemName("Obsidian Boots");
+		obbyIngot = new ObbyItems(obbyIngotID).setIconIndex(0).setItemName("Obsidian Ingot");
 		
 	}
 	public void addRecipes(){
-		GameRegistry.addRecipe(new ItemStack(portalMaker), new Object[] {"XXX", "XAX", "XXX", Character.valueOf('X'), Block.obsidian, Character.valueOf('A'), Item.redstone});
-		GameRegistry.addRecipe(new ItemStack(streamFurnaceIdle), new Object[] {"XXX", "XAX", "XXX", Character.valueOf('X'), Block.obsidian, Character.valueOf('A'), Block.stoneOvenIdle});
-		GameRegistry.addRecipe(new ItemStack(obbySword), new Object [] {"X  "," X ", "  Z", Character.valueOf('X'), new ItemStack(DarkShadow.obbyItem,1,0), Character.valueOf('Z'),Item.stick});
-		GameRegistry.addRecipe(new ItemStack(obbyHammer), new Object [] {"XXX","XXX", " Z ", Character.valueOf('X'), new ItemStack(DarkShadow.obbyItem,1,0), Character.valueOf('Z'),Item.stick});
+		GameRegistry.addRecipe(new ItemStack(portalMaker, 1), new Object[] {"XXX", "XAX", "XXX", Character.valueOf('X'), Block.obsidian, Character.valueOf('A'), Item.redstone});
+		GameRegistry.addRecipe(new ItemStack(streamFurnaceIdle, 1), new Object[] {"XXX", "XAX", "XXX", Character.valueOf('X'), Block.obsidian, Character.valueOf('A'), Block.stoneOvenIdle});
+		GameRegistry.addRecipe(new ItemStack(obbySword,1), new Object [] {"X  "," X ", "  Z", Character.valueOf('X'), new ItemStack(DarkShadow.obbyItem,1,0), Character.valueOf('Z'),Item.stick});
+		GameRegistry.addRecipe(new ItemStack(obbyHammer,1), new Object [] {"XXX","XXX", " Z ", Character.valueOf('X'), new ItemStack(DarkShadow.obbyItem,1,0), Character.valueOf('Z'),Item.stick});
 		GameRegistry.addRecipe(new ItemStack(obbyItem,1,0), new Object[] {"###", "###", "###", '#', new ItemStack(DarkShadow.obbyItem,1,1)});
 		GameRegistry.addRecipe(new ItemStack(DarkShadow.obbyItem,9,1), new Object[] {"#", '#', new ItemStack(DarkShadow.obbyItem,1,0)});
 		GameRegistry.addRecipe(new ItemStack(DarkShadow.obbyItem,1,2), new Object[]{" * ","###","###", Character.valueOf('*'),DarkShadow.obbyHammer, Character.valueOf('#'), new ItemStack(DarkShadow.obbyItem,1,0)});
