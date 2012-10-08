@@ -56,9 +56,7 @@ public class DarkShadow {
 	public static Item chestplateObby;
 	public static Item leggingObby;
 	public static Item bootObby;
-	public static Item obbyIngot;
-	public static Item obbyRivet;
-	public static Item obbyPlate;
+	public static Item obbyItems; // You only need 1 for all 3 items.
 	
 	public static int obbySwordID;
 	public static int portalMakerID;
@@ -67,9 +65,7 @@ public class DarkShadow {
 	public static int chestplateObbyID;
 	public static int leggingObbyID;
 	public static int bootObbyID;
-	public static int obbyIngotID;
-	public static int obbyRivetID;
-	public static int obbyPlateID;
+	public static int obbyItemsID;
 	
 	public static int oreObbyID;
 	public static int streamFurnaceIdleID;
@@ -135,9 +131,7 @@ public class DarkShadow {
 		chestplateObbyID = config.getOrCreateIntProperty(config.CATEGORY_ITEM,"Obidian Chestplate", 513).getInt(513);
 		leggingObbyID = config.getOrCreateIntProperty(config.CATEGORY_ITEM,"Obsidian Pants", 514).getInt(514);
 		bootObbyID = config.getOrCreateIntProperty(config.CATEGORY_ITEM,"Obsidian Boots", 515).getInt(515);
-		obbyIngotID = config.getOrCreateIntProperty(config.CATEGORY_ITEM,"Obsidian Ingot", 516).getInt(516);
-		obbyRivetID = config.getOrCreateIntProperty(config.CATEGORY_ITEM, "Obsidian Rivet", 517).getInt(517);
-		obbyPlateID = config.getOrCreateIntProperty(config.CATEGORY_ITEM, "Obsidian Platemetal", 518).getInt(518);
+		obbyItemsID = config.getOrCreateIntProperty(config.CATEGORY_ITEM,"Obsidian Ingot", 516).getInt(516); // Only one item id needed as all 3 items are this ID, just with metadata
 
 		//Blocks
 		oreObbyID = config.getOrCreateIntProperty(config.CATEGORY_BLOCK,"Obsidian Ore", 201).getInt(201);
@@ -171,12 +165,12 @@ public class DarkShadow {
 		LanguageRegistry.addName(bootObby, "Obsidian Boot");
 		portalMaker = new PortalMaker(portalMakerID).setIconIndex(0).setItemName("Portal Maker");
 		LanguageRegistry.addName(portalMaker, "Insta-Portal");
-		obbyIngot = new ObbyItems(obbyIngotID).setIconIndex(0).setItemName("Obsidian Ingot");
-		LanguageRegistry.addName(obbyIngot, "Obsidian Ingot");
-		obbyRivet = new ObbyItems(obbyRivetID).setIconIndex(0).setItemName("Obsidian Screw");
-		LanguageRegistry.addName(obbyRivet, "Obsidian Screw");
-		obbyPlate = new ObbyItems(obbyPlateID).setIconIndex(0).setItemName("Obsidian Plate Metal");
-		LanguageRegistry.addName(obbyPlate, "Obsidian Plate Metal");
+		
+		obbyItems = new ObbyItems(obbyItemsID).setIconIndex(0).setItemName("obbyItems");
+		LanguageRegistry.addName(new ItemStack(obbyItems, 1, 0), "Obsidian Ingot");
+		LanguageRegistry.addName(new ItemStack(obbyItems, 1, 1), "Obsidian Rivet");
+		LanguageRegistry.addName(new ItemStack(obbyItems, 1, 2), "Obsidian Plate");
+		
 		obbyHammer = new ObbyHammer(obbyHammerID).setIconIndex(0).setItemName("Obsidian Hammer");
 		LanguageRegistry.addName(obbyHammer, "Hammer of Obby");
 		obbySword = new ObbySword(obbySwordID, obbyToolMaterial).setIconIndex(15).setItemName("Obsidian Sword");
@@ -186,12 +180,12 @@ public class DarkShadow {
 	public void addRecipes(){
 		GameRegistry.addRecipe(new ItemStack(portalMaker, 1), new Object[] {"XXX", "XAX", "XXX", Character.valueOf('X'), Block.obsidian, Character.valueOf('A'), Item.redstone});
 		GameRegistry.addRecipe(new ItemStack(streamFurnaceIdle, 1), new Object[] {"XXX", "XAX", "XXX", Character.valueOf('X'), Block.obsidian, Character.valueOf('A'), Block.stoneOvenIdle});
-		GameRegistry.addRecipe(new ItemStack(obbySword,1), new Object [] {"X  "," X ", "  Z", Character.valueOf('X'), new ItemStack(obbyIngot,1,0), Character.valueOf('Z'),Item.stick});
-		GameRegistry.addRecipe(new ItemStack(obbyHammer,1), new Object [] {"XXX","XXX", " Z ", Character.valueOf('X'), new ItemStack(obbyIngot,1,0), Character.valueOf('Z'),Item.stick});
-		GameRegistry.addRecipe(new ItemStack(obbyIngot,1), new Object[] {"###", "###", "###", '#', new ItemStack(obbyRivet,1)});
-		GameRegistry.addRecipe(new ItemStack(DarkShadow.obbyRivet,9), new Object[] {"#", '#', new ItemStack(obbyIngot,1)});
-		GameRegistry.addRecipe(new ItemStack(DarkShadow.obbyPlate,1), new Object[]{" * ","###","###", Character.valueOf('*'),obbyHammer, Character.valueOf('#'), new ItemStack(obbyIngot,1)});
-		GameRegistry.addRecipe(new ItemStack(DarkShadow.chestplateObby,1), new Object[]{" # ","A#A"," # ",Character.valueOf('#'), new ItemStack(obbyPlate,1), Character.valueOf('A'), new ItemStack(obbyRivet,1)});
+		GameRegistry.addRecipe(new ItemStack(obbySword,1), new Object [] {"X  "," X ", "  Z", Character.valueOf('X'), new ItemStack(obbyItems, 1, 0), Character.valueOf('Z'),Item.stick});
+		GameRegistry.addRecipe(new ItemStack(obbyHammer,1), new Object [] {"XXX","XXX", " Z ", Character.valueOf('X'), new ItemStack(obbyItems, 1, 0), Character.valueOf('Z'),Item.stick});
+		GameRegistry.addRecipe(new ItemStack(obbyItems, 1, 0), new Object[] {"###", "###", "###", '#', new ItemStack(obbyItems, 1, 1)});
+		GameRegistry.addRecipe(new ItemStack(obbyItems, 9, 1), new Object[] {"#", '#', new ItemStack(obbyItems, 1, 0)});
+		GameRegistry.addRecipe(new ItemStack(obbyItems, 1, 2), new Object[]{" * ","###","###", Character.valueOf('*'),obbyHammer, Character.valueOf('#'), new ItemStack(obbyItems, 1, 0)});
+		GameRegistry.addRecipe(new ItemStack(DarkShadow.chestplateObby,1), new Object[]{" # ","A#A"," # ",Character.valueOf('#'), new ItemStack(obbyItems, 1, 2), Character.valueOf('A'), new ItemStack(obbyItems, 1, 1)});
 		
 	}
 
