@@ -3,6 +3,7 @@ package advtech.mods.DarkShadows;
 import java.util.logging.Logger;
 
 import net.minecraft.src.Block;
+import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraft.src.EnumToolMaterial;
 import net.minecraft.src.Item;
@@ -49,7 +50,6 @@ public class DarkShadow {
 	public static Block streamFurnaceActive;//= new BlockStreamFurnace(203, 8, true);
 	
 	public static Item obbySword;
-	public static Item obbyItem;
 	public static Item portalMaker;
 	public static Item obbyHammer;
 	public static Item helmetObby;
@@ -61,7 +61,6 @@ public class DarkShadow {
 	public static Item obbyPlate;
 	
 	public static int obbySwordID;
-	public static int obbyItemsID;
 	public static int portalMakerID;
 	public static int obbyHammerID;
 	public static int helmetObbyID;
@@ -129,7 +128,6 @@ public class DarkShadow {
 	public void loadConfig(FMLPreInitializationEvent event) {
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		//Items
-		obbyItemsID = config.getOrCreateIntProperty(config.CATEGORY_ITEM,"Obsidian Items", 508).getInt(508);
 		obbySwordID = config.getOrCreateIntProperty(config.CATEGORY_ITEM,"Obsidian Sword", 509).getInt(509);
 		portalMakerID = config.getOrCreateIntProperty(config.CATEGORY_ITEM,"Portal Maker",510).getInt(510);
 		obbyHammerID = config.getOrCreateIntProperty(config.CATEGORY_ITEM,"Obsidian Hammer", 511).getInt(511);
@@ -153,7 +151,7 @@ public class DarkShadow {
 		GameRegistry.registerBlock(oreObby);
 		LanguageRegistry.addName(oreObby, "Obsidian Ore");
 		
-		streamFurnaceIdle = new BlockStreamFurnace(streamFurnaceIdleID, 8, false);
+		streamFurnaceIdle = new BlockStreamFurnace(streamFurnaceIdleID, 8, false).setCreativeTab(CreativeTabs.tabDecorations);
 		GameRegistry.registerBlock(streamFurnaceIdle);
 		LanguageRegistry.addName(streamFurnaceIdle, "Forge");
 		
@@ -164,15 +162,25 @@ public class DarkShadow {
 	
 	public void addItems(){
 		helmetObby = new ObbyArmor(helmetObbyID, obbyArmorMaterial, RenderingRegistry.addNewArmourRendererPrefix("Obby"), 0).setIconIndex(15).setItemName("Obsidian Helmet");
+		LanguageRegistry.addName(helmetObby, "Obsidian Helmet");
 		chestplateObby = new ObbyArmor(chestplateObbyID, obbyArmorMaterial, RenderingRegistry.addNewArmourRendererPrefix("Obby"), 1).setIconIndex((16*1) + 15).setItemName("Obsidian Chestplate");
+		LanguageRegistry.addName(chestplateObby, "Obsidian Chest Plate");
 		leggingObby = new ObbyArmor(leggingObbyID, obbyArmorMaterial,RenderingRegistry.addNewArmourRendererPrefix("Obby"), 2).setIconIndex((16*2)+15).setItemName("Obsidian Leggings");
+		LanguageRegistry.addName(leggingObby, "Obsidian Leggings");
 		bootObby = new ObbyArmor(bootObbyID, obbyArmorMaterial,RenderingRegistry.addNewArmourRendererPrefix("Obby"), 3).setIconIndex((16 * 3)+15).setItemName("Obsidian Boots");
+		LanguageRegistry.addName(bootObby, "Obsidian Boot");
 		portalMaker = new PortalMaker(portalMakerID).setIconIndex(0).setItemName("Portal Maker");
+		LanguageRegistry.addName(portalMaker, "Insta-Portal");
 		obbyIngot = new ObbyItems(obbyIngotID).setIconIndex(0).setItemName("Obsidian Ingot");
+		LanguageRegistry.addName(obbyIngot, "Obsidian Ingot");
 		obbyRivet = new ObbyItems(obbyRivetID).setIconIndex(0).setItemName("Obsidian Screw");
+		LanguageRegistry.addName(obbyRivet, "Obsidian Screw");
 		obbyPlate = new ObbyItems(obbyPlateID).setIconIndex(0).setItemName("Obsidian Plate Metal");
+		LanguageRegistry.addName(obbyPlate, "Obsidian Plate Metal");
 		obbyHammer = new ObbyHammer(obbyHammerID).setIconIndex(0).setItemName("Obsidian Hammer");
+		LanguageRegistry.addName(obbyHammer, "Hammer of Obby");
 		obbySword = new ObbySword(obbySwordID, obbyToolMaterial).setIconIndex(15).setItemName("Obsidian Sword");
+		LanguageRegistry.addName(obbySword, "Creeper's Bane");
 		
 	}
 	public void addRecipes(){
