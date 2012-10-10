@@ -56,7 +56,7 @@ public class DarkShadow {
 	public static Item chestplateObby;
 	public static Item leggingObby;
 	public static Item bootObby;
-	public static Item obbyHammer1;
+	//public static Item obbyHammer1;
 	public static Item obbyItems; // You only need 1 for all 3 items.
 	
 	public static int obbySwordID;
@@ -171,9 +171,9 @@ public class DarkShadow {
 		LanguageRegistry.addName(new ItemStack(obbyItems, 1, 0), "Obsidian Ingot");
 		LanguageRegistry.addName(new ItemStack(obbyItems, 1, 1), "Obsidian Rivet");
 		LanguageRegistry.addName(new ItemStack(obbyItems, 1, 2), "Obsidian Plate");
-		obbyHammer1 = new ObbyHammer(obbyHammerID).setIconIndex(0).setItemName("Obsidian Hammer");
 		
-		obbyHammer = new ObbyHammer(obbyHammerID).setIconIndex(0).setItemName("Obsidian Hammer").setContainerItem(obbyHammer1);
+		
+		obbyHammer = new ObbyHammer(obbyHammerID).setIconIndex(0).setItemName("Obsidian Hammer");
 		LanguageRegistry.addName(obbyHammer, "Hammer of Obby");
 		obbySword = new ObbySword(obbySwordID, obbyToolMaterial).setIconIndex(15).setItemName("Obsidian Sword");
 		LanguageRegistry.addName(obbySword, "Creeper's Bane");
