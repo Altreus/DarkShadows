@@ -24,4 +24,9 @@ public class ObbyHammer extends Item {
 		return false;
 	}
 
+	@Override
+   	public boolean getShareTag() {
+     		return true;
+    	}
+
 }
