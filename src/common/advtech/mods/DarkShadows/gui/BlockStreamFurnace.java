@@ -29,7 +29,6 @@ public class BlockStreamFurnace extends BlockContainer
 		super(id, sprite, Material.iron);
 		this.isActive = active;
 		this.setBlockName("Forge");
-		this.setCreativeTab(CreativeTabs.tabDecorations);
 		this.setRequiresSelfNotify();
 	}
 	public int idDropped(int par1, Random random, int par3)

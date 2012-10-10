@@ -15,12 +15,12 @@ import net.minecraft.src.World;
  * @author Advtech
  *
  */
-public class ItemPortalMaker extends Item {
+public class PortalMaker extends Item {
 
 	/**
 	 * @param par1
 	 */
-	public ItemPortalMaker(int i) {
+	public PortalMaker(int i) {
 		super(i);
 		setIconIndex(28);
 		setItemName("Portal Maker");

@@ -17,31 +17,37 @@ import net.minecraft.src.CreativeTabs;
  *
  */
 public class ObbyItems extends Item {
+	
 	private static final String[] subset = new String[]{
 		"ingot.obby","rivet.obby","plate.obby"
 	};
+	
 	public static final String[] pubset = new String[]{
 		"Obsidian Ingot", "Obsidian Rivet", "Obsidian Plate"
 	};
+	
 	public ObbyItems (int id){
 		super(id);
 		setHasSubtypes(true);
 		setMaxStackSize(64);
 		setCreativeTab(CreativeTabs.tabMaterials);
 	}
+	
 	@Override
 	public int getIconFromDamage(int damageValue){
 		return damageValue + 16;
 	}
+	
 	@Override
 	public String getItemNameIS(ItemStack itemstack){
 		return getItemName() + "." + subset[itemstack.getItemDamage()];
 	}
+	
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(int i, CreativeTabs tab, List list){
 		list.add(new ItemStack(i,1,0));
 		list.add(new ItemStack(i,1,1));
 		list.add(new ItemStack(i,1,2));
-		}
+	}
 
 }

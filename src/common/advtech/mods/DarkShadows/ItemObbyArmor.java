@@ -6,14 +6,17 @@ package advtech.mods.DarkShadows;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraft.src.Item;
+import net.minecraft.src.ItemArmor;
+import net.minecraft.src.ItemStack;
+import net.minecraftforge.common.IArmorTextureProvider;
 
 /**
  * @author advtech
  *
  */
-public class ItemObbyArmor extends Item {
+public class ItemObbyArmor extends ItemArmor implements IArmorTextureProvider {
     /** Holds the 'base' maxDamage that each armorType have. */
-    private static final int[] maxDamageArray = new int[] {31, 36, 35, 33};
+    private static final int[] maxDamageArray = new int[] {29};
 
     /**
      * Stores the armor type: 0 is helmet, 1 is plate, 2 is legs and 3 is boots
@@ -34,14 +37,14 @@ public class ItemObbyArmor extends Item {
 
     public ItemObbyArmor(int id, EnumArmorMaterial obby1, int render, int type)
     {
-        super(id);
+        super(id, obby1, render, type);
         this.material = obby1;
         this.armorType = type;
         this.renderIndex = render;
         this.damageReduceAmount = obby1.getDamageReductionAmount(type);
-        this.setMaxDamage(obby1.getDurability(type));
-        this.maxStackSize = 1;
-        this.setCreativeTab(CreativeTabs.tabCombat);
+        setMaxDamage(obby1.getDurability(type));
+        maxStackSize = 1;
+        setCreativeTab(CreativeTabs.tabCombat);
     }
 
     /**
@@ -60,5 +63,11 @@ public class ItemObbyArmor extends Item {
     {
         return maxDamageArray;
     }
+
+	@Override
+	public String getArmorTextureFile(ItemStack itemstack) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
 

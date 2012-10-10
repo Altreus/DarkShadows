@@ -21,12 +21,12 @@ import net.minecraftforge.common.EnumHelper;
  * @author advtech
  *
  */
-public class ItemObbySword extends ItemSword {
+public class ObbySword extends ItemSword {
 	
 	static EnumToolMaterial obby = EnumHelper.addToolMaterial("obby", 2, 500, 7F, 2, 14);
 	private int weaponDamage;
 
-	public ItemObbySword(int ItemID, EnumToolMaterial toolMaterial){
+	public ObbySword(int ItemID, EnumToolMaterial toolMaterial){
 		super(509, obby);
 		setIconIndex(67);
 		setItemName("obbySword");
