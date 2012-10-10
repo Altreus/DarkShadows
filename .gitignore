@@ -18,3 +18,5 @@
 
 *.bat
 *.sh
+.DS_STORE
+CHANGELOG
