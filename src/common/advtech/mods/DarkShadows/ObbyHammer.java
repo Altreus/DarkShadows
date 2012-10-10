@@ -10,6 +10,8 @@ public class ObbyHammer extends Item {
 		setIconIndex(28);
 		setItemName("Obsidian Hammer");
 		setCreativeTab(CreativeTabs.tabTools);
+		setMaxStackSize(1);
+		setNoRepair();
 	}
 	@Override
 	public ItemStack getContainerItemStack(ItemStack itemStack){

@@ -56,7 +56,6 @@ public class DarkShadow {
 	public static Item chestplateObby;
 	public static Item leggingObby;
 	public static Item bootObby;
-	//public static Item obbyHammer1;
 	public static Item obbyItems; // You only need 1 for all 3 items.
 	
 	public static int obbySwordID;
