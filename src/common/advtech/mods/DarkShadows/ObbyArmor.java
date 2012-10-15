@@ -15,9 +15,22 @@ import net.minecraftforge.common.IArmorTextureProvider;
  *
  */
 public class ObbyArmor extends ItemArmor implements IArmorTextureProvider {
-	public ObbyArmor(int ID, EnumArmorMaterial armorMaterial, int render, int part ){
-		super(ID,armorMaterial, render, part);
+	public final int armorType;
+	public final int renderIndex;
+	public final int damageReduceAmount;
+	private final EnumArmorMaterial material;
+	public ObbyArmor(int ID, EnumArmorMaterial material, int render, int part ){
+		super(ID,material, render, part);
+		this.material = DarkShadow.obbyArmorMaterial;
+		this.armorType = part;
+		this.renderIndex = render;
+		this.damageReduceAmount = material.getDamageReductionAmount(part);
+		setMaxDamage(material.getDurability(part));
+		maxStackSize = 1;
+		setCreativeTab(CreativeTabs.tabCombat);
+		
 	}
+	
 
 	@Override
 	public String getArmorTextureFile(ItemStack itemstack) {
