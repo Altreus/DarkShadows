@@ -15,6 +15,7 @@ import net.minecraftforge.common.IArmorTextureProvider;
  *
  */
 public class ObbyArmor extends ItemArmor implements IArmorTextureProvider {
+	public static final int[] maxDamageArray = new int[]{29};
 	public final int armorType;
 	public final int renderIndex;
 	public final int damageReduceAmount;
@@ -31,7 +32,9 @@ public class ObbyArmor extends ItemArmor implements IArmorTextureProvider {
 		
 	}
 	
-
+	static int[] getMaxDamageArray(){
+		return maxDamageArray;
+	}
 	@Override
 	public String getArmorTextureFile(ItemStack itemstack) {
 		if(itemstack.itemID == DarkShadow.helmetObby.shiftedIndex || itemstack.itemID == DarkShadow.chestplateObby.shiftedIndex||
