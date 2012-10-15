@@ -19,11 +19,11 @@ import net.minecraft.src.CreativeTabs;
 public class ObbyItems extends Item {
 	
 	private static final String[] subset = new String[]{
-		"ingot.obby","rivet.obby","plate.obby"
+		"ingot.obby","rivet.obby","plate.obby","arm.obby"
 	};
 	
 	public static final String[] pubset = new String[]{
-		"Obsidian Ingot", "Obsidian Rivet", "Obsidian Plate"
+		"Obsidian Ingot", "Obsidian Rivet", "Obsidian Plate","Obsidian Armplate"
 	};
 	
 	public ObbyItems (int id){
@@ -48,6 +48,7 @@ public class ObbyItems extends Item {
 		list.add(new ItemStack(i,1,0));
 		list.add(new ItemStack(i,1,1));
 		list.add(new ItemStack(i,1,2));
+		list.add(new ItemStack(i,1,3));
 	}
 
 }

@@ -8,10 +8,12 @@ import net.minecraft.src.EnumArmorMaterial;
 import net.minecraft.src.EnumToolMaterial;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
+import net.minecraft.src.Material;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
 
+import advtech.mods.DarkShadows.Buildings.*;
 import advtech.mods.DarkShadows.gui.BlockStreamFurnace;
 import advtech.mods.DarkShadows.gui.ClientPacketHandler;
 import advtech.mods.DarkShadows.gui.CommonProxy;
@@ -48,6 +50,8 @@ public class DarkShadow {
 	public static Block oreObby;// = new ObbyOre(201, 16);
 	public static Block streamFurnaceIdle; //= new BlockStreamFurnace(202, 8, false);
 	public static Block streamFurnaceActive;//= new BlockStreamFurnace(203, 8, true);
+	//public static Block houseMaker;
+	//public static Block tunnelMaker;
 	
 	public static Item obbySword;
 	public static Item portalMaker;
@@ -70,6 +74,8 @@ public class DarkShadow {
 	public static int oreObbyID;
 	public static int streamFurnaceIdleID;
 	public static int streamFurnaceActiveID;
+	//public static int houseMakerID;
+	//public static int tunnelMakerID;
 	
 	
 	public static Logger dsLog = Logger.getLogger("DarkShadow");
@@ -137,6 +143,8 @@ public class DarkShadow {
 		oreObbyID = config.getOrCreateIntProperty(config.CATEGORY_BLOCK,"Obsidian Ore", 201).getInt(201);
 		streamFurnaceIdleID = config.getOrCreateIntProperty(config.CATEGORY_BLOCK,"Forge", 202).getInt(202);
 		streamFurnaceActiveID = config.getOrCreateIntProperty(config.CATEGORY_BLOCK,"Forge2", 203).getInt(203);
+		//houseMakerID = config.getOrCreateIntProperty("HouseMaker", config.CATEGORY_BLOCK, 204).getInt(204);
+		//tunnelMakerID = config.getOrCreateIntProperty("Tunnel Maker", config.CATEGORY_BLOCK, 205).getInt(205);
 		
 		config.save();
 	}
@@ -152,6 +160,13 @@ public class DarkShadow {
 		streamFurnaceActive = new BlockStreamFurnace(streamFurnaceActiveID, 8, false);
 		GameRegistry.registerBlock(streamFurnaceActive);
 		LanguageRegistry.addName(streamFurnaceActive, "Forge");
+		
+		//houseMaker = new HouseMaker(houseMakerID, 0);
+		//GameRegistry.registerBlock(houseMaker);
+		//LanguageRegistry.addName(houseMaker, "Instant Home");
+		
+		//tunnelMaker = new TunnelMaker(tunnelMakerID,0);
+		
 	}
 	
 	public void addItems(){
@@ -170,6 +185,7 @@ public class DarkShadow {
 		LanguageRegistry.addName(new ItemStack(obbyItems, 1, 0), "Obsidian Ingot");
 		LanguageRegistry.addName(new ItemStack(obbyItems, 1, 1), "Obsidian Rivet");
 		LanguageRegistry.addName(new ItemStack(obbyItems, 1, 2), "Obsidian Plate");
+		LanguageRegistry.addName(new ItemStack(obbyItems, 1, 3), "Obsidian Arm");
 		
 		
 		obbyHammer = new ObbyHammer(obbyHammerID).setIconIndex(0).setItemName("Obsidian Hammer");
@@ -187,7 +203,8 @@ public class DarkShadow {
 		GameRegistry.addRecipe(new ItemStack(obbyItems, 1, 0), new Object[] {"###", "###", "###", '#', new ItemStack(obbyItems, 1, 1)});
 		GameRegistry.addRecipe(new ItemStack(obbyItems, 9, 1), new Object[] {"#", '#', new ItemStack(obbyItems, 1, 0)});
 		GameRegistry.addRecipe(new ItemStack(obbyItems, 1, 2), new Object[]{" * ","###","###", Character.valueOf('*'),obbyHammer, Character.valueOf('#'), new ItemStack(obbyItems, 1, 0)});
-		GameRegistry.addRecipe(new ItemStack(DarkShadow.chestplateObby,1), new Object[]{" # ","A#A"," # ",Character.valueOf('#'), new ItemStack(obbyItems, 1, 2), Character.valueOf('A'), new ItemStack(obbyItems, 1, 1)});
+		GameRegistry.addRecipe(new ItemStack(obbyItems,1,3), new Object[]{" # ","A#A"," # ",Character.valueOf('#'), new ItemStack(obbyItems, 1, 2), Character.valueOf('A'), new ItemStack(obbyItems, 1, 1)});
+		GameRegistry.addRecipe(new ItemStack(DarkShadow.chestplateObby,1), new Object[]{"#A#","#A#","# #", Character.valueOf('#'), new ItemStack(obbyItems, 1,3), Character.valueOf('A'),new ItemStack(obbyItems, 1,2)});
 		
 	}
 

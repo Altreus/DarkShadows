@@ -11,8 +11,8 @@ import net.minecraft.src.Material;
  *
  */
 public class TunnelMaker extends Block {
-	public TunnelMaker(int tunnelMakerID, int spriteID, Material material){
-		super(tunnelMakerID, spriteID, material);
+	public TunnelMaker(int ID, int spriteID){
+		super(ID, spriteID, Material.iron);
 	}
 
 }
