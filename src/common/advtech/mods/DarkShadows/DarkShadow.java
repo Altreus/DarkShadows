@@ -174,6 +174,7 @@ public class DarkShadow {
 		
 		obbyHammer = new ObbyHammer(obbyHammerID).setIconIndex(0).setItemName("Obsidian Hammer");
 		LanguageRegistry.addName(obbyHammer, "Hammer of Obby");
+		obbyHammer.setContainerItem(obbyHammer);
 		obbySword = new ObbySword(obbySwordID, obbyToolMaterial).setIconIndex(15).setItemName("Obsidian Sword");
 		LanguageRegistry.addName(obbySword, "Creeper's Bane");
 		
