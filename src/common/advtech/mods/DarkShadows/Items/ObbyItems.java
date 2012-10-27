@@ -1,7 +1,7 @@
 /**
  * 
  */
-package advtech.mods.DarkShadows;
+package advtech.mods.DarkShadows.Items;
 
 import java.util.List;
 

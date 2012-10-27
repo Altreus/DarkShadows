@@ -1,7 +1,7 @@
 /**
  * 
  */
-package advtech.mods.DarkShadows;
+package advtech.mods.DarkShadows.Items;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.CreativeTabs;
@@ -22,10 +22,13 @@ public class PortalMaker extends Item {
 	 */
 	public PortalMaker(int i) {
 		super(i);
-		setIconIndex(28);
 		setItemName("Portal Maker");
 		setCreativeTab(CreativeTabs.tabTools);
 	}
+	@Override
+	public String getTextureFile(){
+		return "/advtech/mods/DarkShadows/item.png";
+ }
 	
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {

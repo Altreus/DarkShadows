@@ -1,8 +1,9 @@
 /**
  * 
  */
-package advtech.mods.DarkShadows;
+package advtech.mods.DarkShadows.Items;
 
+import advtech.mods.DarkShadows.DarkShadow;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraft.src.Item;

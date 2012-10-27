@@ -1,7 +1,7 @@
 /**
  * 
  */
-package advtech.mods.DarkShadows;
+package advtech.mods.DarkShadows.Items;
 
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
@@ -26,10 +26,8 @@ public class ObbySword extends ItemSword {
 	static EnumToolMaterial obby = EnumHelper.addToolMaterial("obby", 2, 500, 7F, 2, 14);
 	private int weaponDamage;
 
-	public ObbySword(int ItemID, EnumToolMaterial toolMaterial){
-		super(509, obby);
-		setIconIndex(67);
-		setItemName("obbySword");
+	public ObbySword(int ID, EnumToolMaterial toolMaterial){
+		super(ID, obby);
 		this.maxStackSize=1;
 		this.setMaxDamage(obby.getMaxUses());
 		this.setCreativeTab(CreativeTabs.tabCombat);
@@ -124,5 +122,9 @@ public class ObbySword extends ItemSword {
     {
         return obby.toString();
     }
+    @Override
+    public String getTextureFile(){
+		return "/advtech/mods/DarkShadows/item.png";
+ }
 	
 }

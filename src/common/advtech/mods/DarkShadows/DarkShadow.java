@@ -13,7 +13,16 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
 
-import advtech.mods.DarkShadows.Buildings.*;
+import advtech.mods.DarkShadows.Items.ObbyArmor;
+import advtech.mods.DarkShadows.Items.ObbyAxe;
+import advtech.mods.DarkShadows.Items.ObbyHammer;
+import advtech.mods.DarkShadows.Items.ObbyHoe;
+import advtech.mods.DarkShadows.Items.ObbyItems;
+import advtech.mods.DarkShadows.Items.ObbyPickaxe;
+import advtech.mods.DarkShadows.Items.ObbyShovel;
+import advtech.mods.DarkShadows.Items.ObbySword;
+import advtech.mods.DarkShadows.Items.PortalMaker;
+import advtech.mods.DarkShadows.Items.SmokeScreen;
 import advtech.mods.DarkShadows.gui.BlockStreamFurnace;
 import advtech.mods.DarkShadows.gui.ClientPacketHandler;
 import advtech.mods.DarkShadows.gui.CommonProxy;
@@ -41,18 +50,16 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = "Advtech_DarkShadow", name = "Dark Shadow", version = "0.0.1 for MC 1.3.2")
+@Mod(modid = "DarkShadow", name = "Dark Shadow", version = "0.0.1 for MC 1.3.2")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, clientPacketHandlerSpec =
 @SidedPacketHandler(channels = {"DarkShadow"}, packetHandler = ClientPacketHandler.class), serverPacketHandlerSpec = 
 @SidedPacketHandler(channels = {"DarkShadow"}, packetHandler = ServerPacketHandler.class))
 public class DarkShadow {
 	
-	public static Block oreObby;// = new ObbyOre(201, 16);
-	public static Block streamFurnaceIdle; //= new BlockStreamFurnace(202, 8, false);
-	public static Block streamFurnaceActive;//= new BlockStreamFurnace(203, 8, true);
-	//public static Block houseMaker;
-	//public static Block tunnelMaker;
-	
+	public static Block oreObby;
+	public static Block streamFurnaceIdle; 
+	public static Block streamFurnaceActive;
+		
 	public static Item obbySword;
 	public static Item portalMaker;
 	public static Item obbyHammer;
@@ -60,7 +67,12 @@ public class DarkShadow {
 	public static Item chestplateObby;
 	public static Item leggingObby;
 	public static Item bootObby;
-	public static Item obbyItems; // You only need 1 for all 3 items.
+	public static Item obbyItems;
+	public static Item obbyAxe;
+	public static Item obbyHoe;
+	public static Item obbyShovel;
+	public static Item obbyPickaxe;
+	public static Item smokeScreen;
 	
 	public static int obbySwordID;
 	public static int portalMakerID;
@@ -70,13 +82,16 @@ public class DarkShadow {
 	public static int leggingObbyID;
 	public static int bootObbyID;
 	public static int obbyItemsID;
+	public static int obbyAxeID;
+	public static int obbyHoeID;
+	public static int obbyShovelID;
+	public static int obbyPickaxeID;
+	public static int smokeScreenID;
 	
 	public static int oreObbyID;
 	public static int streamFurnaceIdleID;
 	public static int streamFurnaceActiveID;
-	//public static int houseMakerID;
-	//public static int tunnelMakerID;
-	
+		
 	
 	public static Logger dsLog = Logger.getLogger("DarkShadow");
 	
@@ -86,8 +101,8 @@ public class DarkShadow {
 	@SidedProxy(clientSide = "advtech.mods.DarkShadows.gui.ClientProxy", serverSide = "advtech.mods.DarkShadows.gui.CommonProxy")
 	public static CommonProxy proxy;
 	private GuiHandler guiHandler = new GuiHandler();
-	static EnumToolMaterial obbyToolMaterial = EnumHelper.addToolMaterial("obby", 3, 2000, 9F, 6, 14);
-	static EnumArmorMaterial obbyArmorMaterial = EnumHelper.addArmorMaterial("OBBY",40,new int[]{10,20,16,14},20);
+	public static EnumToolMaterial obbyToolMaterial = EnumHelper.addToolMaterial("obby", 3, 2000, 9F, 6, 14);
+	public static EnumArmorMaterial obbyArmorMaterial = EnumHelper.addArmorMaterial("OBBY",40,new int[]{10,20,16,14},20);
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event) {
@@ -130,21 +145,24 @@ public class DarkShadow {
 	public void loadConfig(FMLPreInitializationEvent event) {
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		//Items
-		obbySwordID = config.getOrCreateIntProperty(config.CATEGORY_ITEM,"Obsidian Sword", 509).getInt(509);
-		portalMakerID = config.getOrCreateIntProperty(config.CATEGORY_ITEM,"Portal Maker",510).getInt(510);
-		obbyHammerID = config.getOrCreateIntProperty(config.CATEGORY_ITEM,"Obsidian Hammer", 511).getInt(511);
-		helmetObbyID = config.getOrCreateIntProperty(config.CATEGORY_ITEM,"Obsidian Helmet", 512).getInt(512);
-		chestplateObbyID = config.getOrCreateIntProperty(config.CATEGORY_ITEM,"Obidian Chestplate", 513).getInt(513);
-		leggingObbyID = config.getOrCreateIntProperty(config.CATEGORY_ITEM,"Obsidian Pants", 514).getInt(514);
-		bootObbyID = config.getOrCreateIntProperty(config.CATEGORY_ITEM,"Obsidian Boots", 515).getInt(515);
-		obbyItemsID = config.getOrCreateIntProperty(config.CATEGORY_ITEM,"Obsidian Ingot", 516).getInt(516); // Only one item id needed as all 3 items are this ID, just with metadata
+		obbySwordID = config.getItem(config.CATEGORY_ITEM,"Obsidian Sword", 509).getInt(509);
+		portalMakerID = config.getItem(config.CATEGORY_ITEM,"Portal Maker",510).getInt(510);
+		obbyHammerID = config.getItem(config.CATEGORY_ITEM,"Obsidian Hammer", 511).getInt(511);
+		helmetObbyID = config.getItem(config.CATEGORY_ITEM,"Obsidian Helmet", 512).getInt(512);
+		chestplateObbyID = config.getItem(config.CATEGORY_ITEM,"Obidian Chestplate", 513).getInt(513);
+		leggingObbyID = config.getItem(config.CATEGORY_ITEM,"Obsidian Pants", 514).getInt(514);
+		bootObbyID = config.getItem(config.CATEGORY_ITEM,"Obsidian Boots", 515).getInt(515);
+		obbyItemsID = config.getItem(config.CATEGORY_ITEM,"Obsidian Ingot", 516).getInt(516); // Only one item id needed as all 3 items are this ID, just with metadata
+		obbyAxeID = config.getItem(config.CATEGORY_ITEM, "Obsidian Axe", 517).getInt(517);
+		obbyHoeID = config.getItem(config.CATEGORY_ITEM, "Obsidian Hoe", 518).getInt(518);
+		obbyShovelID = config.getItem(config.CATEGORY_ITEM, "Obsidian Shovel", 519).getInt(519);
+		obbyPickaxeID = config.getItem(config.CATEGORY_ITEM, "Obsidian Pickaxe", 520).getInt(520);
+		smokeScreenID = config.getItem(config.CATEGORY_ITEM, "Smoke Screen", 521).getInt(521);
 
 		//Blocks
-		oreObbyID = config.getOrCreateIntProperty(config.CATEGORY_BLOCK,"Obsidian Ore", 201).getInt(201);
-		streamFurnaceIdleID = config.getOrCreateIntProperty(config.CATEGORY_BLOCK,"Forge", 202).getInt(202);
-		streamFurnaceActiveID = config.getOrCreateIntProperty(config.CATEGORY_BLOCK,"Forge2", 203).getInt(203);
-		//houseMakerID = config.getOrCreateIntProperty("HouseMaker", config.CATEGORY_BLOCK, 204).getInt(204);
-		//tunnelMakerID = config.getOrCreateIntProperty("Tunnel Maker", config.CATEGORY_BLOCK, 205).getInt(205);
+		oreObbyID = config.getBlock(config.CATEGORY_BLOCK,"Obsidian Ore", 201).getInt(201);
+		streamFurnaceIdleID = config.getBlock(config.CATEGORY_BLOCK,"Forge", 202).getInt(202);
+		streamFurnaceActiveID = config.getBlock(config.CATEGORY_BLOCK,"Forge2", 203).getInt(203);
 		
 		config.save();
 	}
@@ -161,11 +179,7 @@ public class DarkShadow {
 		GameRegistry.registerBlock(streamFurnaceActive);
 		LanguageRegistry.addName(streamFurnaceActive, "Forge");
 		
-		//houseMaker = new HouseMaker(houseMakerID, 0);
-		//GameRegistry.registerBlock(houseMaker);
-		//LanguageRegistry.addName(houseMaker, "Instant Home");
 		
-		//tunnelMaker = new TunnelMaker(tunnelMakerID,0);
 		
 	}
 	
@@ -188,17 +202,38 @@ public class DarkShadow {
 		LanguageRegistry.addName(new ItemStack(obbyItems, 1, 3), "Obsidian Arm");
 		
 		
-		obbyHammer = new ObbyHammer(obbyHammerID).setIconIndex(0).setItemName("Obsidian Hammer");
+		obbyHammer = new ObbyHammer(obbyHammerID).setIconIndex(10).setItemName("Obsidian Hammer");
 		LanguageRegistry.addName(obbyHammer, "Hammer of Obby");
 		obbyHammer.setContainerItem(obbyHammer);
-		obbySword = new ObbySword(obbySwordID, obbyToolMaterial).setIconIndex(15).setItemName("Obsidian Sword");
+		obbySword = new ObbySword(obbySwordID, obbyToolMaterial).setIconIndex(1).setItemName("Obsidian Sword");
 		LanguageRegistry.addName(obbySword, "Creeper's Bane");
+		obbyAxe = new ObbyAxe(obbyAxeID, obbyToolMaterial).setIconIndex(4).setItemName("Obsidian Axe");
+		LanguageRegistry.addName(obbyAxe,"Shadow Chopper");
+		obbyHoe = new ObbyHoe(obbyHoeID, obbyToolMaterial).setIconIndex(5).setItemName("Obsidian Hoe").setCreativeTab(CreativeTabs.tabTools);
+		LanguageRegistry.addName(obbyHoe,"Tiller of Shadow");
+		obbyShovel = new ObbyShovel(obbyShovelID, obbyToolMaterial).setIconIndex(2).setItemName("Obsidian Shovel");
+		LanguageRegistry.addName(obbyShovel, "Shadow Digger");
+		obbyPickaxe = new ObbyPickaxe(obbyPickaxeID, obbyToolMaterial).setIconIndex(3).setItemName("Obsidian Pickaxe");
+		LanguageRegistry.addName(obbyPickaxe, "Shadow Breaker");
 		
+		smokeScreen = new SmokeScreen(smokeScreenID).setItemName("Smoke Screen");
+		LanguageRegistry.addName(smokeScreen, "Insta-Poof");
+		/*
+		 * 
+		 * Placeholder for future items
+		 * Shadow Block/Item to allow for hidden areas
+		 * Smoke bomb that teleports player
+		 * 
+		 */
 	}
 	public void addRecipes(){
 		GameRegistry.addRecipe(new ItemStack(portalMaker, 1), new Object[] {"XXX", "XAX", "XXX", Character.valueOf('X'), Block.obsidian, Character.valueOf('A'), Item.redstone});
 		GameRegistry.addRecipe(new ItemStack(streamFurnaceIdle, 1), new Object[] {"XXX", "XAX", "XXX", Character.valueOf('X'), Block.obsidian, Character.valueOf('A'), Block.stoneOvenIdle});
 		GameRegistry.addRecipe(new ItemStack(obbySword,1), new Object [] {"X  "," X ", "  Z", Character.valueOf('X'), new ItemStack(obbyItems, 1, 0), Character.valueOf('Z'),Item.stick});
+		GameRegistry.addRecipe(new ItemStack(obbyPickaxe,1), new Object[]{"XXX"," Z ", " Z ", Character.valueOf('X'), new ItemStack(obbyItems, 1, 0), Character.valueOf('Z'), Item.stick});
+		GameRegistry.addRecipe(new ItemStack(obbyAxe,1), new Object[]{"XX ", "XZ ", " Z ", Character.valueOf('X'), new ItemStack(obbyItems, 1, 0), Character.valueOf('Z'),Item.stick});
+		GameRegistry.addRecipe(new ItemStack(obbyShovel,1), new Object[]{" X "," Z ", " Z ", Character.valueOf('X'), new ItemStack(obbyItems, 1, 0), Character.valueOf('Z'), Item.stick});
+		GameRegistry.addRecipe(new ItemStack(obbyHoe,1), new Object[]{"XX ", " Z ", " Z ", Character.valueOf('X'), new ItemStack(obbyItems, 1, 0), Character.valueOf('Z'),Item.stick});
 		GameRegistry.addRecipe(new ItemStack(obbyHammer,1), new Object [] {"XXX","XXX", " Z ", Character.valueOf('X'), new ItemStack(obbyItems, 1, 0), Character.valueOf('Z'),Item.stick});
 		GameRegistry.addRecipe(new ItemStack(obbyItems, 1, 0), new Object[] {"###", "###", "###", '#', new ItemStack(obbyItems, 1, 1)});
 		GameRegistry.addRecipe(new ItemStack(obbyItems, 9, 1), new Object[] {"#", '#', new ItemStack(obbyItems, 1, 0)});
