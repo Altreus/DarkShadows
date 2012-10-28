@@ -1,4 +1,4 @@
-package advtech.mods.DarkShadows.Items;
+package advtech.ds.item;
 
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.Item;

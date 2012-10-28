@@ -1,4 +1,4 @@
-package advtech.mods.DarkShadows.gui;
+package advtech.ds.gui;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.EntityPlayer;

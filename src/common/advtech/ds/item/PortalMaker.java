@@ -1,7 +1,7 @@
 /**
  * 
  */
-package advtech.mods.DarkShadows.Items;
+package advtech.ds.item;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.CreativeTabs;

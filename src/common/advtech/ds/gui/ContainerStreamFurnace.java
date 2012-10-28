@@ -1,4 +1,4 @@
-package advtech.mods.DarkShadows.gui;
+package advtech.ds.gui;
 
 import java.util.Iterator;
 
@@ -89,7 +89,6 @@ public class ContainerStreamFurnace extends Container {
 		}
 	}
 
-	@Override
 	public ItemStack transferStackInSlot(int par1) {
 		ItemStack itemstack = null;
 		Slot slot = (Slot)inventorySlots.get(par1);
@@ -128,12 +127,6 @@ public class ContainerStreamFurnace extends Container {
 				slot.putStack(null);
 			} else {
 				slot.onSlotChanged();
-			}
-
-			if (itemstack1.stackSize != itemstack.stackSize) {
-				slot.onPickupFromSlot(itemstack1);
-			} else {
-				return null;
 			}
 		}
 

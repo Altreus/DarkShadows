@@ -1,6 +1,6 @@
-package advtech.mods.DarkShadows.Items;
+package advtech.ds.item;
 
-import advtech.mods.DarkShadows.DarkShadow;
+import advtech.ds.DarkShadows;
 import net.minecraft.src.Block;
 import net.minecraft.src.EnumToolMaterial;
 import net.minecraft.src.ItemStack;
@@ -8,7 +8,7 @@ import net.minecraft.src.ItemTool;
 import net.minecraft.src.Material;
 
 public class ObbyPickaxe extends ItemTool {
-	public static final Block[] blocksEffectiveAgainst = new Block[] {Block.cobblestone, Block.stoneDoubleSlab, Block.stoneSingleSlab, Block.stone, Block.sandStone, Block.cobblestoneMossy, Block.oreIron, Block.blockSteel, Block.oreCoal, Block.blockGold, Block.oreGold, Block.oreDiamond, Block.blockDiamond, Block.ice, Block.netherrack, Block.oreLapis, Block.blockLapis, Block.oreRedstone, Block.oreRedstoneGlowing, Block.rail, Block.railDetector, Block.railPowered, DarkShadow.oreObby};
+	public static final Block[] blocksEffectiveAgainst = new Block[] {Block.cobblestone, Block.stoneDoubleSlab, Block.stoneSingleSlab, Block.stone, Block.sandStone, Block.cobblestoneMossy, Block.oreIron, Block.blockSteel, Block.oreCoal, Block.blockGold, Block.oreGold, Block.oreDiamond, Block.blockDiamond, Block.ice, Block.netherrack, Block.oreLapis, Block.blockLapis, Block.oreRedstone, Block.oreRedstoneGlowing, Block.rail, Block.railDetector, Block.railPowered, DarkShadows.oreObby};
 
 	public ObbyPickaxe(int ID, EnumToolMaterial material){
 		super(ID,3, material, blocksEffectiveAgainst);

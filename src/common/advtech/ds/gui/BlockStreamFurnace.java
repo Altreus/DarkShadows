@@ -1,6 +1,6 @@
-package advtech.mods.DarkShadows.gui;
+package advtech.ds.gui;
 
-import advtech.mods.DarkShadows.DarkShadow;
+import advtech.ds.DarkShadows;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
 import java.util.Random;
@@ -33,7 +33,7 @@ public class BlockStreamFurnace extends BlockContainer
 	}
 	public int idDropped(int par1, Random random, int par3)
 	{
-		return DarkShadow.streamFurnaceIdle.blockID;
+		return DarkShadows.streamFurnaceIdle.blockID;
 	}
 	@Override
 	public String getTextureFile(){
@@ -160,7 +160,7 @@ public class BlockStreamFurnace extends BlockContainer
 			
 			if (var10 != null)
 			{
-				player.openGui(DarkShadow.instance, 0, world, x,y,z);
+				player.openGui(DarkShadows.instance, 0, world, x,y,z);
 			}
 			
 			return true;
@@ -174,11 +174,11 @@ public class BlockStreamFurnace extends BlockContainer
 		
 		if (active)
 		{
-			world.setBlockWithNotify(x,y,z, DarkShadow.streamFurnaceActive.blockID);
+			world.setBlockWithNotify(x,y,z, DarkShadows.streamFurnaceActive.blockID);
 		}
 		else
 		{
-			world.setBlockWithNotify(x,y,z, DarkShadow.streamFurnaceIdle.blockID);
+			world.setBlockWithNotify(x,y,z, DarkShadows.streamFurnaceIdle.blockID);
 		}
 		
 		keepFurnaceInventory = false;

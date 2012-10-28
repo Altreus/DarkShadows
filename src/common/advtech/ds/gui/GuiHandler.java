@@ -1,4 +1,4 @@
-package advtech.mods.DarkShadows.gui;
+package advtech.ds.gui;
 
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.TileEntity;

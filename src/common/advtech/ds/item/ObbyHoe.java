@@ -1,4 +1,4 @@
-package advtech.mods.DarkShadows.Items;
+package advtech.ds.item;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.EntityPlayer;
@@ -7,7 +7,6 @@ import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.UseHoeEvent;
 
 public class ObbyHoe extends Item {
 	public ObbyHoe(int ID, EnumToolMaterial material){
@@ -16,7 +15,7 @@ public class ObbyHoe extends Item {
 		setMaxDamage(material.getMaxUses());
 		
 	}
-	  public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
+	  /*public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
 	    {
 	        if (!par2EntityPlayer.canPlayerEdit(par4, par5, par6))
 	        {
@@ -59,7 +58,7 @@ public class ObbyHoe extends Item {
 	                }
 	            }
 	        }
-	    }
+	    }*/
 	  public boolean isFull3D(){
 		  return true;
 	  }

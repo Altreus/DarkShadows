@@ -1,7 +1,7 @@
 /**
  * 
  */
-package advtech.mods.DarkShadows.Items;
+package advtech.ds.item;
 
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;

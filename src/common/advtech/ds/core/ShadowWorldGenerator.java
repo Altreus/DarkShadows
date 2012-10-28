@@ -1,7 +1,8 @@
-package advtech.mods.DarkShadows;
+package advtech.ds.core;
 
 import java.util.Random;
 
+import advtech.ds.DarkShadows;
 
 import net.minecraft.src.IChunkProvider;
 import net.minecraft.src.World;
@@ -28,7 +29,7 @@ public class ShadowWorldGenerator implements IWorldGenerator {
 			int randPosY = rand.nextInt(64);
 			int randPosZ = chunkZ + rand.nextInt(16);
 				
-			(new WorldGenMinable(DarkShadow.oreObby.blockID, 20)).generate(world, rand, randPosX, randPosY, randPosZ);
+			(new WorldGenMinable(DarkShadows.oreObby.blockID, 20)).generate(world, rand, randPosX, randPosY, randPosZ);
 		}
 	}
 

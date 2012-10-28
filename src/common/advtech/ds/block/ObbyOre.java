@@ -1,4 +1,4 @@
-package advtech.mods.DarkShadows;
+package advtech.ds.block;
 
 import java.util.Random;
 

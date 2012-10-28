@@ -1,4 +1,4 @@
-package advtech.mods.DarkShadows.gui;
+package advtech.ds.gui;
 
 public class CommonProxy {
 

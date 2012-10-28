@@ -1,9 +1,9 @@
-package advtech.mods.DarkShadows.gui;
+package advtech.ds.gui;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import advtech.mods.DarkShadows.DarkShadow;
+import advtech.ds.DarkShadows;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.Item;
@@ -21,8 +21,8 @@ public class StreamFurnaceRecipes {
 	}
 	
 	private StreamFurnaceRecipes() {
-		addSmelting(DarkShadow.oreObby.blockID, new ItemStack(Block.obsidian), 0.7F);
-		addSmelting(Block.obsidian.blockID, new ItemStack(DarkShadow.obbyItems,1,0),0.7F);
+		addSmelting(DarkShadows.oreObby.blockID, new ItemStack(Block.obsidian), 0.7F);
+		addSmelting(Block.obsidian.blockID, new ItemStack(DarkShadows.obbyItems,1,0),0.7F);
 	}
 	
 	public void addSmelting(int id, ItemStack stack, float experience) {

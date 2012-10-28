@@ -1,4 +1,4 @@
-package advtech.mods.DarkShadows.gui;
+package advtech.ds.gui;
 
 import java.util.Iterator;
 
@@ -35,10 +35,8 @@ public class SlotStreamFurnace extends Slot {
 		return super.decrStackSize(slot);
 	}
 
-	@Override
 	public void onPickupFromSlot(ItemStack stack) {
 		this.onCrafting(stack);
-		super.onPickupFromSlot(stack);
 	}
 
 	@Override
