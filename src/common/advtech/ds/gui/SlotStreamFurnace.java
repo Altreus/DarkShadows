@@ -40,7 +40,11 @@ public class SlotStreamFurnace extends Slot {
 <<<<<<< HEAD:src/common/advtech/ds/gui/SlotStreamFurnace.java
 =======
 		//super.onPickupFromSlot(stack);
+<<<<<<< HEAD
 >>>>>>> 332a13af8dc829b0579443a7f136d829d87f2b19:src/common/advtech/mods/DarkShadows/gui/SlotStreamFurnace.java
+=======
+>>>>>>> 3cd30d74137c9ad747abfdbae13a7d74cd7ac706:src/common/advtech/mods/DarkShadows/gui/SlotStreamFurnace.java
+>>>>>>> Advtech92-master
 	}
 
 	@Override

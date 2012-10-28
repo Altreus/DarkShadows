@@ -174,7 +174,11 @@ public class DarkShadows {
 		oreObbyID = config.get(config.CATEGORY_BLOCK,"Obsidian Ore", 201).getInt(201);
 		streamFurnaceIdleID = config.get(config.CATEGORY_BLOCK,"Forge", 202).getInt(202);
 		streamFurnaceActiveID = config.get(config.CATEGORY_BLOCK,"Forge2", 203).getInt(203);
+<<<<<<< HEAD
 >>>>>>> 332a13af8dc829b0579443a7f136d829d87f2b19:src/common/advtech/mods/DarkShadows/DarkShadow.java
+=======
+>>>>>>> 3cd30d74137c9ad747abfdbae13a7d74cd7ac706:src/common/advtech/mods/DarkShadows/DarkShadow.java
+>>>>>>> Advtech92-master
 		
 		config.save();
 	}
