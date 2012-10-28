@@ -17,7 +17,7 @@ public class GuiStreamFurnace extends GuiContainer {
 	}
 
 	@Override
-	protected void drawGuiContainerForegroundLayer() {
+	protected void drawGuiContainerForegroundLayer(int p1, int p2) {
 		fontRenderer.drawString("Stream Furnace", 6, 6, 0xFFFFFF);
 		fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 6, ySize - 94, 0xFFFFFF);
 	}

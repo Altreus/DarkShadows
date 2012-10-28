@@ -124,19 +124,19 @@ public class DarkShadow {
 	public void loadConfig(FMLPreInitializationEvent event) {
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		//Items
-		obbySwordID = config.getOrCreateIntProperty(config.CATEGORY_ITEM,"Obsidian Sword", 509).getInt(509);
-		portalMakerID = config.getOrCreateIntProperty(config.CATEGORY_ITEM,"Portal Maker",510).getInt(510);
-		obbyHammerID = config.getOrCreateIntProperty(config.CATEGORY_ITEM,"Obsidian Hammer", 511).getInt(511);
-		helmetObbyID = config.getOrCreateIntProperty(config.CATEGORY_ITEM,"Obsidian Helmet", 512).getInt(512);
-		chestplateObbyID = config.getOrCreateIntProperty(config.CATEGORY_ITEM,"Obidian Chestplate", 513).getInt(513);
-		leggingObbyID = config.getOrCreateIntProperty(config.CATEGORY_ITEM,"Obsidian Pants", 514).getInt(514);
-		bootObbyID = config.getOrCreateIntProperty(config.CATEGORY_ITEM,"Obsidian Boots", 515).getInt(515);
-		obbyItemsID = config.getOrCreateIntProperty(config.CATEGORY_ITEM,"Obsidian Ingot", 516).getInt(516); // Only one item id needed as all 3 items are this ID, just with metadata
+		obbySwordID = config.get(config.CATEGORY_ITEM,"Obsidian Sword", 509).getInt(509);
+		portalMakerID = config.get(config.CATEGORY_ITEM,"Portal Maker",510).getInt(510);
+		obbyHammerID = config.get(config.CATEGORY_ITEM,"Obsidian Hammer", 511).getInt(511);
+		helmetObbyID = config.get(config.CATEGORY_ITEM,"Obsidian Helmet", 512).getInt(512);
+		chestplateObbyID = config.get(config.CATEGORY_ITEM,"Obidian Chestplate", 513).getInt(513);
+		leggingObbyID = config.get(config.CATEGORY_ITEM,"Obsidian Pants", 514).getInt(514);
+		bootObbyID = config.get(config.CATEGORY_ITEM,"Obsidian Boots", 515).getInt(515);
+		obbyItemsID = config.get(config.CATEGORY_ITEM,"Obsidian Ingot", 516).getInt(516); // Only one item id needed as all 3 items are this ID, just with metadata
 
 		//Blocks
-		oreObbyID = config.getOrCreateIntProperty(config.CATEGORY_BLOCK,"Obsidian Ore", 201).getInt(201);
-		streamFurnaceIdleID = config.getOrCreateIntProperty(config.CATEGORY_BLOCK,"Forge", 202).getInt(202);
-		streamFurnaceActiveID = config.getOrCreateIntProperty(config.CATEGORY_BLOCK,"Forge2", 203).getInt(203);
+		oreObbyID = config.get(config.CATEGORY_BLOCK,"Obsidian Ore", 201).getInt(201);
+		streamFurnaceIdleID = config.get(config.CATEGORY_BLOCK,"Forge", 202).getInt(202);
+		streamFurnaceActiveID = config.get(config.CATEGORY_BLOCK,"Forge2", 203).getInt(203);
 		
 		config.save();
 	}
