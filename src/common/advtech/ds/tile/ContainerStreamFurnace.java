@@ -94,7 +94,7 @@ public class ContainerStreamFurnace extends Container {
 
 	public ItemStack transferStackInSlot(int par1) {
 		ItemStack itemstack = null;
-		Slot slot = (Slot)inventorySlots.get(par1);
+		SlotStreamFurnace slot = (SlotStreamFurnace)inventorySlots.get(par1);
 
 		if (slot != null && slot.getHasStack()) {
 			ItemStack itemstack1 = slot.getStack();

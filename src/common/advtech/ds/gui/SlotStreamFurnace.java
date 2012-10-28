@@ -37,6 +37,10 @@ public class SlotStreamFurnace extends Slot {
 
 	public void onPickupFromSlot(ItemStack stack) {
 		this.onCrafting(stack);
+<<<<<<< HEAD:src/common/advtech/ds/gui/SlotStreamFurnace.java
+=======
+		//super.onPickupFromSlot(stack);
+>>>>>>> 3cd30d74137c9ad747abfdbae13a7d74cd7ac706:src/common/advtech/mods/DarkShadows/gui/SlotStreamFurnace.java
 	}
 
 	@Override
