@@ -1,5 +1,7 @@
 package advtech.ds.gui;
 
+import advtech.ds.tile.ContainerStreamFurnace;
+import advtech.ds.tile.TileEntityStreamFurnace;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.TileEntity;
 import net.minecraft.src.World;

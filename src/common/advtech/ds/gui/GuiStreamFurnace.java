@@ -2,6 +2,9 @@ package advtech.ds.gui;
 
 import org.lwjgl.opengl.GL11;
 
+import advtech.ds.tile.ContainerStreamFurnace;
+import advtech.ds.tile.TileEntityStreamFurnace;
+
 import net.minecraft.src.GuiContainer;
 import net.minecraft.src.InventoryPlayer;
 import net.minecraft.src.StatCollector;

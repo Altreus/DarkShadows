@@ -1,6 +1,9 @@
-package advtech.ds.gui;
+package advtech.ds.tile;
 
 import java.util.Iterator;
+
+import advtech.ds.gui.SlotStreamFurnace;
+import advtech.ds.gui.StreamFurnaceRecipes;
 
 import net.minecraft.src.Container;
 import net.minecraft.src.EntityPlayer;

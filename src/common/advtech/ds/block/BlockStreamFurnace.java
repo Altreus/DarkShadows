@@ -1,6 +1,7 @@
-package advtech.ds.gui;
+package advtech.ds.block;
 
 import advtech.ds.DarkShadows;
+import advtech.ds.tile.TileEntityStreamFurnace;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
 import java.util.Random;

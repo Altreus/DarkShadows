@@ -1,4 +1,4 @@
-package advtech.ds.gui;
+package advtech.ds.core.packet;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;

@@ -1,5 +1,7 @@
-package advtech.ds.gui;
+package advtech.ds.tile;
 
+import advtech.ds.block.BlockStreamFurnace;
+import advtech.ds.gui.StreamFurnaceRecipes;
 import net.minecraft.src.Block;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.IInventory;
