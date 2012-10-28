@@ -35,11 +35,10 @@ public class BlockStreamFurnace extends BlockContainer
 	{
 		return DarkShadows.streamFurnaceIdle.blockID;
 	}
-	@Override
-	public String getTextureFile(){
-		return "/advtech/mods/DarkShadows/item.png";
-	}
-	
+	  @Override
+	  public String getTextureFile(){
+			return "/advtech/ds/resources/item.png";
+	 }
 	public void onBlockAdded(World world, int x, int y, int z)
 	{
 		super.onBlockAdded(world, x, y, z);

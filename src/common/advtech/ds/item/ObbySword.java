@@ -122,9 +122,9 @@ public class ObbySword extends ItemSword {
     {
         return obby.toString();
     }
-    @Override
-    public String getTextureFile(){
-		return "/advtech/mods/DarkShadows/item.png";
- }
+	  @Override
+	  public String getTextureFile(){
+			return "/advtech/ds/resources/item.png";
+	 }
 	
 }

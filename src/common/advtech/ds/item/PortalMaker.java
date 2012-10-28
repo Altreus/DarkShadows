@@ -25,10 +25,10 @@ public class PortalMaker extends Item {
 		setItemName("Portal Maker");
 		setCreativeTab(CreativeTabs.tabTools);
 	}
-	@Override
-	public String getTextureFile(){
-		return "/advtech/mods/DarkShadows/item.png";
- }
+	  @Override
+	  public String getTextureFile(){
+			return "/advtech/ds/resources/item.png";
+	 }
 	
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {

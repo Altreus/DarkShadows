@@ -12,8 +12,9 @@ public class ObbyAxe extends ItemTool {
 	 public ObbyAxe (int id, EnumToolMaterial material){
 		 super(id, 3, material, blocksEffectiveAgainst);
 	 }
-	 public String getTextureFile(){
-			return "/advtech/mods/DarkShadows/item.png";
+	  @Override
+	  public String getTextureFile(){
+			return "/advtech/ds/resources/item.png";
 	 }
 	 public float getStrVsBlock(ItemStack par1ItemStack, Block par2Block)
 	    {

@@ -129,7 +129,7 @@ public class DarkShadows {
 
 		//Item Codes
 		//Texture File
-		MinecraftForgeClient.preloadTexture("/advtech/ds/resources/terrain.png");
+		MinecraftForgeClient.preloadTexture("/advtech/ds/resources/item.png");
 		//World Generator Code
 		GameRegistry.registerWorldGenerator(new ShadowWorldGenerator());
 		//Recipes

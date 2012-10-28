@@ -13,9 +13,9 @@ public class ObbyShovel extends ItemTool {
     {
         return par1Block == Block.snow ? true : par1Block == Block.blockSnow;
     }
-    @Override
-    public String getTextureFile(){
-		return "/advtech/mods/DarkShadows/item.png";
- }
+	  @Override
+	  public String getTextureFile(){
+			return "/advtech/ds/resources/item.png";
+	 }
 
 }

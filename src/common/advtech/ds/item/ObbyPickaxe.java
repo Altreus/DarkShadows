@@ -23,6 +23,6 @@ public class ObbyPickaxe extends ItemTool {
 	    }
 	  @Override
 	  public String getTextureFile(){
-			return "/advtech/mods/DarkShadows/item.png";
+			return "/advtech/ds/resources/item.png";
 	 }
 }

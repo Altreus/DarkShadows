@@ -15,7 +15,6 @@
 /src/minecraft_server/*
 /src/common/*
 !/src/common/advtech
-
 *.bat
 *.sh
 .DS_STORE

@@ -17,10 +17,10 @@ public class ObbyHammer extends Item {
 		return itemStack;
 	
 	}
-	@Override
-	public String getTextureFile(){
-		return "/advtech/mods/DarkShadows/item.png";
- }
+	  @Override
+	  public String getTextureFile(){
+			return "/advtech/ds/resources/item.png";
+	 }
 	@Override
 	public boolean doesContainerItemLeaveCraftingGrid(ItemStack itemStack){
 		return false;
