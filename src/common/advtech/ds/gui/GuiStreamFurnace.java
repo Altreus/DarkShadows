@@ -19,7 +19,12 @@ public class GuiStreamFurnace extends GuiContainer {
 		streamFurnace = tileEntity;
 	}
 
+<<<<<<< HEAD:src/common/advtech/ds/gui/GuiStreamFurnace.java
 	protected void drawGuiContainerForegroundLayer() {
+=======
+	@Override
+	protected void drawGuiContainerForegroundLayer(int p1, int p2) {
+>>>>>>> 332a13af8dc829b0579443a7f136d829d87f2b19:src/common/advtech/mods/DarkShadows/gui/GuiStreamFurnace.java
 		fontRenderer.drawString("Stream Furnace", 6, 6, 0xFFFFFF);
 		fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 6, ySize - 94, 0xFFFFFF);
 	}
