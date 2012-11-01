@@ -31,7 +31,7 @@ public class ObbySword extends ItemSword {
 		this.maxStackSize=1;
 		this.setMaxDamage(obby.getMaxUses());
 		this.setCreativeTab(CreativeTabs.tabCombat);
-		this.weaponDamage = 4 + obby.getDamageVsEntity();
+		this.weaponDamage = 16 + obby.getDamageVsEntity();
 		
 	}
     public float getStrVsBlock(ItemStack par1ItemStack, Block par2Block)

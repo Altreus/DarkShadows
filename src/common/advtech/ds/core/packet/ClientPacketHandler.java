@@ -10,7 +10,7 @@ import cpw.mods.fml.common.network.Player;
 
 public class ClientPacketHandler implements IPacketHandler {
 
-<<<<<<< HEAD:src/common/advtech/ds/core/packet/ClientPacketHandler.java
+
 	/*@Override
 	public void onPacketData(NetworkManager manager, Packet250CustomPayload payload, Player player) {
 =======

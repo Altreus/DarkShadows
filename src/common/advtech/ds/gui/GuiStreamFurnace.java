@@ -19,23 +19,15 @@ public class GuiStreamFurnace extends GuiContainer {
 		streamFurnace = tileEntity;
 	}
 
-<<<<<<< HEAD:src/common/advtech/ds/gui/GuiStreamFurnace.java
-	protected void drawGuiContainerForegroundLayer() {
-=======
 	@Override
 	protected void drawGuiContainerForegroundLayer(int p1, int p2) {
-<<<<<<< HEAD
->>>>>>> 332a13af8dc829b0579443a7f136d829d87f2b19:src/common/advtech/mods/DarkShadows/gui/GuiStreamFurnace.java
-=======
->>>>>>> 3cd30d74137c9ad747abfdbae13a7d74cd7ac706:src/common/advtech/mods/DarkShadows/gui/GuiStreamFurnace.java
->>>>>>> Advtech92-master
 		fontRenderer.drawString("Stream Furnace", 6, 6, 0xFFFFFF);
 		fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 6, ySize - 94, 0xFFFFFF);
 	}
 	
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float var1, int var2, int var3) {
-		int texture = mc.renderEngine.getTexture("/advtech/ds/resource/streamFurnace.png");
+		int texture = mc.renderEngine.getTexture("/advtech/ds/resources/streamFurnace.png");
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		
 		this.mc.renderEngine.bindTexture(texture);
