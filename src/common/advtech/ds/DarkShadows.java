@@ -100,7 +100,7 @@ public class DarkShadows {
 	
 	public static Logger dsLog = Logger.getLogger("DarkShadow");
 	
-	@Mod.Instance
+	@Instance
 	public static DarkShadows instance;
 	
 	//@SidedProxy(clientSide = "advtech.mods.DarkShadows.gui.ClientProxy", serverSide = "advtech.mods.DarkShadows.gui.CommonProxy")
@@ -109,14 +109,14 @@ public class DarkShadows {
 	public static EnumToolMaterial obbyToolMaterial = EnumHelper.addToolMaterial("obby", 3, 2000, 9F, 6, 14);
 	public static EnumArmorMaterial obbyArmorMaterial = EnumHelper.addArmorMaterial("OBBY",40,new int[]{10,20,16,14},20);
 	
-	@Mod.PreInit
+	@PreInit
 	public void preInit(FMLPreInitializationEvent event) {
 		dsLog.setParent(FMLLog.getLogger());
 		
 		dsLog.info("Loading/Creating Config");
 		loadConfig(event);
 	}
-	@Mod.Init
+	@Init
 	public void init(FMLInitializationEvent event) {
 		//Furnace Code
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
@@ -257,7 +257,7 @@ public class DarkShadows {
 		
 	}
 
-	@Mod.PostInit
+	@PostInit
 	public void postInit(FMLPostInitializationEvent event) {
 		//
 	}
