@@ -138,8 +138,8 @@ public class DarkShadows {
 
 		//Item Codes
 		//Texture File
-		MinecraftForgeClient.preloadTexture("/advtech/ds/resources/item.png");
-		MinecraftForgeClient.preloadTexture("/terrain.png");
+		//MinecraftForgeClient.preloadTexture("/advtech/ds/resources/item.png");
+		MinecraftForgeClient.preloadTexture("/advtech/ds/resources/terrain.png");
 		//World Generator Code
 		GameRegistry.registerWorldGenerator(new ShadowWorldGenerator());
 		//Recipes
@@ -195,36 +195,36 @@ public class DarkShadows {
 	}
 	
 	public void addItems(){
-		helmetObby = new ObbyArmor(helmetObbyID, obbyArmorMaterial, RenderingRegistry.addNewArmourRendererPrefix("Obby"), 0).setIconIndex(15).setItemName("Obsidian Helmet");
+		helmetObby = new ObbyArmor(helmetObbyID, obbyArmorMaterial, RenderingRegistry.addNewArmourRendererPrefix("Obby"), 0).setIconIndex(2).setItemName("Obsidian Helmet");
 		LanguageRegistry.addName(helmetObby, "Obsidian Helmet");
-		chestplateObby = new ObbyArmor(chestplateObbyID, obbyArmorMaterial, RenderingRegistry.addNewArmourRendererPrefix("Obby"), 1).setIconIndex((16*1) + 15).setItemName("Obsidian Chestplate");
+		chestplateObby = new ObbyArmor(chestplateObbyID, obbyArmorMaterial, RenderingRegistry.addNewArmourRendererPrefix("Obby"), 1).setIconIndex(4).setItemName("Obsidian Chestplate");
 		LanguageRegistry.addName(chestplateObby, "Obsidian Chest Plate");
-		leggingObby = new ObbyArmor(leggingObbyID, obbyArmorMaterial,RenderingRegistry.addNewArmourRendererPrefix("Obby"), 2).setIconIndex((16*2)+15).setItemName("Obsidian Leggings");
+		leggingObby = new ObbyArmor(leggingObbyID, obbyArmorMaterial,RenderingRegistry.addNewArmourRendererPrefix("Obby"), 2).setIconIndex(3).setItemName("Obsidian Leggings");
 		LanguageRegistry.addName(leggingObby, "Obsidian Leggings");
-		bootObby = new ObbyArmor(bootObbyID, obbyArmorMaterial,RenderingRegistry.addNewArmourRendererPrefix("Obby"), 3).setIconIndex((16 * 3)+15).setItemName("Obsidian Boots");
+		bootObby = new ObbyArmor(bootObbyID, obbyArmorMaterial,RenderingRegistry.addNewArmourRendererPrefix("Obby"), 3).setIconIndex(1).setItemName("Obsidian Boots");
 		LanguageRegistry.addName(bootObby, "Obsidian Boot");
-		portalMaker = new PortalMaker(portalMakerID).setIconIndex(0).setItemName("Portal Maker");
+		portalMaker = new PortalMaker(portalMakerID).setIconIndex(7).setItemName("Portal Maker");
 		LanguageRegistry.addName(portalMaker, "Insta-Portal");		
 		obbyIngot = new ObbyIngot(obbyIngotID).setIconIndex(0).setItemName("obbyIngots");
 		LanguageRegistry.addName(obbyIngot, "Obsidian Ingot");
-		obbyRivet = new ObbyRivet(obbyRivetID).setIconIndex(0).setItemName("Obsidian Rivers");
+		obbyRivet = new ObbyRivet(obbyRivetID).setIconIndex(9).setItemName("Obsidian Rivers");
 		LanguageRegistry.addName(obbyRivet,"Obsidian Rivet");
 		obbyPlate = new ObbyPlate(obbyPlateID).setIconIndex(0).setItemName("Obsidian Platemetal");
 		LanguageRegistry.addName(obbyPlate,"Obsidian Plate");
-		obbyArm = new ObbyArm(obbyArmID).setIconIndex(0).setItemName("Obsidian Arm");
+		obbyArm = new ObbyArm(obbyArmID).setIconIndex(13).setItemName("Obsidian Arm");
 		LanguageRegistry.addName(obbyArm, "Obsidian Plate Arm");
-		obbyHammer = new ObbyHammer(obbyHammerID).setIconIndex(10).setItemName("Obsidian Hammer");
+		obbyHammer = new ObbyHammer(obbyHammerID).setIconIndex(11).setItemName("Obsidian Hammer");
 		LanguageRegistry.addName(obbyHammer, "Hammer of Obby");
 		obbyHammer.setContainerItem(obbyHammer);
-		obbySword = new ObbySword(obbySwordID, obbyToolMaterial).setIconIndex(1).setItemName("Obsidian Sword");
+		obbySword = new ObbySword(obbySwordID, obbyToolMaterial).setIconIndex(6).setItemName("Obsidian Sword");
 		LanguageRegistry.addName(obbySword, "Creeper's Bane");
-		obbyAxe = new ObbyAxe(obbyAxeID, obbyToolMaterial).setIconIndex(4).setItemName("Obsidian Axe");
+		obbyAxe = new ObbyAxe(obbyAxeID, obbyToolMaterial).setIconIndex(10).setItemName("Obsidian Axe");
 		LanguageRegistry.addName(obbyAxe,"Shadow Chopper");
-		obbyHoe = new ObbyHoe(obbyHoeID, obbyToolMaterial).setIconIndex(5).setItemName("Obsidian Hoe");
+		obbyHoe = new ObbyHoe(obbyHoeID, obbyToolMaterial).setIconIndex(12).setItemName("Obsidian Hoe");
 		LanguageRegistry.addName(obbyHoe,"Tiller of Shadow");
-		obbyShovel = new ObbyShovel(obbyShovelID, obbyToolMaterial).setIconIndex(2).setItemName("Obsidian Shovel");
+		obbyShovel = new ObbyShovel(obbyShovelID, obbyToolMaterial).setIconIndex(5).setItemName("Obsidian Shovel");
 		LanguageRegistry.addName(obbyShovel, "Shadow Digger");
-		obbyPickaxe = new ObbyPickaxe(obbyPickaxeID, obbyToolMaterial).setIconIndex(3).setItemName("Obsidian Pickaxe");
+		obbyPickaxe = new ObbyPickaxe(obbyPickaxeID, obbyToolMaterial).setIconIndex(8).setItemName("Obsidian Pickaxe");
 		LanguageRegistry.addName(obbyPickaxe, "Shadow Breaker");
 		
 		smokeScreen = new SmokeScreen(smokeScreenID).setItemName("Smoke Screen");
