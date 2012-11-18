@@ -287,6 +287,8 @@ public class TileEntityStreamFurnace extends TileEntity implements IInventory {
 				inventory[slot] = ItemStack.loadItemStackFromNBT(tag);
 			}
 		}
+
+		cookTime = tagCompoud.getInteger("Cook Time");
 	}
 
 	// Same as the later
@@ -309,6 +311,8 @@ public class TileEntityStreamFurnace extends TileEntity implements IInventory {
 		}
 
 		tagCompound.setTag("Inventory", itemList);
+
+		tagCompound.setInteger("Cook Time", cookTime);
 	}
 	
 }
