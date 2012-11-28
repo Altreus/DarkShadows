@@ -9,5 +9,8 @@ public class ObbyRivet extends Item {
 		setMaxStackSize(64);
 		setCreativeTab(CreativeTabs.tabMaterials);
 	}
+	public String getTextureFile(){
+		return "/advtech/ds/resources/terrain.png";
+	}
 
 }

@@ -14,7 +14,7 @@ public class ObbyAxe extends ItemTool {
 	 }
 	  @Override
 	  public String getTextureFile(){
-			return "/advtech/ds/resources/item.png";
+			return "/advtech/ds/resources/terrain.png";
 	 }
 	 public float getStrVsBlock(ItemStack par1ItemStack, Block par2Block)
 	    {

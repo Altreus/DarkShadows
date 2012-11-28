@@ -10,5 +10,8 @@ public class ObbyPlate extends Item {
 		setCreativeTab(CreativeTabs.tabMaterials);
 
 	}
+	public String getTextureFile(){
+		return "/advtech/ds/resources/terrain.png";
+	}
 
 }

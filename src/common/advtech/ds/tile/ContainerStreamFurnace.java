@@ -60,15 +60,15 @@ public class ContainerStreamFurnace extends Container {
 			ICrafting var2 = (ICrafting)var1.next();
 
 			if (this.lastCookTime != this.tileEntity.cookTime) {
-				var2.updateCraftingInventoryInfo(this, 0, this.tileEntity.cookTime);
+				var2.sendProgressBarUpdate(this, 0, this.tileEntity.cookTime);
 			}
 
 			if (this.lastBurnTime != this.tileEntity.burnTime) {
-				var2.updateCraftingInventoryInfo(this, 1, this.tileEntity.burnTime);
+				var2.sendProgressBarUpdate(this, 1, this.tileEntity.burnTime);
 			}
 
 			if (this.lastFreshBurnTime != this.tileEntity.freshBurnTime) {
-				var2.updateCraftingInventoryInfo(this, 2, this.tileEntity.freshBurnTime);
+				var2.sendProgressBarUpdate(this, 2, this.tileEntity.freshBurnTime);
 			}
 		}
 

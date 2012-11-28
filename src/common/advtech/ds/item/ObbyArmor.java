@@ -37,15 +37,19 @@ public class ObbyArmor extends ItemArmor implements IArmorTextureProvider {
 		return maxDamageArray;
 	}
 	@Override
+	public String getTextureFile(){
+		return "/advtech/ds/resources/terrain.png";
+	}
+	@Override
 	public String getArmorTextureFile(ItemStack itemstack) {
 		if(itemstack.itemID == DarkShadows.helmetObby.shiftedIndex || itemstack.itemID == DarkShadows.chestplateObby.shiftedIndex||
 				itemstack.itemID == DarkShadows.bootObby.shiftedIndex){
-			return "armor/obby_1.png";
+			return "/advtech/ds/resources/obby_1.png";
 			
 		}
 		if (itemstack.itemID == DarkShadows.leggingObby.shiftedIndex){
-		return "armor/obby_2.png";
+		return "/advtech/ds/resources/obby_2.png";
 	}
-		return "/armor/obby_1.png";
+		return "/advtech/ds/resources/obby_1.png";
 	}
 }

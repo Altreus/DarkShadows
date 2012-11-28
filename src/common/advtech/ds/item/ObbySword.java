@@ -124,7 +124,7 @@ public class ObbySword extends ItemSword {
     }
 	  @Override
 	  public String getTextureFile(){
-			return "/advtech/ds/resources/item.png";
+			return "/advtech/ds/resources/terrain.png";
 	 }
 	
 }

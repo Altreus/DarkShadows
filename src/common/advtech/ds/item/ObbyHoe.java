@@ -7,6 +7,8 @@ import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.Event.Result;
+import net.minecraftforge.event.entity.player.UseHoeEvent;
 
 public class ObbyHoe extends Item {
 	public ObbyHoe(int ID, EnumToolMaterial material){
@@ -15,9 +17,9 @@ public class ObbyHoe extends Item {
 		setMaxDamage(material.getMaxUses());
 		
 	}
-	  /*public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
+	 public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
 	    {
-	        if (!par2EntityPlayer.canPlayerEdit(par4, par5, par6))
+		 if (!par2EntityPlayer.canPlayerEdit(par4, par5, par6, par7, par1ItemStack))
 	        {
 	            return false;
 	        }
@@ -28,7 +30,8 @@ public class ObbyHoe extends Item {
 	            {
 	                return false;
 	            }
-	            if (event.isHandeled())
+
+	            if (event.getResult() == Result.ALLOW)
 	            {
 	                par1ItemStack.damageItem(1, par2EntityPlayer);
 	                return true;
@@ -58,13 +61,13 @@ public class ObbyHoe extends Item {
 	                }
 	            }
 	        }
-	    }*/
+	    }
 	  public boolean isFull3D(){
 		  return true;
 	  }
 	  @Override
 	  public String getTextureFile(){
-			return "/advtech/ds/resources/item.png";
+			return "/advtech/ds/resources/terrain.png";
 	 }
 
 }

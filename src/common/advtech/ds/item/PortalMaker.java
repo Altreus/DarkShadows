@@ -27,7 +27,7 @@ public class PortalMaker extends Item {
 	}
 	  @Override
 	  public String getTextureFile(){
-			return "/advtech/ds/resources/item.png";
+			return "/advtech/ds/resources/terrain.png";
 	 }
 	
 	@Override

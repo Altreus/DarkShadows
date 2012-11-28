@@ -20,7 +20,7 @@ public class ObbyOre extends BlockOre {
 
 	@Override
 	public String getTextureFile() {
-		return "/advtech/mods/DarkShadows/terrain.png";
+		return "/advtech/ds/resources/terrain.png";
 	}
 	
 	public int idDropped(int par1, Random par2Random, int par3) {

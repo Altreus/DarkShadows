@@ -38,7 +38,7 @@ public class BlockStreamFurnace extends BlockContainer
 	}
 	  @Override
 	  public String getTextureFile(){
-			return "/advtech/ds/resources/item.png";
+			return "/advtech/ds/resources/terrain.png";
 	 }
 	public void onBlockAdded(World world, int x, int y, int z)
 	{

@@ -19,7 +19,7 @@ public class ObbyHammer extends Item {
 	}
 	  @Override
 	  public String getTextureFile(){
-			return "/advtech/ds/resources/item.png";
+			return "/advtech/ds/resources/terrain.png";
 	 }
 	@Override
 	public boolean doesContainerItemLeaveCraftingGrid(ItemStack itemStack){

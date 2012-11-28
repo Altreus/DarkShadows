@@ -157,7 +157,7 @@ public class TileEntityStreamFurnace extends TileEntity implements IInventory {
 		boolean check = isActive();
 		isActive = isBurning();
 		if (isActive != check) {
-			this.worldObj.markBlockNeedsUpdate(xCoord, yCoord, zCoord);
+			this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 		}
 		
 		if (var2) {
@@ -287,8 +287,6 @@ public class TileEntityStreamFurnace extends TileEntity implements IInventory {
 				inventory[slot] = ItemStack.loadItemStackFromNBT(tag);
 			}
 		}
-
-		cookTime = tagCompoud.getInteger("Cook Time");
 	}
 
 	// Same as the later
@@ -311,8 +309,6 @@ public class TileEntityStreamFurnace extends TileEntity implements IInventory {
 		}
 
 		tagCompound.setTag("Inventory", itemList);
-
-		tagCompound.setInteger("Cook Time", cookTime);
 	}
 	
 }
