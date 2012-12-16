@@ -2,14 +2,18 @@ package advtech.ds;
 
 import java.util.logging.Logger;
 
+import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraft.src.EnumToolMaterial;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
+import net.minecraft.src.Teleporter;
+import net.minecraft.src.WorldProvider;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.EnumHelper;
 import advtech.ds.block.BlockStreamFurnace;
 import advtech.ds.block.ObbyOre;
@@ -96,6 +100,8 @@ public class DarkShadows {
 	public static int oreObbyID;
 	public static int streamFurnaceIdleID;
 	public static int streamFurnaceActiveID;
+	
+	public static Teleporter teleporterShadow;
 		
 	
 	public static Logger dsLog = Logger.getLogger("DarkShadow");
@@ -108,6 +114,7 @@ public class DarkShadows {
 	private GuiHandler guiHandler = new GuiHandler();
 	public static EnumToolMaterial obbyToolMaterial = EnumHelper.addToolMaterial("obby", 3, 2000, 9F, 6, 14);
 	public static EnumArmorMaterial obbyArmorMaterial = EnumHelper.addArmorMaterial("OBBY",40,new int[]{10,20,16,14},20);
+	
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event) {
@@ -142,8 +149,12 @@ public class DarkShadows {
 		MinecraftForgeClient.preloadTexture("/advtech/ds/resources/terrain.png");
 		//World Generator Code
 		GameRegistry.registerWorldGenerator(new ShadowWorldGenerator());
-		//Recipes
-		
+		//Dimensions
+		DimensionManager.registerDimension(2, 2);
+		DimensionManager.registerProviderType(2, WorldProviderShadow.class, true);
+		teleporterShadow = new Teleporter(WorldProvider.getProviderForDimension(2).worldObj);
+		// 1 sec finding the right world object
+		//add dimensionShadow?
 	}
 	
 	
@@ -173,7 +184,7 @@ public class DarkShadows {
 		oreObbyID = config.get(config.CATEGORY_BLOCK,"Obsidian Ore", 201).getInt(201);
 		streamFurnaceIdleID = config.get(config.CATEGORY_BLOCK,"Forge", 202).getInt(202);
 		streamFurnaceActiveID = config.get(config.CATEGORY_BLOCK,"Forge2", 203).getInt(203);
-
+		
 		
 		config.save();
 	}
@@ -233,7 +244,7 @@ public class DarkShadows {
 		 * 
 		 * Placeholder for future items
 		 * Shadow Block/Item to allow for hidden areas
-		 * Smoke bomb that teleports player
+		 * 
 		 * 
 		 */
 	}
