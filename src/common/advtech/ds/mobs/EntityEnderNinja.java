@@ -230,7 +230,6 @@ public class EntityEnderNinja extends EntityMob {
             			} else if (assaultHits == 1) {
             				teleportTo(target.posX, target.posY, target.posZ);
             				assaultDelay = 200;
-            				target.travelToDimension(-1);
             			}
 	                    --assaultHits;
 	                    System.out.println("Number of hits: " + assaultHits);

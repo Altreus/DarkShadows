@@ -132,7 +132,7 @@ public class DarkShadows {
 		//Dimensions
 		DimensionManager.registerProviderType(10, WorldProviderShadow.class, true);
 		DimensionManager.registerDimension(10, 10);
-		shadowStone = new BlockShadowStone(250).setHardness(50F).setResistance(2000.0F);
+		shadowStone = new BlockShadowStone(250).setHardness(50F).setResistance(2000.0F).setBlockName("shadowStone");
 		shadowStone.blockIndexInTexture = 1;
 		GameRegistry.registerBlock(shadowStone);
 		ModLoader.addName(shadowStone, "Condensed Shadow");
