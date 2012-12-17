@@ -2,7 +2,6 @@ package advtech.ds;
 
 import java.util.logging.Logger;
 
-import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.EnumArmorMaterial;
@@ -10,14 +9,11 @@ import net.minecraft.src.EnumToolMaterial;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Teleporter;
-import net.minecraft.src.WorldProvider;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.Configuration;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.EnumHelper;
 import advtech.ds.block.BlockStreamFurnace;
 import advtech.ds.block.ObbyOre;
-import advtech.ds.core.ShadowWorldGenerator;
 import advtech.ds.core.packet.ClientPacketHandler;
 import advtech.ds.core.packet.ServerPacketHandler;
 import advtech.ds.core.proxy.CommonProxy;
@@ -36,11 +32,12 @@ import advtech.ds.item.ObbySword;
 import advtech.ds.item.PortalMaker;
 import advtech.ds.item.SmokeScreen;
 import advtech.ds.lib.BuildInfo;
+import advtech.ds.mobs.EntityEnderNinja;
+import advtech.ds.mobs.RenderEnderNinja;
 import advtech.ds.tile.TileEntityStreamFurnace;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PostInit;
@@ -49,8 +46,9 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
-import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.NetworkMod.SidedPacketHandler;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
@@ -148,13 +146,19 @@ public class DarkShadows {
 		//MinecraftForgeClient.preloadTexture("/advtech/ds/resources/item.png");
 		MinecraftForgeClient.preloadTexture("/advtech/ds/resources/terrain.png");
 		//World Generator Code
-		GameRegistry.registerWorldGenerator(new ShadowWorldGenerator());
+		//GameRegistry.registerWorldGenerator(new ShadowWorldGenerator());
 		//Dimensions
-		DimensionManager.registerDimension(2, 2);
-		DimensionManager.registerProviderType(2, WorldProviderShadow.class, true);
-		teleporterShadow = new Teleporter(WorldProvider.getProviderForDimension(2).worldObj);
+		//DimensionManager.registerDimension(2, 2);
+		//DimensionManager.registerProviderType(2, WorldProviderShadow.class, true);
+		//teleporterShadow = new Teleporter(WorldProvider.getProviderForDimension(2).worldObj);
 		// 1 sec finding the right world object
 		//add dimensionShadow?
+		
+		//EnderNinja
+		RenderingRegistry.registerEntityRenderingHandler(EntityEnderNinja.class, new RenderEnderNinja());
+		EntityRegistry.registerGlobalEntityID(EntityEnderNinja.class, "enderNinja", EntityRegistry.findGlobalUniqueEntityId(), 0xFF0000, 0x000000);
+		LanguageRegistry.instance().addStringLocalization("entity.enderNinja.name", "EnderNinja");
+		
 	}
 	
 	
