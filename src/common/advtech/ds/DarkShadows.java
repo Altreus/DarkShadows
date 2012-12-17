@@ -2,39 +2,20 @@ package advtech.ds;
 
 import java.util.logging.Logger;
 
-import net.minecraft.src.Block;
-import net.minecraft.src.CreativeTabs;
-import net.minecraft.src.EnumArmorMaterial;
-import net.minecraft.src.EnumToolMaterial;
-import net.minecraft.src.Item;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.Teleporter;
+import net.minecraft.src.*;
+import advtech.ds.block.*;
+import advtech.ds.core.*;
+import advtech.ds.core.packet.*;
+import advtech.ds.core.proxy.*;
+import advtech.ds.gui.*;
+import advtech.ds.item.*;
+import advtech.ds.lib.*;
+import advtech.ds.mobs.*;
+import advtech.ds.tile.*;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.EnumHelper;
-import advtech.ds.block.BlockStreamFurnace;
-import advtech.ds.block.ObbyOre;
-import advtech.ds.core.packet.ClientPacketHandler;
-import advtech.ds.core.packet.ServerPacketHandler;
-import advtech.ds.core.proxy.CommonProxy;
-import advtech.ds.gui.GuiHandler;
-import advtech.ds.item.ObbyArm;
-import advtech.ds.item.ObbyArmor;
-import advtech.ds.item.ObbyAxe;
-import advtech.ds.item.ObbyHammer;
-import advtech.ds.item.ObbyHoe;
-import advtech.ds.item.ObbyIngot;
-import advtech.ds.item.ObbyPickaxe;
-import advtech.ds.item.ObbyPlate;
-import advtech.ds.item.ObbyRivet;
-import advtech.ds.item.ObbyShovel;
-import advtech.ds.item.ObbySword;
-import advtech.ds.item.PortalMaker;
-import advtech.ds.item.SmokeScreen;
-import advtech.ds.lib.BuildInfo;
-import advtech.ds.mobs.EntityEnderNinja;
-import advtech.ds.mobs.RenderEnderNinja;
-import advtech.ds.tile.TileEntityStreamFurnace;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
@@ -99,8 +80,9 @@ public class DarkShadows {
 	public static int streamFurnaceIdleID;
 	public static int streamFurnaceActiveID;
 	
-	public static Teleporter teleporterShadow;
-		
+	//Shadow Portal Stuff
+	public static Block shadowStone;
+	public static int shadowDimensionID = 10;
 	
 	public static Logger dsLog = Logger.getLogger("DarkShadow");
 	
@@ -146,11 +128,15 @@ public class DarkShadows {
 		//MinecraftForgeClient.preloadTexture("/advtech/ds/resources/item.png");
 		MinecraftForgeClient.preloadTexture("/advtech/ds/resources/terrain.png");
 		//World Generator Code
-		//GameRegistry.registerWorldGenerator(new ShadowWorldGenerator());
+		GameRegistry.registerWorldGenerator(new ShadowWorldGenerator());
 		//Dimensions
-		//DimensionManager.registerDimension(2, 2);
-		//DimensionManager.registerProviderType(2, WorldProviderShadow.class, true);
-		//teleporterShadow = new Teleporter(WorldProvider.getProviderForDimension(2).worldObj);
+		DimensionManager.registerProviderType(10, WorldProviderShadow.class, true);
+		DimensionManager.registerDimension(10, 10);
+		shadowStone = new BlockShadowStone(250).setHardness(50F).setResistance(2000.0F);
+		shadowStone.blockIndexInTexture = 1;
+		GameRegistry.registerBlock(shadowStone);
+		ModLoader.addName(shadowStone, "Condensed Shadow");
+		//LanguageRegistry.addName(shadowStone, "Condensed Shadow");
 		// 1 sec finding the right world object
 		//add dimensionShadow?
 		

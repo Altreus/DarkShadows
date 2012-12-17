@@ -9,7 +9,7 @@ import net.minecraft.src.*;
 public class ChunkProviderShadow implements IChunkProvider {
 
 	public Random rand = new Random();
-	private int worldBlockId = Block.obsidian.blockID;
+	private int worldBlockId = Block.obsidian.blockID;//DarkShadows.shadowStone.blockID;
 	private double[] noiseField;
 	double[] noiseData1;
     double[] noiseData2;
@@ -58,7 +58,7 @@ public class ChunkProviderShadow implements IChunkProvider {
         }
 
         var4.resetRelightChecks();
-        return null;//var4;
+        return var4;
 	}
 
 	public void generateTerrain(int chunkX, int chunkY, byte[] par3ArrayOfByte)

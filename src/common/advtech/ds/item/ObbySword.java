@@ -5,16 +5,7 @@ package advtech.ds.item;
 
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
-import net.minecraft.src.Block;
-import net.minecraft.src.CreativeTabs;
-import net.minecraft.src.Entity;
-import net.minecraft.src.EntityLiving;
-import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.EnumAction;
-import net.minecraft.src.EnumToolMaterial;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.ItemSword;
-import net.minecraft.src.World;
+import net.minecraft.src.*;
 import net.minecraftforge.common.EnumHelper;
 
 /**
@@ -62,8 +53,10 @@ public class ObbySword extends ItemSword {
     /**
      * Returns the damage against a given entity.
      */
-    public int getDamageVsEntity(Entity par1Entity)
+    public int getDamageVsEntity(Entity target)
     {
+    	if (target instanceof EntityCreeper)
+    		return ((EntityCreeper) target).getHealth() * 10;
         return this.weaponDamage;
     }
 
