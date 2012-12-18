@@ -13,16 +13,14 @@ public class BlockShadowStone extends Block {
 		this.setTickRandomly(true);
 	}
 	
-	public void randomDisplayTick(World worldObj, int posX, int posY, int posZ, Random rand)
-    {
-    	super.randomDisplayTick(worldObj, posX, posY, posZ, rand);
-    	((BlockShadowPortal) DarkShadows.shadowPortal).tryToCreatePortal(worldObj, posX + 1, posY, posZ);
+	public void updateTick(World worldObj, int posX, int posY, int posZ, Random rand) {
+		((BlockShadowPortal) DarkShadows.shadowPortal).tryToCreatePortal(worldObj, posX + 1, posY, posZ);
     	((BlockShadowPortal) DarkShadows.shadowPortal).tryToCreatePortal(worldObj, posX - 1, posY, posZ);
     	((BlockShadowPortal) DarkShadows.shadowPortal).tryToCreatePortal(worldObj, posX, posY + 1, posZ);
     	((BlockShadowPortal) DarkShadows.shadowPortal).tryToCreatePortal(worldObj, posX, posY - 1, posZ);
     	((BlockShadowPortal) DarkShadows.shadowPortal).tryToCreatePortal(worldObj, posX, posY, posZ + 1);
     	((BlockShadowPortal) DarkShadows.shadowPortal).tryToCreatePortal(worldObj, posX, posY, posZ - 1);
-    }
+	}
 	
 	public void travelToDimension(Entity user)
     {

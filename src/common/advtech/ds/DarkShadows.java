@@ -275,11 +275,11 @@ public class DarkShadows {
 	@PostInit
 	public void postInit(FMLPostInitializationEvent event) {
 		//
-		FMLClientHandler.instance().getClient().ingameGUI = new GuiIngameHud(FMLClientHandler.instance().getClient());
 	}
 	
 	@ServerStarted
 	public void serverStarted(FMLServerStartedEvent event) {
+		FMLClientHandler.instance().getClient().ingameGUI = new GuiIngameHud(FMLClientHandler.instance().getClient());
 		shadowTeleporter = new TeleporterShadow(MinecraftServer.getServer().worldServerForDimension(shadowDimensionID));
 	}
 	
