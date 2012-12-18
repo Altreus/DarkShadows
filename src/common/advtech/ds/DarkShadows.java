@@ -2,20 +2,23 @@ package advtech.ds;
 
 import java.util.logging.Logger;
 
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.*;
-import advtech.ds.block.*;
-import advtech.ds.core.*;
-import advtech.ds.core.packet.*;
-import advtech.ds.core.proxy.*;
-import advtech.ds.gui.*;
-import advtech.ds.item.*;
-import advtech.ds.lib.*;
-import advtech.ds.mobs.*;
-import advtech.ds.tile.*;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.EnumHelper;
+import advtech.ds.block.*;
+import advtech.ds.core.ShadowWorldGenerator;
+import advtech.ds.core.packet.ClientPacketHandler;
+import advtech.ds.core.packet.ServerPacketHandler;
+import advtech.ds.core.proxy.CommonProxy;
+import advtech.ds.gui.*;
+import advtech.ds.item.*;
+import advtech.ds.lib.BuildInfo;
+import advtech.ds.mobs.*;
+import advtech.ds.tile.*;
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
@@ -23,15 +26,21 @@ import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
+import cpw.mods.fml.common.Mod.ServerStarted;
+import cpw.mods.fml.common.Mod.ServerStopping;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartedEvent;
+import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkMod.SidedPacketHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+
+
 
 @Mod(modid = BuildInfo.modid, name = BuildInfo.modname, version = BuildInfo.modversion)
 @NetworkMod(clientSideRequired = true, serverSideRequired = true, clientPacketHandlerSpec =
@@ -82,7 +91,9 @@ public class DarkShadows {
 	
 	//Shadow Portal Stuff
 	public static Block shadowStone;
+	public static Block shadowPortal;
 	public static int shadowDimensionID = 10;
+	public static Teleporter shadowTeleporter;
 	
 	public static Logger dsLog = Logger.getLogger("DarkShadow");
 	
@@ -130,13 +141,16 @@ public class DarkShadows {
 		//World Generator Code
 		GameRegistry.registerWorldGenerator(new ShadowWorldGenerator());
 		//Dimensions
-		DimensionManager.registerProviderType(10, WorldProviderShadow.class, true);
-		DimensionManager.registerDimension(10, 10);
+		DimensionManager.registerProviderType(shadowDimensionID, WorldProviderShadow.class, true);
+		DimensionManager.registerDimension(shadowDimensionID, shadowDimensionID);
 		shadowStone = new BlockShadowStone(250).setHardness(50F).setResistance(2000.0F).setBlockName("shadowStone");
 		shadowStone.blockIndexInTexture = 1;
 		GameRegistry.registerBlock(shadowStone);
-		ModLoader.addName(shadowStone, "Condensed Shadow");
-		//LanguageRegistry.addName(shadowStone, "Condensed Shadow");
+		LanguageRegistry.addName(shadowStone, "Condensed Shadow");
+		
+		shadowPortal = new BlockShadowPortal(251, 14).setHardness(-1.0F).setStepSound(Block.soundGlassFootstep).setLightValue(0.75F).setBlockName("portal");
+		GameRegistry.registerBlock(shadowPortal);
+		LanguageRegistry.addName(shadowPortal, "Shadow Portal");
 		// 1 sec finding the right world object
 		//add dimensionShadow?
 		
@@ -261,5 +275,16 @@ public class DarkShadows {
 	@PostInit
 	public void postInit(FMLPostInitializationEvent event) {
 		//
+		FMLClientHandler.instance().getClient().ingameGUI = new GuiIngameHud(FMLClientHandler.instance().getClient());
+	}
+	
+	@ServerStarted
+	public void serverStarted(FMLServerStartedEvent event) {
+		shadowTeleporter = new TeleporterShadow(MinecraftServer.getServer().worldServerForDimension(shadowDimensionID));
+	}
+	
+	@ServerStopping
+	public void serverStopped(FMLServerStoppingEvent event) {
+		shadowTeleporter = null;
 	}
 }
