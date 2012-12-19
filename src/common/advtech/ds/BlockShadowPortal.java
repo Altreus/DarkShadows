@@ -2,6 +2,8 @@ package advtech.ds;
 
 import java.util.Random;
 
+import advtech.ds.block.BlockShadowStone;
+
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
 
@@ -236,8 +238,8 @@ public class BlockShadowPortal extends Block {
 	        {
 	    		((EntityPlayer) par5Entity).addChatMessage("Giving you a little gift for your journey. :3");
 	    		((EntityPlayer) par5Entity).addPotionEffect(new PotionEffect(Potion.nightVision.id, 1000));
-	            par5Entity.travelToDimension(DarkShadows.shadowDimensionID);
-	        	System.out.println("Going to Shadow Realm. Don't forget your night vision potion!");
+	    		par5Entity.travelToDimension(10);
+	            //BlockShadowStone.travelToDimension(par5Entity);
 	        }
     	}
     }

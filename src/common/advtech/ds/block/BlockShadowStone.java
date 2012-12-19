@@ -22,13 +22,13 @@ public class BlockShadowStone extends Block {
     	((BlockShadowPortal) DarkShadows.shadowPortal).tryToCreatePortal(worldObj, posX, posY, posZ - 1);
 	}
 	
-	public void travelToDimension(Entity user)
+	public static void travelToDimension(Entity user)
     {
 		int par1 = DarkShadows.shadowDimensionID;
 		
-        if (!user.worldObj.isRemote && !user.isDead)
+		if (!user.worldObj.isRemote && !user.isDead)
         {
-        	user.worldObj.theProfiler.startSection("changeDimension");
+            user.worldObj.theProfiler.startSection("changeDimension");
             MinecraftServer var2 = MinecraftServer.getServer();
             int var3 = user.dimension;
             WorldServer var4 = var2.worldServerForDimension(var3);
