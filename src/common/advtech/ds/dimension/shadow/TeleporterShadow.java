@@ -1,11 +1,9 @@
-package advtech.ds.dimension.shadow;
+package advtech.ds;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-
-import advtech.ds.DarkenedSouls;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.util.Direction;

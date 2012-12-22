@@ -1,6 +1,5 @@
-package advtech.ds.dimension.shadow;
+package advtech.ds;
 
-import advtech.ds.DarkenedSouls;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.chunk.IChunkProvider;
 

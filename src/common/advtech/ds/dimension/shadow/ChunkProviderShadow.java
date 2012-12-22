@@ -1,4 +1,4 @@
-package advtech.ds.dimension.shadow;
+package advtech.ds;
 
 import java.util.List;
 import java.util.Random;
