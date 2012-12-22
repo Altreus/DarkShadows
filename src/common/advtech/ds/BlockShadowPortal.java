@@ -86,12 +86,12 @@ public class BlockShadowPortal extends Block {
         byte var5 = 0;
         byte var6 = 0;
 
-        if (par1World.getBlockId(par2 - 1, par3, par4) == DarkShadows.shadowStone.blockID || par1World.getBlockId(par2 + 1, par3, par4) == DarkShadows.shadowStone.blockID)
+        if (par1World.getBlockId(par2 - 1, par3, par4) == DarkenedSouls.shadowStone.blockID || par1World.getBlockId(par2 + 1, par3, par4) == DarkenedSouls.shadowStone.blockID)
         {
             var5 = 1;
         }
 
-        if (par1World.getBlockId(par2, par3, par4 - 1) == DarkShadows.shadowStone.blockID || par1World.getBlockId(par2, par3, par4 + 1) == DarkShadows.shadowStone.blockID)
+        if (par1World.getBlockId(par2, par3, par4 - 1) == DarkenedSouls.shadowStone.blockID || par1World.getBlockId(par2, par3, par4 + 1) == DarkenedSouls.shadowStone.blockID)
         {
             var6 = 1;
         }
@@ -123,7 +123,7 @@ public class BlockShadowPortal extends Block {
 
                         if (var9)
                         {
-                            if (var10 != DarkShadows.shadowStone.blockID)
+                            if (var10 != DarkenedSouls.shadowStone.blockID)
                             {
                                 return false;
                             }
@@ -142,7 +142,7 @@ public class BlockShadowPortal extends Block {
             {
                 for (var8 = 0; var8 < 3; ++var8)
                 {
-                    par1World.setBlockWithNotify(par2 + var5 * var7, par3 + var8, par4 + var6 * var7, DarkShadows.shadowPortal.blockID);
+                    par1World.setBlockWithNotify(par2 + var5 * var7, par3 + var8, par4 + var6 * var7, DarkenedSouls.shadowPortal.blockID);
                 }
             }
 
@@ -188,7 +188,7 @@ public class BlockShadowPortal extends Block {
             ;
         }
 
-        if (par1World.getBlockId(par2, var8 - 1, par4) != DarkShadows.shadowStone.blockID)
+        if (par1World.getBlockId(par2, var8 - 1, par4) != DarkenedSouls.shadowStone.blockID)
         {
             par1World.setBlockWithNotify(par2, par3, par4, 0);
         }
@@ -201,7 +201,7 @@ public class BlockShadowPortal extends Block {
                 ;
             }
 
-            if (var9 == 3 && par1World.getBlockId(par2, var8 + var9, par4) == DarkShadows.shadowStone.blockID)
+            if (var9 == 3 && par1World.getBlockId(par2, var8 + var9, par4) == DarkenedSouls.shadowStone.blockID)
             {
                 boolean var10 = par1World.getBlockId(par2 - 1, par3, par4) == this.blockID || par1World.getBlockId(par2 + 1, par3, par4) == this.blockID;
                 boolean var11 = par1World.getBlockId(par2, par3, par4 - 1) == this.blockID || par1World.getBlockId(par2, par3, par4 + 1) == this.blockID;
@@ -212,7 +212,7 @@ public class BlockShadowPortal extends Block {
                 }
                 else
                 {
-                    if ((par1World.getBlockId(par2 + var6, par3, par4 + var7) != DarkShadows.shadowStone.blockID || par1World.getBlockId(par2 - var6, par3, par4 - var7) != this.blockID) && (par1World.getBlockId(par2 - var6, par3, par4 - var7) != DarkShadows.shadowStone.blockID || par1World.getBlockId(par2 + var6, par3, par4 + var7) != this.blockID))
+                    if ((par1World.getBlockId(par2 + var6, par3, par4 + var7) != DarkenedSouls.shadowStone.blockID || par1World.getBlockId(par2 - var6, par3, par4 - var7) != this.blockID) && (par1World.getBlockId(par2 - var6, par3, par4 - var7) != DarkenedSouls.shadowStone.blockID || par1World.getBlockId(par2 + var6, par3, par4 + var7) != this.blockID))
                     {
                         par1World.setBlockWithNotify(par2, par3, par4, 0);
                     }

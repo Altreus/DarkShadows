@@ -14,7 +14,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import advtech.ds.DarkShadows;
+import advtech.ds.DarkenedSouls;
 import advtech.ds.tile.TileEntityStreamFurnace;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -33,7 +33,7 @@ public class BlockStreamFurnace extends BlockContainer
 	}
 	public int idDropped(int par1, Random random, int par3)
 	{
-		return DarkShadows.streamFurnaceIdle.blockID;
+		return DarkenedSouls.streamFurnaceIdle.blockID;
 	}
 	  @Override
 	  public String getTextureFile(){
@@ -159,7 +159,7 @@ public class BlockStreamFurnace extends BlockContainer
 			
 			if (var10 != null)
 			{
-				player.openGui(DarkShadows.instance, 0, world, x,y,z);
+				player.openGui(DarkenedSouls.instance, 0, world, x,y,z);
 			}
 			
 			return true;
@@ -173,11 +173,11 @@ public class BlockStreamFurnace extends BlockContainer
 		
 		if (active)
 		{
-			world.setBlockWithNotify(x,y,z, DarkShadows.streamFurnaceActive.blockID);
+			world.setBlockWithNotify(x,y,z, DarkenedSouls.streamFurnaceActive.blockID);
 		}
 		else
 		{
-			world.setBlockWithNotify(x,y,z, DarkShadows.streamFurnaceIdle.blockID);
+			world.setBlockWithNotify(x,y,z, DarkenedSouls.streamFurnaceIdle.blockID);
 		}
 		
 		keepFurnaceInventory = false;

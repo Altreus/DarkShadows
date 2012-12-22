@@ -44,7 +44,7 @@ public class WorldProviderShadow extends WorldProvider {
 	public void registerWorldChunkManager()
     {
 		super.registerWorldChunkManager();
-		this.dimensionId = DarkShadows.shadowDimensionID;
+		this.dimensionId = DarkenedSouls.shadowDimensionID;
     }
 	
 	public IChunkProvider createChunkGenerator()

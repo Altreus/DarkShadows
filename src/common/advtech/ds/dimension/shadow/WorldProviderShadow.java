@@ -1,6 +1,6 @@
 package advtech.ds.dimension.shadow;
 
-import advtech.ds.DarkShadows;
+import advtech.ds.DarkenedSouls;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.chunk.IChunkProvider;
 
@@ -45,7 +45,7 @@ public class WorldProviderShadow extends WorldProvider {
 	public void registerWorldChunkManager()
     {
 		super.registerWorldChunkManager();
-		this.dimensionId = DarkShadows.shadowDimensionID;
+		this.dimensionId = DarkenedSouls.shadowDimensionID;
     }
 	
 	public IChunkProvider createChunkGenerator()

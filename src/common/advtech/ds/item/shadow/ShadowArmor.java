@@ -5,7 +5,7 @@ import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.IArmorTextureProvider;
-import advtech.ds.DarkShadows;
+import advtech.ds.DarkenedSouls;
 
 public class ShadowArmor extends ItemArmor implements IArmorTextureProvider {
 	public static final int[] maxDamageArray = new int[]{29};
@@ -15,7 +15,7 @@ public class ShadowArmor extends ItemArmor implements IArmorTextureProvider {
 	private final EnumArmorMaterial material;
 	public ShadowArmor(int ID, EnumArmorMaterial material, int render, int part ){
 		super(ID,material, render, part);
-		this.material = DarkShadows.obbyArmorMaterial;
+		this.material = DarkenedSouls.obbyArmorMaterial;
 		this.armorType = part;
 		this.renderIndex = render;
 		this.damageReduceAmount = material.getDamageReductionAmount(part);
@@ -34,12 +34,12 @@ public class ShadowArmor extends ItemArmor implements IArmorTextureProvider {
 	}
 	@Override
 	public String getArmorTextureFile(ItemStack itemstack) {
-		if(itemstack.itemID == DarkShadows.helmetObby.shiftedIndex || itemstack.itemID == DarkShadows.chestplateObby.shiftedIndex||
-				itemstack.itemID == DarkShadows.bootObby.shiftedIndex){
+		if(itemstack.itemID == DarkenedSouls.helmetObby.shiftedIndex || itemstack.itemID == DarkenedSouls.chestplateObby.shiftedIndex||
+				itemstack.itemID == DarkenedSouls.bootObby.shiftedIndex){
 			return "/advtech/ds/resources/obby_1.png";
 			
 		}
-		if (itemstack.itemID == DarkShadows.leggingObby.shiftedIndex){
+		if (itemstack.itemID == DarkenedSouls.leggingObby.shiftedIndex){
 		return "/advtech/ds/resources/obby_2.png";
 	}
 		return "/advtech/ds/resources/obby_1.png";

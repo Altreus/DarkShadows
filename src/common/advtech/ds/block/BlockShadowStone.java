@@ -10,7 +10,7 @@ import net.minecraft.entity.EntityList;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import advtech.ds.DarkShadows;
+import advtech.ds.DarkenedSouls;
 
 public class BlockShadowStone extends Block {
 
@@ -21,17 +21,17 @@ public class BlockShadowStone extends Block {
 	}
 	
 	public void updateTick(World worldObj, int posX, int posY, int posZ, Random rand) {
-		((BlockShadowPortal) DarkShadows.shadowPortal).tryToCreatePortal(worldObj, posX + 1, posY, posZ);
-    	((BlockShadowPortal) DarkShadows.shadowPortal).tryToCreatePortal(worldObj, posX - 1, posY, posZ);
-    	((BlockShadowPortal) DarkShadows.shadowPortal).tryToCreatePortal(worldObj, posX, posY + 1, posZ);
-    	((BlockShadowPortal) DarkShadows.shadowPortal).tryToCreatePortal(worldObj, posX, posY - 1, posZ);
-    	((BlockShadowPortal) DarkShadows.shadowPortal).tryToCreatePortal(worldObj, posX, posY, posZ + 1);
-    	((BlockShadowPortal) DarkShadows.shadowPortal).tryToCreatePortal(worldObj, posX, posY, posZ - 1);
+		((BlockShadowPortal) DarkenedSouls.shadowPortal).tryToCreatePortal(worldObj, posX + 1, posY, posZ);
+    	((BlockShadowPortal) DarkenedSouls.shadowPortal).tryToCreatePortal(worldObj, posX - 1, posY, posZ);
+    	((BlockShadowPortal) DarkenedSouls.shadowPortal).tryToCreatePortal(worldObj, posX, posY + 1, posZ);
+    	((BlockShadowPortal) DarkenedSouls.shadowPortal).tryToCreatePortal(worldObj, posX, posY - 1, posZ);
+    	((BlockShadowPortal) DarkenedSouls.shadowPortal).tryToCreatePortal(worldObj, posX, posY, posZ + 1);
+    	((BlockShadowPortal) DarkenedSouls.shadowPortal).tryToCreatePortal(worldObj, posX, posY, posZ - 1);
 	}
 	
 	public static void travelToDimension(Entity user)
     {
-		int par1 = DarkShadows.shadowDimensionID;
+		int par1 = DarkenedSouls.shadowDimensionID;
 		
 		if (!user.worldObj.isRemote && !user.isDead)
         {

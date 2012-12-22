@@ -410,7 +410,7 @@ public class TeleporterShadow extends Teleporter {
                         var23 = var15 + var21;
                         var24 = var16 + (var20 - 1) * var18 - var19 * var30;
                         var33 = var21 < 0;
-                        worldObj.setBlockWithNotify(var22, var23, var24, var33 ? DarkShadows.shadowStone.blockID : 0);
+                        worldObj.setBlockWithNotify(var22, var23, var24, var33 ? DarkenedSouls.shadowStone.blockID : 0);
                     }
                 }
             }
@@ -428,7 +428,7 @@ public class TeleporterShadow extends Teleporter {
                     var23 = var15 + var21;
                     var24 = var16 + (var20 - 1) * var18;
                     var33 = var20 == 0 || var20 == 3 || var21 == -1 || var21 == 3;
-                    worldObj.setBlockWithNotify(var22, var23, var24, var33 ? DarkShadows.shadowStone.blockID : 0);
+                    worldObj.setBlockWithNotify(var22, var23, var24, var33 ? DarkenedSouls.shadowStone.blockID : 0);
                 }
             }
 

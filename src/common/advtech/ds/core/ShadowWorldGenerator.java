@@ -5,7 +5,7 @@ import java.util.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
-import advtech.ds.DarkShadows;
+import advtech.ds.DarkenedSouls;
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class ShadowWorldGenerator implements IWorldGenerator {
@@ -28,7 +28,7 @@ public class ShadowWorldGenerator implements IWorldGenerator {
 			int randPosY = rand.nextInt(64);
 			int randPosZ = chunkZ + rand.nextInt(16);
 				
-			(new WorldGenMinable(DarkShadows.oreObby.blockID, 20)).generate(world, rand, randPosX, randPosY, randPosZ);
+			(new WorldGenMinable(DarkenedSouls.oreObby.blockID, 20)).generate(world, rand, randPosX, randPosY, randPosZ);
 		}
 	}
 
