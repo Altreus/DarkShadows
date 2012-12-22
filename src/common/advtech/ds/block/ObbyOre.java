@@ -2,10 +2,9 @@ package advtech.ds.block;
 
 import java.util.Random;
 
-import net.minecraft.src.Block;
-import net.minecraft.src.BlockOre;
-import net.minecraft.src.CreativeTabs;
-import net.minecraft.src.Material;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockOre;
+import net.minecraft.creativetab.CreativeTabs;
 
 
 public class ObbyOre extends BlockOre {

@@ -1,4 +1,4 @@
-package advtech.ds;
+package advtech.ds.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

@@ -3,17 +3,15 @@ package advtech.ds.item;
 import java.util.List;
 import java.util.Random;
 
-import javax.swing.text.html.parser.Entity;
-
-import net.minecraft.src.AxisAlignedBB;
-import net.minecraft.src.CreativeTabs;
-import net.minecraft.src.EntityEnderPearl;
-import net.minecraft.src.EntityLiving;
-import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.Item;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.PotionEffect;
-import net.minecraft.src.World;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.item.EntityEnderPearl;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.world.World;
 
 public class SmokeScreen extends Item{
 	

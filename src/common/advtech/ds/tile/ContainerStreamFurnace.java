@@ -2,15 +2,14 @@ package advtech.ds.tile;
 
 import java.util.Iterator;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
 import advtech.ds.gui.SlotStreamFurnace;
 import advtech.ds.gui.StreamFurnaceRecipes;
-
-import net.minecraft.src.Container;
-import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.ICrafting;
-import net.minecraft.src.InventoryPlayer;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.Slot;
 
 public class ContainerStreamFurnace extends Container {
 

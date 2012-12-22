@@ -1,7 +1,7 @@
 /**
  * 
  */
-package advtech.ds.item;
+package advtech.ds.item.obby;
 
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;

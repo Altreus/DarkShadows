@@ -2,11 +2,10 @@ package advtech.ds.core;
 
 import java.util.Random;
 
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.feature.WorldGenMinable;
 import advtech.ds.DarkShadows;
-
-import net.minecraft.src.IChunkProvider;
-import net.minecraft.src.World;
-import net.minecraft.src.WorldGenMinable;
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class ShadowWorldGenerator implements IWorldGenerator {

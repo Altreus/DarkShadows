@@ -3,11 +3,9 @@ package advtech.ds.gui;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
 import advtech.ds.DarkShadows;
-
-import net.minecraft.src.Block;
-import net.minecraft.src.Item;
-import net.minecraft.src.ItemStack;
 
 public class StreamFurnaceRecipes {
 	

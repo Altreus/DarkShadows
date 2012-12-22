@@ -1,6 +1,8 @@
-package advtech.ds;
+package advtech.ds.block;
 
 import java.util.Random;
+
+import advtech.ds.DarkShadows;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

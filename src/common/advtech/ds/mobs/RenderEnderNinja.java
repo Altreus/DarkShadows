@@ -1,11 +1,19 @@
 package advtech.ds.mobs;
 
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
 import java.util.Random;
+
+import net.minecraft.block.Block;
+import net.minecraft.client.model.ModelEnderman;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
-import net.minecraft.src.*;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class RenderEnderNinja extends RenderLiving

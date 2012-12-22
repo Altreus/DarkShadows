@@ -1,7 +1,17 @@
 package advtech.ds.item;
 
 import java.util.List;
-import net.minecraft.src.*;
+
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBow;
+import net.minecraft.item.ItemStack;
+import net.minecraft.src.ModLoader;
+import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
@@ -98,12 +108,12 @@ public class ItemBowCustom extends ItemBow {
 
 	/**
 	 * Applies effects to the arrow. Also used to remove extra items from inventory.
-	 * @param arrow
+	 * @param entityArrowCustom
 	 * @param velocity
 	 * @return
 	 */
-	public EntityArrow applyEffects(EntityArrow arrow, float velocity) {
-		return arrow;
+	public EntityArrow applyEffects(EntityArrowCustom entityArrowCustom, float velocity) {
+		return entityArrowCustom;
 	}
 	
 	public boolean playerCanShoot(EntityPlayer player) {

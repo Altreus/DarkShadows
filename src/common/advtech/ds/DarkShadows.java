@@ -2,22 +2,47 @@ package advtech.ds;
 
 import java.util.logging.Logger;
 
+import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.EnumArmorMaterial;
+import net.minecraft.item.EnumToolMaterial;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.src.*;
+import net.minecraft.world.Teleporter;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.EnumHelper;
-import advtech.ds.block.*;
+import advtech.ds.block.BlockShadowPortal;
+import advtech.ds.block.BlockShadowStone;
+import advtech.ds.block.BlockStreamFurnace;
+import advtech.ds.block.ObbyOre;
 import advtech.ds.core.ShadowWorldGenerator;
 import advtech.ds.core.packet.ClientPacketHandler;
 import advtech.ds.core.packet.ServerPacketHandler;
 import advtech.ds.core.proxy.CommonProxy;
-import advtech.ds.gui.*;
-import advtech.ds.item.*;
+import advtech.ds.dimension.shadow.TeleporterShadow;
+import advtech.ds.dimension.shadow.WorldProviderShadow;
+import advtech.ds.gui.GuiHandler;
+import advtech.ds.gui.GuiIngameHud;
+import advtech.ds.item.ObbyArm;
+import advtech.ds.item.ObbyHammer;
+import advtech.ds.item.ObbyIngot;
+import advtech.ds.item.ObbyPlate;
+import advtech.ds.item.ObbyRivet;
+import advtech.ds.item.PortalMaker;
+import advtech.ds.item.SmokeScreen;
+import advtech.ds.item.obby.ObbyArmor;
+import advtech.ds.item.obby.ObbyAxe;
+import advtech.ds.item.obby.ObbyHoe;
+import advtech.ds.item.obby.ObbyPickaxe;
+import advtech.ds.item.obby.ObbyShovel;
+import advtech.ds.item.obby.ObbySword;
 import advtech.ds.lib.BuildInfo;
-import advtech.ds.mobs.*;
-import advtech.ds.tile.*;
+import advtech.ds.mobs.EntityEnderNinja;
+import advtech.ds.mobs.RenderEnderNinja;
+import advtech.ds.tile.TileEntityStreamFurnace;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLLog;
@@ -67,6 +92,14 @@ public class DarkShadows {
 	public static Item obbyShovel;
 	public static Item obbyPickaxe;
 	public static Item smokeScreen;
+	public static Item helmetLight;
+	public static Item chestplateLight;
+	public static Item leggingLight;
+	public static Item bootLight;
+	public static Item helmetShadow;
+	public static Item chestplateShadow;
+	public static Item leggingShadow;
+	public static Item bootShadow;
 	
 	public static int obbySwordID;
 	public static int portalMakerID;
@@ -84,6 +117,14 @@ public class DarkShadows {
 	public static int obbyShovelID;
 	public static int obbyPickaxeID;
 	public static int smokeScreenID;
+	public static int helmetLightID;
+	public static int chestplateLightID;
+	public static int leggingLightID;
+	public static int bootLightID;
+	public static int helmetShadowID;
+	public static int chestplateShadowID;
+	public static int leggingShadowID;
+	public static int bootShadowID;
 	
 	public static int oreObbyID;
 	public static int streamFurnaceIdleID;
@@ -105,6 +146,8 @@ public class DarkShadows {
 	private GuiHandler guiHandler = new GuiHandler();
 	public static EnumToolMaterial obbyToolMaterial = EnumHelper.addToolMaterial("obby", 3, 2000, 9F, 6, 14);
 	public static EnumArmorMaterial obbyArmorMaterial = EnumHelper.addArmorMaterial("OBBY",40,new int[]{10,20,16,14},20);
+	public static EnumArmorMaterial lightArmorMaterial = EnumHelper.addArmorMaterial("Light", 200, new int[]{20,30,45,20},20);
+	public static EnumArmorMaterial shadowArmorMaterial = EnumHelper.addArmorMaterial("Shadow", 100, new int[]{15,20,30,10}, 20);
 	
 	
 	@PreInit

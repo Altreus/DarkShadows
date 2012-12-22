@@ -1,15 +1,14 @@
 package advtech.ds.tile;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.tileentity.TileEntity;
 import advtech.ds.block.BlockStreamFurnace;
 import advtech.ds.gui.StreamFurnaceRecipes;
-import net.minecraft.src.Block;
-import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.IInventory;
-import net.minecraft.src.Item;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.NBTTagCompound;
-import net.minecraft.src.NBTTagList;
-import net.minecraft.src.TileEntity;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class TileEntityStreamFurnace extends TileEntity implements IInventory {

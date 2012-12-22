@@ -1,9 +1,16 @@
 package advtech.ds.block;
 
 import java.util.Random;
-import advtech.ds.*;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.src.*;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
+import advtech.ds.DarkShadows;
 
 public class BlockShadowStone extends Block {
 

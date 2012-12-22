@@ -1,43 +1,54 @@
-/**
- * 
- */
-package advtech.ds.item;
+package advtech.ds.item.light;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.world.World;
-import net.minecraftforge.common.EnumHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-/**
- * @author advtech
- *
- */
-public class ObbySword extends ItemSword {
-	
-	static EnumToolMaterial obby = EnumHelper.addToolMaterial("obby", 2, 500, 7F, 2, 14);
-	private int weaponDamage;
+public class SwordLight extends ItemSword{
 
-	public ObbySword(int ID, EnumToolMaterial toolMaterial){
-		super(ID, obby);
-		this.maxStackSize=1;
-		this.setMaxDamage(obby.getMaxUses());
-		this.setCreativeTab(CreativeTabs.tabCombat);
-		this.weaponDamage = 16 + obby.getDamageVsEntity();
-		
-	}
+	private int weaponDamage;
+    private final EnumToolMaterial toolMaterial;
+
+    public SwordLight(int par1, EnumToolMaterial par2EnumToolMaterial)
+    {
+        super(par1, par2EnumToolMaterial);
+        this.toolMaterial = par2EnumToolMaterial;
+        this.maxStackSize = 1;
+        this.setMaxDamage(par2EnumToolMaterial.getMaxUses());
+        this.setCreativeTab(CreativeTabs.tabCombat);
+        this.weaponDamage = 4 + par2EnumToolMaterial.getDamageVsEntity();
+    }
+
+    public int func_82803_g()
+    {
+        return this.toolMaterial.getDamageVsEntity();
+    }
+
+    /**
+     * Returns the strength of the stack against a given block. 1.0F base, (Quality+1)*2 if correct blocktype, 1.5F if
+     * sword
+     */
     public float getStrVsBlock(ItemStack par1ItemStack, Block par2Block)
     {
-        return par2Block.blockID == Block.web.blockID ? 15.0F : 1.5F;
+        if (par2Block.blockID == Block.web.blockID)
+        {
+            return 15.0F;
+        }
+        else
+        {
+            Material var3 = par2Block.blockMaterial;
+            return var3 != Material.plants && var3 != Material.vine && var3 != Material.field_76261_t && var3 != Material.leaves && var3 != Material.pumpkin ? 1.0F : 1.5F;
+        }
     }
 
     /**
@@ -50,7 +61,7 @@ public class ObbySword extends ItemSword {
         return true;
     }
 
-    public boolean func_77660_a(ItemStack par1ItemStack, World par2World, int par3, int par4, int par5, int par6, EntityLiving par7EntityLiving)
+    public boolean onBlockDestroyed(ItemStack par1ItemStack, World par2World, int par3, int par4, int par5, int par6, EntityLiving par7EntityLiving)
     {
         if ((double)Block.blocksList[par3].getBlockHardness(par2World, par4, par5, par6) != 0.0D)
         {
@@ -63,10 +74,8 @@ public class ObbySword extends ItemSword {
     /**
      * Returns the damage against a given entity.
      */
-    public int getDamageVsEntity(Entity target)
+    public int getDamageVsEntity(Entity par1Entity)
     {
-    	if (target instanceof EntityCreeper)
-    		return ((EntityCreeper) target).getHealth() * 10;
         return this.weaponDamage;
     }
 
@@ -118,16 +127,19 @@ public class ObbySword extends ItemSword {
      */
     public int getItemEnchantability()
     {
-        return obby.getEnchantability();
+        return this.toolMaterial.getEnchantability();
     }
 
     public String func_77825_f()
     {
-        return obby.toString();
+        return this.toolMaterial.toString();
     }
-	  @Override
-	  public String getTextureFile(){
-			return "/advtech/ds/resources/terrain.png";
-	 }
-	
+
+    /**
+     * Return whether this item is repairable in an anvil.
+     */
+    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
+    {
+        return this.toolMaterial.getToolCraftingMaterial() == par2ItemStack.itemID ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
+    }
 }

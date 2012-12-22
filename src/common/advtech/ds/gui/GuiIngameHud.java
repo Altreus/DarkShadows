@@ -1,17 +1,39 @@
 package advtech.ds.gui;
 
-import net.minecraft.src.*;
-
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
 import java.awt.Color;
 import java.util.List;
 import java.util.Random;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.GuiIngame;
+import net.minecraft.client.gui.GuiNewChat;
+import net.minecraft.client.gui.GuiPlayerInfo;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.multiplayer.NetClientHandler;
+import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.entity.boss.BossStatus;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.util.Direction;
+import net.minecraft.util.FoodStats;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.StatCollector;
+import net.minecraft.util.StringUtils;
+import net.minecraft.world.EnumSkyBlock;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.ForgeHooks;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class GuiIngameHud extends GuiIngame
@@ -563,9 +585,9 @@ public class GuiIngameHud extends GuiIngame
      */
     private void renderBossHealth()
     {
-        if (BossStatus.bossName != null && BossStatus.field_82826_b > 0)
+        if (BossStatus.bossName != null && BossStatus.statusBarLenght > 0)
         {
-            --BossStatus.field_82826_b;
+            --BossStatus.statusBarLenght;
             FontRenderer var1 = this.mc.fontRenderer;
             ScaledResolution var2 = new ScaledResolution(this.mc.gameSettings, this.mc.displayWidth, this.mc.displayHeight);
             int var3 = var2.getScaledWidth();

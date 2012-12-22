@@ -1,7 +1,4 @@
-/**
- * 
- */
-package advtech.ds.item;
+package advtech.ds.item.shadow;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumArmorMaterial;
@@ -10,17 +7,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.IArmorTextureProvider;
 import advtech.ds.DarkShadows;
 
-/**
- * @author advtech
- *
- */
-public class ObbyArmor extends ItemArmor implements IArmorTextureProvider {
+public class ShadowArmor extends ItemArmor implements IArmorTextureProvider {
 	public static final int[] maxDamageArray = new int[]{29};
 	public final int armorType;
 	public final int renderIndex;
 	public final int damageReduceAmount;
 	private final EnumArmorMaterial material;
-	public ObbyArmor(int ID, EnumArmorMaterial material, int render, int part ){
+	public ShadowArmor(int ID, EnumArmorMaterial material, int render, int part ){
 		super(ID,material, render, part);
 		this.material = DarkShadows.obbyArmorMaterial;
 		this.armorType = part;
