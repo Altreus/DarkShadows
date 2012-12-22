@@ -1,7 +1,7 @@
 /**
  * 
  */
-package advtech.ds.item.obby;
+package advtech.ds.item;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumArmorMaterial;
