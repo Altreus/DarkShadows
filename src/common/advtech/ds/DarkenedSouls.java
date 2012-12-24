@@ -3,6 +3,7 @@ package advtech.ds;
 import java.util.logging.Logger;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.EnumToolMaterial;
@@ -28,6 +29,7 @@ import advtech.ds.dimension.shadow.WorldProviderShadow;
 import advtech.ds.gui.GuiHandler;
 import advtech.ds.gui.GuiIngameHud;
 import advtech.ds.gui.TickHandler;
+import advtech.ds.item.items.GlowStick;
 import advtech.ds.item.items.ObbyArm;
 import advtech.ds.item.items.ObbyHammer;
 import advtech.ds.item.items.ObbyIngot;
@@ -41,7 +43,6 @@ import advtech.ds.item.obby.ObbyPickaxe;
 import advtech.ds.item.obby.ObbyPlate;
 import advtech.ds.item.obby.ObbyShovel;
 import advtech.ds.item.obby.ObbySword;
-import advtech.ds.item.items.GlowStick;
 import advtech.ds.item.shadow.ShadeStick;
 import advtech.ds.item.shadow.ShadowStoneDust;
 import advtech.ds.lib.BuildInfo;
@@ -82,6 +83,7 @@ public class DarkenedSouls {
 	public static Block oreObby;
 	public static Block streamFurnaceIdle; 
 	public static Block streamFurnaceActive;
+	public static Block ShadeStone;
 		
 	public static Item obbySword;
 	public static Item portalMaker;
@@ -148,6 +150,7 @@ public class DarkenedSouls {
 	public static int oreObbyID;
 	public static int streamFurnaceIdleID;
 	public static int streamFurnaceActiveID;
+	public static int ShadeStoneID;
 	
 	//Shadow Portal Stuff
 	public static Block shadowStone;
@@ -258,6 +261,7 @@ public class DarkenedSouls {
 		oreObbyID = config.get(config.CATEGORY_BLOCK,"Obsidian Ore", 201).getInt(201);
 		streamFurnaceIdleID = config.get(config.CATEGORY_BLOCK,"Forge", 202).getInt(202);
 		streamFurnaceActiveID = config.get(config.CATEGORY_BLOCK,"ForgeA", 203).getInt(203);
+		ShadeStoneID = config.get(config.CATEGORY_BLOCK, "Shade Stone", 204).getInt(204);
 		
 		
 		config.save();
@@ -270,6 +274,10 @@ public class DarkenedSouls {
 		streamFurnaceIdle = new BlockStreamFurnace(streamFurnaceIdleID, 8, false).setCreativeTab(CreativeTabs.tabDecorations);
 		GameRegistry.registerBlock(streamFurnaceIdle,"Forge");
 		LanguageRegistry.addName(streamFurnaceIdle, "Forge");
+		
+		ShadeStone = new ShadeStone(ShadeStoneID, 0, Material.glass).setHardness(0.3F).setBlockName("Shade Stone");
+		GameRegistry.registerBlock(ShadeStone, "ShadeStone");
+		LanguageRegistry.addName(ShadeStone, "Shade Stone");
 		
 		
 		
@@ -334,8 +342,8 @@ public class DarkenedSouls {
 		GameRegistry.addRecipe(new ItemStack(leggingObby, 1), new Object[]{"XXX","X X","X X",Character.valueOf('X'), obbyIngot});
 		GameRegistry.addRecipe(new ItemStack(helmetObby, 1), new Object[]{"XXX","X X","  ", Character.valueOf('X'), obbyIngot});
 		GameRegistry.addRecipe(new ItemStack(bootObby, 1), new Object[]{"   ","X X","X X", Character.valueOf('X'),obbyIngot});
-		GameRegistry.addRecipe(new ItemStack(GlowStick, 1), new Object[] {"X","X",Character.valueOf('X'),Item.lightStoneDust});
-		GameRegistry.addRecipe(new ItemStack(ShadeStick, 1), new Object[] {"X","X",Character.valueOf('X'),ShadowStoneDust});
+		GameRegistry.addRecipe(new ItemStack(GlowStick, 1), new Object[] {"X","X"," ",Character.valueOf('X'),Item.lightStoneDust});
+		GameRegistry.addRecipe(new ItemStack(ShadeStick, 1), new Object[] {"X","X"," ",Character.valueOf('X'),ShadowStoneDust});
 		
 	}
 

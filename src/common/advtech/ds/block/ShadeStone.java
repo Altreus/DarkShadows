@@ -2,19 +2,17 @@ package advtech.ds.block;
 
 import java.util.Random;
 
-import advtech.ds.item.shadow.ShadowStoneDust;
-
 import net.minecraft.block.BlockGlowStone;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraft.util.MathHelper;
+import advtech.ds.DarkenedSouls;
 
 public class ShadeStone extends BlockGlowStone {
 
 	public ShadeStone(int id, int par2, Material par3Material)
     {
-        super(id, par2, par3Material);
+        super(id, par2, Material.glass);
         this.setCreativeTab(CreativeTabs.tabBlock);
     }
 
@@ -37,8 +35,9 @@ public class ShadeStone extends BlockGlowStone {
     /**
      * Returns the ID of the items to drop on destruction.
      */
+    @Override
     public int idDropped(int par1, Random par2Random, int par3)
     {
-        return ShadowStoneDust.blockID;
+        return DarkenedSouls.ShadowStoneDust.shiftedIndex;
     }
 }
