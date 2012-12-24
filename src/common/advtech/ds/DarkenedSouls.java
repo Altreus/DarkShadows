@@ -18,6 +18,7 @@ import advtech.ds.block.BlockShadowPortal;
 import advtech.ds.block.BlockShadowStone;
 import advtech.ds.block.BlockStreamFurnace;
 import advtech.ds.block.ObbyOre;
+import advtech.ds.block.ShadeStone;
 import advtech.ds.core.ShadowWorldGenerator;
 import advtech.ds.core.packet.ClientPacketHandler;
 import advtech.ds.core.packet.ServerPacketHandler;
@@ -40,6 +41,9 @@ import advtech.ds.item.obby.ObbyPickaxe;
 import advtech.ds.item.obby.ObbyPlate;
 import advtech.ds.item.obby.ObbyShovel;
 import advtech.ds.item.obby.ObbySword;
+import advtech.ds.item.items.GlowStick;
+import advtech.ds.item.shadow.ShadeStick;
+import advtech.ds.item.shadow.ShadowStoneDust;
 import advtech.ds.lib.BuildInfo;
 import advtech.ds.mobs.EntityEnderNinja;
 import advtech.ds.mobs.RenderEnderNinja;
@@ -106,6 +110,9 @@ public class DarkenedSouls {
 	public static Item SwordLight;
 	public static Item SwordShadow;
 	public static Item SoulSword;
+	public static Item GlowStick;
+	public static Item ShadeStick;
+	public static Item ShadowStoneDust;
 	
 	public static int obbySwordID;
 	public static int portalMakerID;
@@ -134,6 +141,9 @@ public class DarkenedSouls {
 	public static int SwordLightID;
 	public static int SwordShadowID;
 	public static int SoulSwordID;
+	public static int GlowStickID;
+	public static int ShadeStickID;
+	public static int ShadowStoneDustID;
 	
 	public static int oreObbyID;
 	public static int streamFurnaceIdleID;
@@ -197,11 +207,11 @@ public class DarkenedSouls {
 		DimensionManager.registerDimension(shadowDimensionID, shadowDimensionID);
 		shadowStone = new BlockShadowStone(250).setHardness(50F).setResistance(2000.0F).setBlockName("shadowStone");
 		shadowStone.blockIndexInTexture = 1;
-		GameRegistry.registerBlock(shadowStone);
+		GameRegistry.registerBlock(shadowStone, "shadowStone");
 		LanguageRegistry.addName(shadowStone, "Condensed Shadow");
 		
 		shadowPortal = new BlockShadowPortal(251, 14).setHardness(-1.0F).setStepSound(Block.soundGlassFootstep).setLightValue(0.75F).setBlockName("portal");
-		GameRegistry.registerBlock(shadowPortal);
+		GameRegistry.registerBlock(shadowPortal, "ShadowPortal");
 		LanguageRegistry.addName(shadowPortal, "Shadow Portal");
 		// 1 sec finding the right world object
 		//add dimensionShadow?
@@ -219,32 +229,35 @@ public class DarkenedSouls {
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		//Items
 
-		obbySwordID = config.getItem(config.CATEGORY_ITEM,"Obsidian Sword", 509).getInt(509);
-		portalMakerID = config.getItem(config.CATEGORY_ITEM,"Portal Maker",510).getInt(510);
-		obbyHammerID = config.getItem(config.CATEGORY_ITEM,"Obsidian Hammer", 511).getInt(511);
-		helmetObbyID = config.getItem(config.CATEGORY_ITEM,"Obsidian Helmet", 512).getInt(512);
-		chestplateObbyID = config.getItem(config.CATEGORY_ITEM,"Obidian Chestplate", 513).getInt(513);
-		leggingObbyID = config.getItem(config.CATEGORY_ITEM,"Obsidian Pants", 514).getInt(514);
-		bootObbyID = config.getItem(config.CATEGORY_ITEM,"Obsidian Boots", 515).getInt(515);
-		obbyAxeID = config.getItem(config.CATEGORY_ITEM, "Obsidian Axe", 516).getInt(516);
-		obbyHoeID = config.getItem(config.CATEGORY_ITEM, "Obsidian Hoe", 517).getInt(517);
-		obbyShovelID = config.getItem(config.CATEGORY_ITEM, "Obsidian Shovel", 518).getInt(518);
-		obbyPickaxeID = config.getItem(config.CATEGORY_ITEM, "Obsidian Pickaxe", 519).getInt(519);
-		smokeScreenID = config.getItem(config.CATEGORY_ITEM, "Smoke Screen", 520).getInt(520);
-		obbyIngotID = config.getItem(config.CATEGORY_ITEM,"Obsidian Ingot", 521).getInt(521);
-		obbyPlateID = config.getItem(config.CATEGORY_ITEM, "Obsidian Platemetal", 522).getInt(522);
-		obbyArmID = config.getItem(config.CATEGORY_ITEM, "Obsidian Arm", 523).getInt(523);
-		obbyRivetID = config.getItem(config.CATEGORY_ITEM,"Obsidian Rivet", 524).getInt(524);
-		helmetLightID = config.getItem(config.CATEGORY_ITEM, "Light helmet", 525).getInt(525);
-		chestplateLightID = config.getItem(config.CATEGORY_ITEM, "Light Chestplate", 526).getInt(526);
-		leggingLightID = config.getItem(config.CATEGORY_ITEM, "Light Pants", 527).getInt(527);
-		bootLightID = config.getItem(config.CATEGORY_ITEM, "Light Boots", 528).getInt(528);
+		obbySwordID = config.getItem(config.CATEGORY_ITEM,"Obsidian Sword", 4349).getInt(4349);
+		portalMakerID = config.getItem(config.CATEGORY_ITEM,"Portal Maker", 4350).getInt(4350);
+		obbyHammerID = config.getItem(config.CATEGORY_ITEM,"Obsidian Hammer", 4351).getInt(4351);
+		helmetObbyID = config.getItem(config.CATEGORY_ITEM,"Obsidian Helmet", 4352).getInt(4352);
+		chestplateObbyID = config.getItem(config.CATEGORY_ITEM,"Obidian Chestplate", 4353).getInt(4353);
+		leggingObbyID = config.getItem(config.CATEGORY_ITEM,"Obsidian Pants", 4354).getInt(4354);
+		bootObbyID = config.getItem(config.CATEGORY_ITEM,"Obsidian Boots", 4355).getInt(4355);
+		obbyAxeID = config.getItem(config.CATEGORY_ITEM, "Obsidian Axe", 4356).getInt(4356);
+		obbyHoeID = config.getItem(config.CATEGORY_ITEM, "Obsidian Hoe", 4357).getInt(4357);
+		obbyShovelID = config.getItem(config.CATEGORY_ITEM, "Obsidian Shovel", 4358).getInt(4358);
+		obbyPickaxeID = config.getItem(config.CATEGORY_ITEM, "Obsidian Pickaxe", 4359).getInt(4359);
+		smokeScreenID = config.getItem(config.CATEGORY_ITEM, "Smoke Screen", 4360).getInt(4360);
+		obbyIngotID = config.getItem(config.CATEGORY_ITEM,"Obsidian Ingot", 4361).getInt(4361);
+		obbyPlateID = config.getItem(config.CATEGORY_ITEM, "Obsidian Platemetal", 4362).getInt(4362);
+		obbyArmID = config.getItem(config.CATEGORY_ITEM, "Obsidian Arm", 4363).getInt(4363);
+		obbyRivetID = config.getItem(config.CATEGORY_ITEM,"Obsidian Rivet", 4364).getInt(4364);
+		helmetLightID = config.getItem(config.CATEGORY_ITEM, "Light helmet", 4365).getInt(4365);
+		chestplateLightID = config.getItem(config.CATEGORY_ITEM, "Light Chestplate", 4366).getInt(4366);
+		leggingLightID = config.getItem(config.CATEGORY_ITEM, "Light Pants", 4367).getInt(4367);
+		bootLightID = config.getItem(config.CATEGORY_ITEM, "Light Boots", 4368).getInt(4368);
+		GlowStickID = config.getItem(config.CATEGORY_ITEM, "GlowStick", 4369).getInt(4369);
+		ShadeStickID = config.getItem(config.CATEGORY_ITEM, "ShadowStick", 4370).getInt(4370);
+		ShadowStoneDustID = config.getItem(config.CATEGORY_ITEM, "ShadowDust", 4371).getInt(4370);
 		
 
 		//Blocks
 		oreObbyID = config.get(config.CATEGORY_BLOCK,"Obsidian Ore", 201).getInt(201);
 		streamFurnaceIdleID = config.get(config.CATEGORY_BLOCK,"Forge", 202).getInt(202);
-		streamFurnaceActiveID = config.get(config.CATEGORY_BLOCK,"Forge2", 203).getInt(203);
+		streamFurnaceActiveID = config.get(config.CATEGORY_BLOCK,"ForgeA", 203).getInt(203);
 		
 		
 		config.save();
@@ -257,10 +270,6 @@ public class DarkenedSouls {
 		streamFurnaceIdle = new BlockStreamFurnace(streamFurnaceIdleID, 8, false).setCreativeTab(CreativeTabs.tabDecorations);
 		GameRegistry.registerBlock(streamFurnaceIdle,"Forge");
 		LanguageRegistry.addName(streamFurnaceIdle, "Forge");
-		
-		streamFurnaceActive = new BlockStreamFurnace(streamFurnaceActiveID, 8, false);
-		GameRegistry.registerBlock(streamFurnaceActive, "Forge");
-		LanguageRegistry.addName(streamFurnaceActive, "Forge");
 		
 		
 		
@@ -300,6 +309,12 @@ public class DarkenedSouls {
 		LanguageRegistry.addName(obbyPickaxe, "Shadow Breaker");		
 		smokeScreen = new SmokeScreen(smokeScreenID).setItemName("Smoke Screen");
 		LanguageRegistry.addName(smokeScreen, "Insta-Poof");
+		GlowStick = new GlowStick(GlowStickID).setItemName("Glow Stick");
+		LanguageRegistry.addName(GlowStick,"Glow Stick");
+		ShadeStick = new ShadeStick(ShadeStickID).setItemName("Shade Stick");
+		LanguageRegistry.addName(ShadeStick, "Shade Stick");
+		ShadowStoneDust = new ShadowStoneDust(ShadowStoneDustID).setItemName("Shadow Dust");
+		LanguageRegistry.addName(ShadowStoneDust, "Shadow Dust");
 		
 	}
 	public void addRecipes(){
@@ -319,6 +334,8 @@ public class DarkenedSouls {
 		GameRegistry.addRecipe(new ItemStack(leggingObby, 1), new Object[]{"XXX","X X","X X",Character.valueOf('X'), obbyIngot});
 		GameRegistry.addRecipe(new ItemStack(helmetObby, 1), new Object[]{"XXX","X X","  ", Character.valueOf('X'), obbyIngot});
 		GameRegistry.addRecipe(new ItemStack(bootObby, 1), new Object[]{"   ","X X","X X", Character.valueOf('X'),obbyIngot});
+		GameRegistry.addRecipe(new ItemStack(GlowStick, 1), new Object[] {"X","X",Character.valueOf('X'),Item.lightStoneDust});
+		GameRegistry.addRecipe(new ItemStack(ShadeStick, 1), new Object[] {"X","X",Character.valueOf('X'),ShadowStoneDust});
 		
 	}
 

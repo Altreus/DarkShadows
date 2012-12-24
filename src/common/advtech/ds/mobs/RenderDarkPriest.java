@@ -1,4 +1,4 @@
-package advtech.ds;
+package advtech.ds.mobs;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
