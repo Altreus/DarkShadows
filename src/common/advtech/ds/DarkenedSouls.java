@@ -342,8 +342,8 @@ public class DarkenedSouls {
 		GameRegistry.addRecipe(new ItemStack(leggingObby, 1), new Object[]{"XXX","X X","X X",Character.valueOf('X'), obbyIngot});
 		GameRegistry.addRecipe(new ItemStack(helmetObby, 1), new Object[]{"XXX","X X","  ", Character.valueOf('X'), obbyIngot});
 		GameRegistry.addRecipe(new ItemStack(bootObby, 1), new Object[]{"   ","X X","X X", Character.valueOf('X'),obbyIngot});
-		GameRegistry.addRecipe(new ItemStack(GlowStick, 1), new Object[] {"X","X"," ",Character.valueOf('X'),Item.lightStoneDust});
-		GameRegistry.addRecipe(new ItemStack(ShadeStick, 1), new Object[] {"X","X"," ",Character.valueOf('X'),ShadowStoneDust});
+		GameRegistry.addRecipe(new ItemStack(GlowStick, 4), new Object[] {"#", "#", '#', Item.lightStoneDust});
+		GameRegistry.addRecipe(new ItemStack(ShadeStick, 4), new Object[] {"#", "#", '#', ShadowStoneDust});
 		
 	}
 
