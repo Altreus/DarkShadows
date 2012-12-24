@@ -1,4 +1,4 @@
-package advtech.ds.item;
+package advtech.ds.item.items;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;

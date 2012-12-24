@@ -1,4 +1,4 @@
-package advtech.ds.item;
+package advtech.ds.item.items;
 
 import java.util.List;
 import java.util.Random;

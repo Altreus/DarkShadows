@@ -1,4 +1,4 @@
-package advtech.ds;
+package advtech.ds.dimension.shadow;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -13,6 +13,7 @@ import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.PortalPosition;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
+import advtech.ds.DarkenedSouls;
 
 public class TeleporterShadow extends Teleporter {
 	

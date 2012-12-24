@@ -1,13 +1,9 @@
 package advtech.ds;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Logger;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
@@ -31,17 +27,17 @@ import advtech.ds.dimension.shadow.WorldProviderShadow;
 import advtech.ds.gui.GuiHandler;
 import advtech.ds.gui.GuiIngameHud;
 import advtech.ds.gui.TickHandler;
-import advtech.ds.item.ObbyArm;
-import advtech.ds.item.ObbyHammer;
-import advtech.ds.item.ObbyIngot;
-import advtech.ds.item.ObbyPlate;
-import advtech.ds.item.ObbyRivet;
-import advtech.ds.item.PortalMaker;
-import advtech.ds.item.SmokeScreen;
+import advtech.ds.item.items.ObbyArm;
+import advtech.ds.item.items.ObbyHammer;
+import advtech.ds.item.items.ObbyIngot;
+import advtech.ds.item.items.ObbyRivet;
+import advtech.ds.item.items.PortalMaker;
+import advtech.ds.item.items.SmokeScreen;
 import advtech.ds.item.obby.ObbyArmor;
 import advtech.ds.item.obby.ObbyAxe;
 import advtech.ds.item.obby.ObbyHoe;
 import advtech.ds.item.obby.ObbyPickaxe;
+import advtech.ds.item.obby.ObbyPlate;
 import advtech.ds.item.obby.ObbyShovel;
 import advtech.ds.item.obby.ObbySword;
 import advtech.ds.lib.BuildInfo;

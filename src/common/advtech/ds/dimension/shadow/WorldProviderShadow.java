@@ -1,7 +1,8 @@
-package advtech.ds;
+package advtech.ds.dimension.shadow;
 
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.chunk.IChunkProvider;
+import advtech.ds.DarkenedSouls;
 
 public class WorldProviderShadow extends WorldProvider {
 

@@ -1,7 +1,4 @@
-/**
- * 
- */
-package advtech.ds.item;
+package advtech.ds.item.obby;
 
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
@@ -18,10 +15,7 @@ import net.minecraftforge.common.EnumHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-/**
- * @author advtech
- *
- */
+
 public class ObbySword extends ItemSword {
 	
 	static EnumToolMaterial obby = EnumHelper.addToolMaterial("obby", 2, 500, 7F, 2, 14);
