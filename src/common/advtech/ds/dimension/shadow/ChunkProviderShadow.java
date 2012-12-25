@@ -445,6 +445,20 @@ public class ChunkProviderShadow implements IChunkProvider {
             var10 = thisChunkY + rand.nextInt(16) + 8;
             (new WorldGenGlowStone2()).generate(this.worldObj, rand, var8, var9, var10);
         }
+        for (var7 = 0; var7 < var6; ++var7)
+        {
+        	var8 = thisChunkX + rand.nextInt(16) + 8;
+        	var9 = rand.nextInt(120) + 4;
+        	var10 = thisChunkY + rand.nextInt(16) + 8;
+        	(new WorldGenShadeStone1()).generate(this.worldObj, rand, var8, var9, var10);
+        }
+        for (var7 = 0; var7 < var6; ++var7)
+        {
+        	var8 = thisChunkX + rand.nextInt(16) + 8;
+        	var9 = rand.nextInt(120) + 4;
+        	var10 = thisChunkY + rand.nextInt(16) +8;
+        	(new WorldGenShadowStone2()).generate(this.worldObj, rand, var8, var9, var10);
+        }
 
         if (rand.nextInt(1) == 0)
         {

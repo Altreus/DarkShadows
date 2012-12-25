@@ -36,6 +36,7 @@ import advtech.ds.item.items.ObbyIngot;
 import advtech.ds.item.items.ObbyRivet;
 import advtech.ds.item.items.PortalMaker;
 import advtech.ds.item.items.SmokeScreen;
+import advtech.ds.item.light.SwordLight;
 import advtech.ds.item.obby.ObbyArmor;
 import advtech.ds.item.obby.ObbyAxe;
 import advtech.ds.item.obby.ObbyHoe;
@@ -168,7 +169,9 @@ public class DarkenedSouls {
 	private GuiHandler guiHandler = new GuiHandler();
 	public static EnumToolMaterial obbyToolMaterial = EnumHelper.addToolMaterial("obby", 3, 2000, 9F, 6, 14);
 	public static EnumArmorMaterial obbyArmorMaterial = EnumHelper.addArmorMaterial("OBBY",40,new int[]{10,20,16,14},20);
+	public static EnumToolMaterial lightToolMaterial = EnumHelper.addToolMaterial("Light", 3, 2000, 9F, 6, 14);
 	public static EnumArmorMaterial lightArmorMaterial = EnumHelper.addArmorMaterial("Light", 200, new int[]{20,30,45,20},20);
+	public static EnumToolMaterial shadowToolMaterial = EnumHelper.addToolMaterial("Shadow", 3, 2000, 9F, 6, 14);
 	public static EnumArmorMaterial shadowArmorMaterial = EnumHelper.addArmorMaterial("Shadow", 100, new int[]{15,20,30,10}, 20);
 	
 	
@@ -216,8 +219,6 @@ public class DarkenedSouls {
 		shadowPortal = new BlockShadowPortal(251, 14).setHardness(-1.0F).setStepSound(Block.soundGlassFootstep).setLightValue(0.75F).setBlockName("portal");
 		GameRegistry.registerBlock(shadowPortal, "ShadowPortal");
 		LanguageRegistry.addName(shadowPortal, "Shadow Portal");
-		// 1 sec finding the right world object
-		//add dimensionShadow?
 		
 		//EnderNinja
 		RenderingRegistry.registerEntityRenderingHandler(EntityEnderNinja.class, new RenderEnderNinja());
@@ -323,6 +324,8 @@ public class DarkenedSouls {
 		LanguageRegistry.addName(ShadeStick, "Shade Stick");
 		ShadowStoneDust = new ShadowStoneDust(ShadowStoneDustID).setItemName("Shadow Dust");
 		LanguageRegistry.addName(ShadowStoneDust, "Shadow Dust");
+		SwordLight = new SwordLight(SwordLightID, lightToolMaterial).setItemName("Sword Light");
+		LanguageRegistry.addName(SwordLight,"Sword of Forever Light");
 		
 	}
 	public void addRecipes(){
@@ -350,7 +353,6 @@ public class DarkenedSouls {
 	@PostInit
 	public void postInit(FMLPostInitializationEvent event) {
 		TickRegistry.registerTickHandler(new TickHandler(), Side.CLIENT);
-		System.out.println("DarkenedSouls post");
 
 	}
 	

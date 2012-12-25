@@ -9,5 +9,6 @@ public class ShadeStick extends Item{
 		super(par1);
 		// TODO Auto-generated constructor stub
 	}
+	
 
 }
