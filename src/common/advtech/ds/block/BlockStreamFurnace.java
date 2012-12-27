@@ -37,7 +37,7 @@ public class BlockStreamFurnace extends BlockContainer
 	}
 	  @Override
 	  public String getTextureFile(){
-			return "/advtech/ds/resources/terrain.png";
+			return ("/advtech/ds/resources/terrain.png");
 	 }
 	public void onBlockAdded(World world, int x, int y, int z)
 	{
@@ -86,7 +86,7 @@ public class BlockStreamFurnace extends BlockContainer
 		}
 		else if (side == 0)
 		{
-			return this.blockIndexInTexture + 1;
+			return this.blockIndexInTexture - 1;
 		}
 		else
 		{
@@ -132,19 +132,19 @@ public class BlockStreamFurnace extends BlockContainer
 	{
 		switch(side){
 		case 0:
-			return 9;
+			return 16;
 		case 1:
-			return 9;
+			return 16;
 		case 2:
-			return 8;
+			return 15;
 		case 3:
-			return 7;
+			return 14;
 		case 4:
-			return 8;
+			return 15;
 		case 5:
-			return 8;
+			return 15;
 		default:
-			return 8;
+			return 15;
 		}
 	}
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)

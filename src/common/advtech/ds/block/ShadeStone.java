@@ -25,7 +25,7 @@ public class ShadeStone extends BlockGlowStone {
     }
     @Override
 	public String getTextureFile() {
-		return "/advtech/ds/resources/terrain2.png";
+		return ("/advtech/ds/resources/terrain2.png");
 	}
 
     /**

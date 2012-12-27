@@ -273,11 +273,11 @@ public class DarkenedSouls {
 		GameRegistry.registerBlock(oreObby, "ObsidianOre");
 		LanguageRegistry.addName(oreObby, "Obsidian Ore");
 		
-		streamFurnaceIdle = new BlockStreamFurnace(streamFurnaceIdleID, 8, false).setCreativeTab(CreativeTabs.tabDecorations);
+		streamFurnaceIdle = new BlockStreamFurnace(streamFurnaceIdleID, 14, false).setCreativeTab(CreativeTabs.tabDecorations);
 		GameRegistry.registerBlock(streamFurnaceIdle,"Forge");
 		LanguageRegistry.addName(streamFurnaceIdle, "Forge");
 		
-		ShadeStone = new ShadeStone(ShadeStoneID, 16, Material.glass).setHardness(0.3F).setBlockName("Shade Stone");
+		ShadeStone = new ShadeStone(ShadeStoneID, 11, Material.glass).setHardness(0.3F).setBlockName("Shade Stone");
 		GameRegistry.registerBlock(ShadeStone, "ShadeStone");
 		LanguageRegistry.addName(ShadeStone, "Shade Stone");
 		

@@ -12,7 +12,7 @@ public class GlowStick extends Item {
 		// TODO Auto-generated constructor stub
 	}
 	public String getTextureFile(){
-		return ("/advtech/ds/resources/terrain.png");
+		return ("/advtech/ds/resources/terrain2.png");
 	}
 
 }
