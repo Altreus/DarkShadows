@@ -20,4 +20,7 @@ public class ShadowStoneDust extends Item {
         this.potionEffectProbability = par4;
         return this;
     }
+	public String getTextureFile(){
+		return ("/advtech/ds/resources/terrain2.png");
+	}
 }

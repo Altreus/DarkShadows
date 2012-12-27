@@ -206,6 +206,7 @@ public class DarkenedSouls {
 		//Texture File
 		//MinecraftForgeClient.preloadTexture("/advtech/ds/resources/item.png");
 		MinecraftForgeClient.preloadTexture("/advtech/ds/resources/terrain.png");
+		MinecraftForgeClient.preloadTexture("/advtech/ds/resources/terrain2.png");
 		//World Generator Code
 		GameRegistry.registerWorldGenerator(new ShadowWorldGenerator());
 		//Dimensions
@@ -268,7 +269,7 @@ public class DarkenedSouls {
 		config.save();
 	}
 	public void addBlocks(){
-		oreObby = new ObbyOre(oreObbyID, 0).setHardness(50F).setResistance(2000.0F);
+		oreObby = new ObbyOre(oreObbyID, 19).setHardness(50F).setResistance(2000.0F);
 		GameRegistry.registerBlock(oreObby, "ObsidianOre");
 		LanguageRegistry.addName(oreObby, "Obsidian Ore");
 		
@@ -276,7 +277,7 @@ public class DarkenedSouls {
 		GameRegistry.registerBlock(streamFurnaceIdle,"Forge");
 		LanguageRegistry.addName(streamFurnaceIdle, "Forge");
 		
-		ShadeStone = new ShadeStone(ShadeStoneID, 0, Material.glass).setHardness(0.3F).setBlockName("Shade Stone");
+		ShadeStone = new ShadeStone(ShadeStoneID, 16, Material.glass).setHardness(0.3F).setBlockName("Shade Stone");
 		GameRegistry.registerBlock(ShadeStone, "ShadeStone");
 		LanguageRegistry.addName(ShadeStone, "Shade Stone");
 		
@@ -299,7 +300,7 @@ public class DarkenedSouls {
 		LanguageRegistry.addName(obbyIngot, "Obsidian Ingot");
 		obbyRivet = new ObbyRivet(obbyRivetID).setIconIndex(9).setItemName("Obsidian Rivers");
 		LanguageRegistry.addName(obbyRivet,"Obsidian Rivet");
-		obbyPlate = new ObbyPlate(obbyPlateID).setIconIndex(0).setItemName("Obsidian Platemetal");
+		obbyPlate = new ObbyPlate(obbyPlateID).setIconIndex(17).setItemName("Obsidian Platemetal");
 		LanguageRegistry.addName(obbyPlate,"Obsidian Plate");
 		obbyArm = new ObbyArm(obbyArmID).setIconIndex(13).setItemName("Obsidian Arm");
 		LanguageRegistry.addName(obbyArm, "Obsidian Plate Arm");
@@ -316,13 +317,13 @@ public class DarkenedSouls {
 		LanguageRegistry.addName(obbyShovel, "Shadow Digger");
 		obbyPickaxe = new ObbyPickaxe(obbyPickaxeID, obbyToolMaterial).setIconIndex(8).setItemName("Obsidian Pickaxe");
 		LanguageRegistry.addName(obbyPickaxe, "Shadow Breaker");		
-		smokeScreen = new SmokeScreen(smokeScreenID).setItemName("Smoke Screen");
+		smokeScreen = new SmokeScreen(smokeScreenID).setItemName("Smoke Screen").setIconIndex(18);
 		LanguageRegistry.addName(smokeScreen, "Insta-Poof");
-		GlowStick = new GlowStick(GlowStickID).setItemName("Glow Stick");
+		GlowStick = new GlowStick(GlowStickID).setItemName("Glow Stick").setIconIndex(1);
 		LanguageRegistry.addName(GlowStick,"Glow Stick");
-		ShadeStick = new ShadeStick(ShadeStickID).setItemName("Shade Stick");
+		ShadeStick = new ShadeStick(ShadeStickID).setItemName("Shade Stick").setIconIndex(17);
 		LanguageRegistry.addName(ShadeStick, "Shade Stick");
-		ShadowStoneDust = new ShadowStoneDust(ShadowStoneDustID).setItemName("Shadow Dust");
+		ShadowStoneDust = new ShadowStoneDust(ShadowStoneDustID).setItemName("Shadow Dust").setIconIndex(12);
 		LanguageRegistry.addName(ShadowStoneDust, "Shadow Dust");
 		SwordLight = new SwordLight(SwordLightID, lightToolMaterial).setItemName("Sword Light");
 		LanguageRegistry.addName(SwordLight,"Sword of Forever Light");

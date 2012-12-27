@@ -8,8 +8,8 @@ import net.minecraft.creativetab.CreativeTabs;
 
 
 public class ObbyOre extends BlockOre {
-	public ObbyOre(int blockID,int par1) {
-		super(blockID, par1);
+	public ObbyOre(int blockID,int sprite) {
+		super(blockID, sprite);
 		setCreativeTab(CreativeTabs.tabBlock);
 		setStepSound(Block.soundStoneFootstep);
 		setHardness(50F);

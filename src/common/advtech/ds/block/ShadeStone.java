@@ -23,6 +23,10 @@ public class ShadeStone extends BlockGlowStone {
     {
         return MathHelper.clamp_int(this.quantityDropped(par2Random) + par2Random.nextInt(par1 + 1), 1, 4);
     }
+    @Override
+	public String getTextureFile() {
+		return "/advtech/ds/resources/terrain2.png";
+	}
 
     /**
      * Returns the quantity of items to drop on block destruction.
