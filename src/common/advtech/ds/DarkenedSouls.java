@@ -77,9 +77,7 @@ import cpw.mods.fml.relauncher.Side;
 
 
 @Mod(modid = BuildInfo.modid, name = BuildInfo.modname, version = BuildInfo.modversion)
-@NetworkMod(clientSideRequired = true, serverSideRequired = true, clientPacketHandlerSpec =
-@SidedPacketHandler(channels = {"DarkShadow"}, packetHandler = ClientPacketHandler.class), serverPacketHandlerSpec = 
-@SidedPacketHandler(channels = {"DarkShadow"}, packetHandler = ServerPacketHandler.class))
+@NetworkMod(clientSideRequired=true, serverSideRequired=false, clientPacketHandlerSpec = @SidedPacketHandler(channels = {"DarkenedSouls" }, packetHandler = ClientPacketHandler.class), serverPacketHandlerSpec = @SidedPacketHandler(channels = {"DarkenedSouls" }, packetHandler = ServerPacketHandler.class))
 public class DarkenedSouls {
 	public static Block oreObby;
 	public static Block streamFurnaceIdle; 
@@ -161,7 +159,7 @@ public class DarkenedSouls {
 	
 	public static Logger dsLog = Logger.getLogger("DarkShadow");
 	
-	@Instance
+	@Instance ("DarkenenedSouls")
 	public static DarkenedSouls instance;
 	
 	//@SidedProxy(clientSide = "advtech.mods.DarkShadows.gui.ClientProxy", serverSide = "advtech.mods.DarkShadows.gui.CommonProxy")
@@ -273,7 +271,7 @@ public class DarkenedSouls {
 		GameRegistry.registerBlock(oreObby, "ObsidianOre");
 		LanguageRegistry.addName(oreObby, "Obsidian Ore");
 		
-		streamFurnaceIdle = new BlockStreamFurnace(streamFurnaceIdleID, 14, false).setCreativeTab(CreativeTabs.tabDecorations);
+		streamFurnaceIdle = new BlockStreamFurnace(streamFurnaceIdleID, 15, false).setCreativeTab(CreativeTabs.tabDecorations);
 		GameRegistry.registerBlock(streamFurnaceIdle,"Forge");
 		LanguageRegistry.addName(streamFurnaceIdle, "Forge");
 		
