@@ -159,7 +159,7 @@ public class DarkenedSouls {
 	
 	public static Logger dsLog = Logger.getLogger("DarkShadow");
 	
-	@Instance ("DarkenenedSouls")
+	@Instance ("DS")
 	public static DarkenedSouls instance;
 	
 	//@SidedProxy(clientSide = "advtech.mods.DarkShadows.gui.ClientProxy", serverSide = "advtech.mods.DarkShadows.gui.CommonProxy")
