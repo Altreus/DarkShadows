@@ -1,4 +1,4 @@
-package advtech.ds.block;
+package advtech.ds.dimension.shadow;
 
 import java.util.Random;
 
@@ -14,11 +14,16 @@ import advtech.ds.DarkenedSouls;
 
 public class BlockShadowStone extends Block {
 
-	public BlockShadowStone(int id) {
-		super(id, Material.rock);
-		this.setCreativeTab(CreativeTabs.tabBlock);
+	public BlockShadowStone(int id, int sprite) {
+		super(id, sprite, Material.rock);
+		this.setCreativeTab(DarkenedSouls.DarkenedSouls);
 		this.setTickRandomly(true);
 	}
+	@Override
+	public String getTextureFile() {
+		return "/advtech/ds/resources/terrain2.png";
+	}
+	
 	
 	public void updateTick(World worldObj, int posX, int posY, int posZ, Random rand) {
 		((BlockShadowPortal) DarkenedSouls.shadowPortal).tryToCreatePortal(worldObj, posX + 1, posY, posZ);

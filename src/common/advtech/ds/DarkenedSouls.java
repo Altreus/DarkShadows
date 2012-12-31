@@ -15,8 +15,6 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.EnumHelper;
-import advtech.ds.block.BlockShadowPortal;
-import advtech.ds.block.BlockShadowStone;
 import advtech.ds.block.BlockStreamFurnace;
 import advtech.ds.block.ObbyOre;
 import advtech.ds.block.ShadeStone;
@@ -24,10 +22,13 @@ import advtech.ds.core.ShadowWorldGenerator;
 import advtech.ds.core.packet.ClientPacketHandler;
 import advtech.ds.core.packet.ServerPacketHandler;
 import advtech.ds.core.proxy.CommonProxy;
+import advtech.ds.dimension.shadow.BlockShadowPortal;
+import advtech.ds.dimension.shadow.BlockShadowStone;
 import advtech.ds.dimension.shadow.TeleporterShadow;
 import advtech.ds.dimension.shadow.WorldProviderShadow;
 import advtech.ds.gui.GuiHandler;
 import advtech.ds.gui.GuiIngameHud;
+import advtech.ds.gui.Tab;
 import advtech.ds.gui.TickHandler;
 import advtech.ds.item.items.GlowStick;
 import advtech.ds.item.items.ObbyArm;
@@ -157,13 +158,14 @@ public class DarkenedSouls {
 	public static int shadowDimensionID = 10;
 	public static Teleporter shadowTeleporter;
 	
-	public static Logger dsLog = Logger.getLogger("DarkShadow");
+	public static Logger dsLog = Logger.getLogger("DarkenedSoul");
 	
 	@Instance ("DS")
 	public static DarkenedSouls instance;
 	
 	//@SidedProxy(clientSide = "advtech.mods.DarkShadows.gui.ClientProxy", serverSide = "advtech.mods.DarkShadows.gui.CommonProxy")
 	public static CommonProxy proxy;
+	public static CreativeTabs DarkenedSouls;
 	private GuiHandler guiHandler = new GuiHandler();
 	public static EnumToolMaterial obbyToolMaterial = EnumHelper.addToolMaterial("obby", 3, 2000, 9F, 6, 14);
 	public static EnumArmorMaterial obbyArmorMaterial = EnumHelper.addArmorMaterial("OBBY",40,new int[]{10,20,16,14},20);
@@ -171,6 +173,7 @@ public class DarkenedSouls {
 	public static EnumArmorMaterial lightArmorMaterial = EnumHelper.addArmorMaterial("Light", 200, new int[]{20,30,45,20},20);
 	public static EnumToolMaterial shadowToolMaterial = EnumHelper.addToolMaterial("Shadow", 3, 2000, 9F, 6, 14);
 	public static EnumArmorMaterial shadowArmorMaterial = EnumHelper.addArmorMaterial("Shadow", 100, new int[]{15,20,30,10}, 20);
+	
 	
 	
 	@PreInit
@@ -184,6 +187,7 @@ public class DarkenedSouls {
 	public void init(FMLInitializationEvent event) {
 		//Furnace Code
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
+		DarkenedSouls = new Tab(12,"DarkenedSouls");
 		
 		GameRegistry.registerTileEntity(TileEntityStreamFurnace.class, "tileEntityStreamFurnace");
 		
@@ -210,14 +214,6 @@ public class DarkenedSouls {
 		//Dimensions
 		DimensionManager.registerProviderType(shadowDimensionID, WorldProviderShadow.class, true);
 		DimensionManager.registerDimension(shadowDimensionID, shadowDimensionID);
-		shadowStone = new BlockShadowStone(250).setHardness(50F).setResistance(2000.0F).setBlockName("shadowStone");
-		shadowStone.blockIndexInTexture = 1;
-		GameRegistry.registerBlock(shadowStone, "shadowStone");
-		LanguageRegistry.addName(shadowStone, "Condensed Shadow");
-		
-		shadowPortal = new BlockShadowPortal(251, 14).setHardness(-1.0F).setStepSound(Block.soundGlassFootstep).setLightValue(0.75F).setBlockName("portal");
-		GameRegistry.registerBlock(shadowPortal, "ShadowPortal");
-		LanguageRegistry.addName(shadowPortal, "Shadow Portal");
 		
 		//EnderNinja
 		RenderingRegistry.registerEntityRenderingHandler(EntityEnderNinja.class, new RenderEnderNinja());
@@ -278,6 +274,15 @@ public class DarkenedSouls {
 		ShadeStone = new ShadeStone(ShadeStoneID, 11, Material.glass).setHardness(0.3F).setBlockName("Shade Stone");
 		GameRegistry.registerBlock(ShadeStone, "ShadeStone");
 		LanguageRegistry.addName(ShadeStone, "Shade Stone");
+		
+		shadowStone = new BlockShadowStone(250,4).setHardness(50F).setResistance(2000.0F).setBlockName("shadowStone");
+		GameRegistry.registerBlock(shadowStone, "shadowStone");
+		LanguageRegistry.addName(shadowStone, "Condensed Shadow");
+		
+		shadowPortal = new BlockShadowPortal(251, 14).setHardness(-1.0F).setStepSound(Block.soundGlassFootstep).setLightValue(0.75F).setBlockName("portal");
+		GameRegistry.registerBlock(shadowPortal, "ShadowPortal");
+		LanguageRegistry.addName(shadowPortal, "Shadow Portal");
+		
 		
 		
 		
