@@ -12,7 +12,7 @@ public class ObbyOre extends BlockOre {
 		super(blockID, sprite);
 		setCreativeTab(CreativeTabs.tabBlock);
 		setStepSound(Block.soundStoneFootstep);
-		setHardness(50F);
+		setHardness(22.5F);
 		setResistance(2000.0F);
 		setBlockName("Obsidian Ore");
 	}

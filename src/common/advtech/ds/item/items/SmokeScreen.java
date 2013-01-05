@@ -20,6 +20,10 @@ public class SmokeScreen extends Item{
 		maxStackSize = 16;
 		setCreativeTab(CreativeTabs.tabMisc);
 	}
+	 @Override
+	  public String getTextureFile(){
+			return "/advtech/ds/resources/terrain.png";
+	 }
 
 	@Override
 	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player){

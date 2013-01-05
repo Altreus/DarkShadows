@@ -142,4 +142,9 @@ public class SwordLight extends ItemSword{
     {
         return this.toolMaterial.getToolCraftingMaterial() == par2ItemStack.itemID ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
+    @Override
+	  public String getTextureFile(){
+			return "/advtech/ds/resources/terrain2.png";
+	 }
+	
 }
