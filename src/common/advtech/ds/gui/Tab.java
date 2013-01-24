@@ -1,26 +1,20 @@
 package advtech.ds.gui;
 
-import advtech.ds.DarkenedSouls;
-import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
+import advtech.ds.DarkenedSouls;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public final class Tab extends CreativeTabs
 {
-         public Tab(int par1, String par2Str)
+         public Tab(String label)
          {
-                         super(par1, par2Str);
+        	 super(label);
          }
          @SideOnly(Side.CLIENT)
-         public int getTabIconItemIndex()
-         {
-                         return DarkenedSouls.ShadeStone.blockID;
-                                
-         }
-
-         public String getTranslatedTabLabel()
-         {
-                 return "Darkened Souls";
+         @Override
+         public ItemStack getIconItemStack(){
+        	 return new ItemStack(DarkenedSouls.smokeScreen);
          }
 }

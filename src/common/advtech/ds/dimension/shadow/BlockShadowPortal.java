@@ -4,13 +4,15 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemMonsterPlacer;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
 import advtech.ds.DarkenedSouls;
 import cpw.mods.fml.relauncher.Side;
@@ -238,17 +240,27 @@ public class BlockShadowPortal extends Block {
         return 0;
     }
     
-    public void onEntityCollidedWithBlock(World par1World, int par2, int par3, int par4, Entity par5Entity)
+    public void onEntityCollidedWithBlock(World world, int i, int j, int k, Entity entity)
     {
-    	if (par5Entity instanceof EntityPlayer) {
-	    	if (par5Entity.ridingEntity == null && par5Entity.riddenByEntity == null && !par1World.isRemote)
-	        {
-	    		((EntityPlayer) par5Entity).addChatMessage("Giving you a little gift for your journey. :3");
-	    		((EntityPlayer) par5Entity).addPotionEffect(new PotionEffect(Potion.nightVision.id, 1000));
-	    		par5Entity.travelToDimension(10);
-	            //BlockShadowStone.travelToDimension(par5Entity);
-	        }
-    	}
+      if (entity.ridingEntity == null && entity.riddenByEntity == null && entity instanceof EntityPlayerMP)
+      {
+       if (entity instanceof EntityPlayerMP)
+       {
+            EntityPlayerMP thePlayer = (EntityPlayerMP) entity;
+            if (entity.dimension != 70)
+            {
+             Minecraft.getMinecraft().thePlayer.timeInPortal = 100000;
+             ((EntityPlayer)MinecraftServer.getServer().getConfigurationManager().playerEntityList.get(0)).timeUntilPortal = 10000;
+             thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, 70 , new TeleporterShadow(thePlayer.mcServer.worldServerForDimension(70)));
+            }
+            else
+            {
+             Minecraft.getMinecraft().thePlayer.timeInPortal = 10000;
+             ((EntityPlayer)MinecraftServer.getServer().getConfigurationManager().playerEntityList.get(0)).timeUntilPortal = 10000;
+             thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, 0, new TeleporterShadow(thePlayer.mcServer.worldServerForDimension(0)));
+            }
+       }
+      }
     }
 
     @SideOnly(Side.CLIENT)

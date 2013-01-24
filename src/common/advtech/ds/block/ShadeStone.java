@@ -13,7 +13,6 @@ public class ShadeStone extends BlockGlowStone {
 	public ShadeStone(int id, int par2, Material par3Material)
     {
         super(id, par2, Material.glass);
-        this.setCreativeTab(CreativeTabs.tabBlock);
     }
 
     /**

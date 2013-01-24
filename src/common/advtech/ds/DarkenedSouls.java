@@ -15,10 +15,12 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.EnumHelper;
+import net.minecraftforge.oredict.OreDictionary;
 import advtech.ds.block.BlockStreamFurnace;
 import advtech.ds.block.ObbyOre;
 import advtech.ds.block.ShadeStone;
 import advtech.ds.core.ShadowWorldGenerator;
+import advtech.ds.core.helper.VersionHelper;
 import advtech.ds.core.packet.ClientPacketHandler;
 import advtech.ds.core.packet.ServerPacketHandler;
 import advtech.ds.core.proxy.CommonProxy;
@@ -48,6 +50,7 @@ import advtech.ds.item.obby.ObbySword;
 import advtech.ds.item.shadow.ShadeStick;
 import advtech.ds.item.shadow.ShadowStoneDust;
 import advtech.ds.lib.BuildInfo;
+import advtech.ds.lib.ConfigurationSettings;
 import advtech.ds.mobs.EntityEnderNinja;
 import advtech.ds.mobs.RenderEnderNinja;
 import advtech.ds.tile.TileEntityStreamFurnace;
@@ -80,10 +83,14 @@ import cpw.mods.fml.relauncher.Side;
 @Mod(modid = BuildInfo.modid, name = BuildInfo.modname, version = BuildInfo.modversion)
 @NetworkMod(clientSideRequired=true, serverSideRequired=false, clientPacketHandlerSpec = @SidedPacketHandler(channels = {"DarkenedSouls" }, packetHandler = ClientPacketHandler.class), serverPacketHandlerSpec = @SidedPacketHandler(channels = {"DarkenedSouls" }, packetHandler = ServerPacketHandler.class))
 public class DarkenedSouls {
+	
 	public static Block oreObby;
 	public static Block streamFurnaceIdle; 
 	public static Block streamFurnaceActive;
 	public static Block ShadeStone;
+	public static Block shadowStone;
+	public static Block shadowPortal;
+	
 		
 	public static Item obbySword;
 	public static Item portalMaker;
@@ -116,6 +123,11 @@ public class DarkenedSouls {
 	public static Item ShadeStick;
 	public static Item ShadowStoneDust;
 	
+	public static int oreObbyID;
+	public static int ShadeStoneID;
+	public static int steamFurnaceIdleID;
+	public static int shadowPortalID;
+	public static int shadowStoneID;
 	public static int obbySwordID;
 	public static int portalMakerID;
 	public static int obbyHammerID;
@@ -147,16 +159,13 @@ public class DarkenedSouls {
 	public static int ShadeStickID;
 	public static int ShadowStoneDustID;
 	
-	public static int oreObbyID;
-	public static int streamFurnaceIdleID;
-	public static int streamFurnaceActiveID;
-	public static int ShadeStoneID;
+	
+	
 	
 	//Shadow Portal Stuff
-	public static Block shadowStone;
-	public static Block shadowPortal;
 	public static int shadowDimensionID = 10;
 	public static Teleporter shadowTeleporter;
+	
 	
 	public static Logger dsLog = Logger.getLogger("DarkenedSoul");
 	
@@ -165,7 +174,9 @@ public class DarkenedSouls {
 	
 	//@SidedProxy(clientSide = "advtech.mods.DarkShadows.gui.ClientProxy", serverSide = "advtech.mods.DarkShadows.gui.CommonProxy")
 	public static CommonProxy proxy;
-	public static CreativeTabs DarkenedSouls;
+	//Custom Tab
+	public static CreativeTabs DarkenedSouls = new Tab("Darkened Souls");
+	
 	private GuiHandler guiHandler = new GuiHandler();
 	public static EnumToolMaterial obbyToolMaterial = EnumHelper.addToolMaterial("obby", 3, 2000, 9F, 6, 14);
 	public static EnumArmorMaterial obbyArmorMaterial = EnumHelper.addArmorMaterial("OBBY",40,new int[]{10,20,16,14},20);
@@ -182,12 +193,14 @@ public class DarkenedSouls {
 		
 		dsLog.info("Loading/Creating Config");
 		loadConfig(event);
+		 if (ConfigurationSettings.ENABLE_VERSION_CHECK) {
+	            VersionHelper.checkVersion();
+	        }
 	}
 	@Init
 	public void init(FMLInitializationEvent event) {
 		//Furnace Code
 		NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
-		DarkenedSouls = new Tab(12,"DarkenedSouls");
 		
 		GameRegistry.registerTileEntity(TileEntityStreamFurnace.class, "tileEntityStreamFurnace");
 		
@@ -200,13 +213,12 @@ public class DarkenedSouls {
 		addItems();
 		
 		dsLog.info("Adding Recipes");
-		
 		addRecipes();
-		//Ore Code
-
-		//Item Codes
+		
+		dsLog.info("Adding Compatabitly");
+		addOreRecipes();
+		oreRegistration();
 		//Texture File
-		//MinecraftForgeClient.preloadTexture("/advtech/ds/resources/item.png");
 		MinecraftForgeClient.preloadTexture("/advtech/ds/resources/terrain.png");
 		MinecraftForgeClient.preloadTexture("/advtech/ds/resources/terrain2.png");
 		//World Generator Code
@@ -219,11 +231,21 @@ public class DarkenedSouls {
 		RenderingRegistry.registerEntityRenderingHandler(EntityEnderNinja.class, new RenderEnderNinja());
 		EntityRegistry.registerGlobalEntityID(EntityEnderNinja.class, "enderNinja", EntityRegistry.findGlobalUniqueEntityId(), 0xFF0000, 0x000000);
 		LanguageRegistry.instance().addStringLocalization("entity.enderNinja.name", "EnderNinja");
+		LanguageRegistry.instance().addStringLocalization("itemGroup.Darkened Souls","en_US","Darkened Souls");
+		
+	
 		
 	}
 	
 	
 	
+	public void oreRegistration() {
+		OreDictionary.registerOre("ingotObsidian", new ItemStack(obbyIngot));
+		
+	}
+	public void addOreRecipes() {
+		
+	}
 	public void loadConfig(FMLPreInitializationEvent event) {
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		//Items
@@ -255,80 +277,75 @@ public class DarkenedSouls {
 
 		//Blocks
 		oreObbyID = config.get(config.CATEGORY_BLOCK,"Obsidian Ore", 201).getInt(201);
-		streamFurnaceIdleID = config.get(config.CATEGORY_BLOCK,"Forge", 202).getInt(202);
-		streamFurnaceActiveID = config.get(config.CATEGORY_BLOCK,"ForgeA", 203).getInt(203);
+		steamFurnaceIdleID = config.get(config.CATEGORY_BLOCK,"Forge", 203).getInt(203);
 		ShadeStoneID = config.get(config.CATEGORY_BLOCK, "Shade Stone", 204).getInt(204);
+		shadowStoneID = config.get(config.CATEGORY_BLOCK, "ShadowStone", 205).getInt(205);
 		
 		
 		config.save();
 	}
 	public void addBlocks(){
-		oreObby = new ObbyOre(oreObbyID, 19).setHardness(50F).setResistance(2000.0F);
-		GameRegistry.registerBlock(oreObby, "ObsidianOre");
+		
+		oreObby = new ObbyOre(oreObbyID, 19).setHardness(22.5F).setResistance(2000.0F);
+		GameRegistry.registerBlock(oreObby, "Obsidian Ore");
 		LanguageRegistry.addName(oreObby, "Obsidian Ore");
-		
-		streamFurnaceIdle = new BlockStreamFurnace(streamFurnaceIdleID, 15, false).setCreativeTab(DarkenedSouls);
-		GameRegistry.registerBlock(streamFurnaceIdle,"Forge");
+		streamFurnaceIdle = new BlockStreamFurnace(steamFurnaceIdleID,15, false).setCreativeTab(DarkenedSouls);
+		GameRegistry.registerBlock(streamFurnaceIdle, "Forge");
 		LanguageRegistry.addName(streamFurnaceIdle, "Forge");
-		
+		streamFurnaceActive = new BlockStreamFurnace(steamFurnaceIdleID - 1,15, false).setCreativeTab(DarkenedSouls);
 		ShadeStone = new ShadeStone(ShadeStoneID, 11, Material.glass).setHardness(0.3F).setBlockName("Shade Stone").setCreativeTab(DarkenedSouls);
-		GameRegistry.registerBlock(ShadeStone, "ShadeStone");
-		LanguageRegistry.addName(ShadeStone, "Shade Stone");
-		
-		shadowStone = new BlockShadowStone(250,4).setHardness(50F).setResistance(2000.0F).setBlockName("shadowStone").setCreativeTab(DarkenedSouls);
-		GameRegistry.registerBlock(shadowStone, "shadowStone");
-		LanguageRegistry.addName(shadowStone, "Condensed Shadow");
-		
-		shadowPortal = new BlockShadowPortal(251, 14).setHardness(-1.0F).setStepSound(Block.soundGlassFootstep).setLightValue(0.75F).setBlockName("portal");
-		GameRegistry.registerBlock(shadowPortal, "ShadowPortal");
-		LanguageRegistry.addName(shadowPortal, "Shadow Portal");
-		
+		GameRegistry.registerBlock(ShadeStone, "Shade Stone");
+		LanguageRegistry.addName(ShadeStone, "ShadeStone");
+		shadowStone = new BlockShadowStone(shadowStoneID,4).setHardness(50F).setResistance(2000.0F).setBlockName("shadowStone").setCreativeTab(DarkenedSouls);
+		GameRegistry.registerBlock(shadowStone, "Shadow Stone");
+		LanguageRegistry.addName(shadowStone, "Shadow Stone");
+		shadowPortal = new BlockShadowPortal(shadowPortalID, 14).setHardness(-1.0F).setStepSound(Block.soundGlassFootstep).setLightValue(0.75F).setBlockName("portal");
 		
 		
 		
 	}
 	
 	public void addItems(){
-		helmetObby = new ObbyArmor(helmetObbyID, obbyArmorMaterial, RenderingRegistry.addNewArmourRendererPrefix("Obby"), 0).setIconIndex(2).setItemName("Obsidian Helmet").setCreativeTab(DarkenedSouls);
+		helmetObby = new ObbyArmor(helmetObbyID, obbyArmorMaterial, RenderingRegistry.addNewArmourRendererPrefix("Obby"), 0).setIconIndex(2).setItemName("Obsidian Helmet").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(helmetObby, "Obsidian Helmet");
-		chestplateObby = new ObbyArmor(chestplateObbyID, obbyArmorMaterial, RenderingRegistry.addNewArmourRendererPrefix("Obby"), 1).setIconIndex(4).setItemName("Obsidian Chestplate").setCreativeTab(DarkenedSouls);
+		chestplateObby = new ObbyArmor(chestplateObbyID, obbyArmorMaterial, RenderingRegistry.addNewArmourRendererPrefix("Obby"), 1).setIconIndex(4).setItemName("Obsidian Chestplate").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(chestplateObby, "Obsidian Chest Plate");
-		leggingObby = new ObbyArmor(leggingObbyID, obbyArmorMaterial,RenderingRegistry.addNewArmourRendererPrefix("Obby"), 2).setIconIndex(3).setItemName("Obsidian Leggings").setCreativeTab(DarkenedSouls);
+		leggingObby = new ObbyArmor(leggingObbyID, obbyArmorMaterial,RenderingRegistry.addNewArmourRendererPrefix("Obby"), 2).setIconIndex(3).setItemName("Obsidian Leggings").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(leggingObby, "Obsidian Leggings");
-		bootObby = new ObbyArmor(bootObbyID, obbyArmorMaterial,RenderingRegistry.addNewArmourRendererPrefix("Obby"), 3).setIconIndex(1).setItemName("Obsidian Boots").setCreativeTab(DarkenedSouls);
+		bootObby = new ObbyArmor(bootObbyID, obbyArmorMaterial,RenderingRegistry.addNewArmourRendererPrefix("Obby"), 3).setIconIndex(1).setItemName("Obsidian Boots").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(bootObby, "Obsidian Boot");
-		portalMaker = new PortalMaker(portalMakerID).setIconIndex(7).setItemName("Portal Maker").setCreativeTab(DarkenedSouls);
+		portalMaker = new PortalMaker(portalMakerID).setIconIndex(7).setItemName("Portal Maker").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(portalMaker, "Insta-Portal");		
-		obbyIngot = new ObbyIngot(obbyIngotID).setIconIndex(0).setItemName("obbyIngots").setCreativeTab(DarkenedSouls);
+		obbyIngot = new ObbyIngot(obbyIngotID).setIconIndex(0).setItemName("obbyIngots").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(obbyIngot, "Obsidian Ingot");
-		obbyRivet = new ObbyRivet(obbyRivetID).setIconIndex(9).setItemName("Obsidian Rivers").setCreativeTab(DarkenedSouls);
+		obbyRivet = new ObbyRivet(obbyRivetID).setIconIndex(9).setItemName("Obsidian Rivers").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(obbyRivet,"Obsidian Rivet");
-		obbyPlate = new ObbyPlate(obbyPlateID).setIconIndex(17).setItemName("Obsidian Platemetal").setCreativeTab(DarkenedSouls);
+		obbyPlate = new ObbyPlate(obbyPlateID).setIconIndex(17).setItemName("Obsidian Platemetal").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(obbyPlate,"Obsidian Plate");
-		obbyArm = new ObbyArm(obbyArmID).setIconIndex(13).setItemName("Obsidian Arm").setCreativeTab(DarkenedSouls);
+		obbyArm = new ObbyArm(obbyArmID).setIconIndex(13).setItemName("Obsidian Arm").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(obbyArm, "Obsidian Plate Arm");
-		obbyHammer = new ObbyHammer(obbyHammerID).setIconIndex(11).setItemName("Obsidian Hammer").setCreativeTab(DarkenedSouls);
+		obbyHammer = new ObbyHammer(obbyHammerID).setIconIndex(11).setItemName("Obsidian Hammer").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(obbyHammer, "Hammer of Obby");
 		obbyHammer.setContainerItem(obbyHammer);
-		obbySword = new ObbySword(obbySwordID, obbyToolMaterial).setIconIndex(6).setItemName("Obsidian Sword").setCreativeTab(DarkenedSouls);
+		obbySword = new ObbySword(obbySwordID, obbyToolMaterial).setIconIndex(6).setItemName("Obsidian Sword").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(obbySword, "Creeper's Bane");
-		obbyAxe = new ObbyAxe(obbyAxeID, obbyToolMaterial).setIconIndex(10).setItemName("Obsidian Axe").setCreativeTab(DarkenedSouls);
+		obbyAxe = new ObbyAxe(obbyAxeID, obbyToolMaterial).setIconIndex(10).setItemName("Obsidian Axe").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(obbyAxe,"Shadow Chopper");
-		obbyHoe = new ObbyHoe(obbyHoeID, obbyToolMaterial).setIconIndex(12).setItemName("Obsidian Hoe").setCreativeTab(DarkenedSouls);
+		obbyHoe = new ObbyHoe(obbyHoeID, obbyToolMaterial).setIconIndex(12).setItemName("Obsidian Hoe").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(obbyHoe,"Tiller of Shadow");
-		obbyShovel = new ObbyShovel(obbyShovelID, obbyToolMaterial).setIconIndex(5).setItemName("Obsidian Shovel").setCreativeTab(DarkenedSouls);
+		obbyShovel = new ObbyShovel(obbyShovelID, obbyToolMaterial).setIconIndex(5).setItemName("Obsidian Shovel").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(obbyShovel, "Shadow Digger");
-		obbyPickaxe = new ObbyPickaxe(obbyPickaxeID, obbyToolMaterial).setIconIndex(8).setItemName("Obsidian Pickaxe").setCreativeTab(DarkenedSouls);
+		obbyPickaxe = new ObbyPickaxe(obbyPickaxeID, obbyToolMaterial).setIconIndex(8).setItemName("Obsidian Pickaxe").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(obbyPickaxe, "Shadow Breaker");		
-		smokeScreen = new SmokeScreen(smokeScreenID).setItemName("Smoke Screen").setIconIndex(18).setCreativeTab(DarkenedSouls);
+		smokeScreen = new SmokeScreen(smokeScreenID).setItemName("Smoke Screen").setIconIndex(18).setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(smokeScreen, "Insta-Poof");
-		GlowStick = new GlowStick(GlowStickID).setItemName("Glow Stick").setIconIndex(1).setCreativeTab(DarkenedSouls);
+		GlowStick = new GlowStick(GlowStickID).setItemName("Glow Stick").setIconIndex(1).setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(GlowStick,"Glow Stick");
-		ShadeStick = new ShadeStick(ShadeStickID).setItemName("Shade Stick").setIconIndex(17).setCreativeTab(DarkenedSouls);
+		ShadeStick = new ShadeStick(ShadeStickID).setItemName("Shade Stick").setIconIndex(17).setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(ShadeStick, "Shade Stick");
-		ShadowStoneDust = new ShadowStoneDust(ShadowStoneDustID).setItemName("Shadow Dust").setIconIndex(12).setCreativeTab(DarkenedSouls);
+		ShadowStoneDust = new ShadowStoneDust(ShadowStoneDustID).setItemName("Shadow Dust").setIconIndex(12).setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(ShadowStoneDust, "Shadow Dust");
-		SwordLight = new SwordLight(SwordLightID, lightToolMaterial).setItemName("Sword Light").setIconIndex(9).setCreativeTab(DarkenedSouls);
+		SwordLight = new SwordLight(SwordLightID, lightToolMaterial).setItemName("Sword Light").setIconIndex(9).setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(SwordLight,"Sword of Forever Light");
 		
 	}

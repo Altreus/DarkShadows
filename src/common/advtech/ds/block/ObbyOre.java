@@ -10,10 +10,7 @@ import net.minecraft.creativetab.CreativeTabs;
 public class ObbyOre extends BlockOre {
 	public ObbyOre(int blockID,int sprite) {
 		super(blockID, sprite);
-		setCreativeTab(CreativeTabs.tabBlock);
 		setStepSound(Block.soundStoneFootstep);
-		setHardness(22.5F);
-		setResistance(2000.0F);
 		setBlockName("Obsidian Ore");
 	}
 

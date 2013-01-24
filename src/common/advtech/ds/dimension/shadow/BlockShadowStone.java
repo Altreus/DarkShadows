@@ -16,7 +16,6 @@ public class BlockShadowStone extends Block {
 
 	public BlockShadowStone(int id, int sprite) {
 		super(id, sprite, Material.rock);
-		this.setCreativeTab(DarkenedSouls.DarkenedSouls);
 		this.setTickRandomly(true);
 	}
 	@Override
