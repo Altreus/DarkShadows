@@ -26,9 +26,9 @@ public class BlockStreamFurnace extends BlockContainer
 	private static boolean keepFurnaceInventory = false;
 	public BlockStreamFurnace(int id,int sprite, boolean active)
 	{
-		super(id, sprite, Material.iron);
+		super(id, Material.iron);
 		this.isActive = active;
-		this.setBlockName("Forge");
+		this.setUnlocalizedName("Forge");
 		this.setRequiresSelfNotify();
 	}
 	public int idDropped(int par1, Random random, int par3)

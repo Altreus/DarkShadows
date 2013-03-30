@@ -293,59 +293,59 @@ public class DarkenedSouls {
 		GameRegistry.registerBlock(streamFurnaceIdle, "Forge");
 		LanguageRegistry.addName(streamFurnaceIdle, "Forge");
 		streamFurnaceActive = new BlockStreamFurnace(steamFurnaceIdleID - 1,15, false).setCreativeTab(DarkenedSouls);
-		ShadeStone = new ShadeStone(ShadeStoneID, 11, Material.glass).setHardness(0.3F).setBlockName("Shade Stone").setCreativeTab(DarkenedSouls);
+		ShadeStone = new ShadeStone(ShadeStoneID, 11, Material.glass).setHardness(0.3F).setUnlocalizedName("Shade Stone").setCreativeTab(DarkenedSouls);
 		GameRegistry.registerBlock(ShadeStone, "Shade Stone");
 		LanguageRegistry.addName(ShadeStone, "ShadeStone");
-		shadowStone = new BlockShadowStone(shadowStoneID,4).setHardness(50F).setResistance(2000.0F).setBlockName("shadowStone").setCreativeTab(DarkenedSouls);
+		shadowStone = new BlockShadowStone(shadowStoneID,4).setHardness(50F).setResistance(2000.0F).setUnlocalizedName("shadowStone").setCreativeTab(DarkenedSouls);
 		GameRegistry.registerBlock(shadowStone, "Shadow Stone");
 		LanguageRegistry.addName(shadowStone, "Shadow Stone");
-		shadowPortal = new BlockShadowPortal(shadowPortalID, 14).setHardness(-1.0F).setStepSound(Block.soundGlassFootstep).setLightValue(0.75F).setBlockName("portal");
+		shadowPortal = new BlockShadowPortal(shadowPortalID, 14).setHardness(-1.0F).setStepSound(Block.soundGlassFootstep).setLightValue(0.75F).setUnlocalizedName("portal");
 		
 		
 		
 	}
 	
 	public void addItems(){
-		helmetObby = new ObbyArmor(helmetObbyID, obbyArmorMaterial, RenderingRegistry.addNewArmourRendererPrefix("Obby"), 0).setIconIndex(2).setItemName("Obsidian Helmet").setCreativeTab(this.DarkenedSouls);
+		helmetObby = new ObbyArmor(helmetObbyID, obbyArmorMaterial, RenderingRegistry.addNewArmourRendererPrefix("Obby"), 0).setUnlocalizedName("Obsidian Helmet").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(helmetObby, "Obsidian Helmet");
-		chestplateObby = new ObbyArmor(chestplateObbyID, obbyArmorMaterial, RenderingRegistry.addNewArmourRendererPrefix("Obby"), 1).setIconIndex(4).setItemName("Obsidian Chestplate").setCreativeTab(this.DarkenedSouls);
+		chestplateObby = new ObbyArmor(chestplateObbyID, obbyArmorMaterial, RenderingRegistry.addNewArmourRendererPrefix("Obby"), 1).setUnlocalizedName("Obsidian Chestplate").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(chestplateObby, "Obsidian Chest Plate");
-		leggingObby = new ObbyArmor(leggingObbyID, obbyArmorMaterial,RenderingRegistry.addNewArmourRendererPrefix("Obby"), 2).setIconIndex(3).setItemName("Obsidian Leggings").setCreativeTab(this.DarkenedSouls);
+		leggingObby = new ObbyArmor(leggingObbyID, obbyArmorMaterial,RenderingRegistry.addNewArmourRendererPrefix("Obby"), 2).setUnlocalizedName("Obsidian Leggings").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(leggingObby, "Obsidian Leggings");
-		bootObby = new ObbyArmor(bootObbyID, obbyArmorMaterial,RenderingRegistry.addNewArmourRendererPrefix("Obby"), 3).setIconIndex(1).setItemName("Obsidian Boots").setCreativeTab(this.DarkenedSouls);
+		bootObby = new ObbyArmor(bootObbyID, obbyArmorMaterial,RenderingRegistry.addNewArmourRendererPrefix("Obby"), 3).setUnlocalizedName("Obsidian Boots").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(bootObby, "Obsidian Boot");
-		portalMaker = new PortalMaker(portalMakerID).setIconIndex(7).setItemName("Portal Maker").setCreativeTab(this.DarkenedSouls);
+		portalMaker = new PortalMaker(portalMakerID).setUnlocalizedName("Portal Maker").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(portalMaker, "Insta-Portal");		
-		obbyIngot = new ObbyIngot(obbyIngotID).setIconIndex(0).setItemName("obbyIngots").setCreativeTab(this.DarkenedSouls);
+		obbyIngot = new ObbyIngot(obbyIngotID).setUnlocalizedName("obbyIngots").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(obbyIngot, "Obsidian Ingot");
-		obbyRivet = new ObbyRivet(obbyRivetID).setIconIndex(9).setItemName("Obsidian Rivers").setCreativeTab(this.DarkenedSouls);
+		obbyRivet = new ObbyRivet(obbyRivetID).setUnlocalizedName("Obsidian Rivers").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(obbyRivet,"Obsidian Rivet");
-		obbyPlate = new ObbyPlate(obbyPlateID).setIconIndex(17).setItemName("Obsidian Platemetal").setCreativeTab(this.DarkenedSouls);
+		obbyPlate = new ObbyPlate(obbyPlateID).setUnlocalizedName("Obsidian Platemetal").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(obbyPlate,"Obsidian Plate");
-		obbyArm = new ObbyArm(obbyArmID).setIconIndex(13).setItemName("Obsidian Arm").setCreativeTab(this.DarkenedSouls);
+		obbyArm = new ObbyArm(obbyArmID).setUnlocalizedName("Obsidian Arm").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(obbyArm, "Obsidian Plate Arm");
-		obbyHammer = new ObbyHammer(obbyHammerID).setIconIndex(11).setItemName("Obsidian Hammer").setCreativeTab(this.DarkenedSouls);
+		obbyHammer = new ObbyHammer(obbyHammerID).setUnlocalizedName("Obsidian Hammer").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(obbyHammer, "Hammer of Obby");
 		obbyHammer.setContainerItem(obbyHammer);
-		obbySword = new ObbySword(obbySwordID, obbyToolMaterial).setIconIndex(6).setItemName("Obsidian Sword").setCreativeTab(this.DarkenedSouls);
+		obbySword = new ObbySword(obbySwordID, obbyToolMaterial).setUnlocalizedName("Obsidian Sword").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(obbySword, "Creeper's Bane");
-		obbyAxe = new ObbyAxe(obbyAxeID, obbyToolMaterial).setIconIndex(10).setItemName("Obsidian Axe").setCreativeTab(this.DarkenedSouls);
+		obbyAxe = new ObbyAxe(obbyAxeID, obbyToolMaterial).setUnlocalizedName("Obsidian Axe").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(obbyAxe,"Shadow Chopper");
-		obbyHoe = new ObbyHoe(obbyHoeID, obbyToolMaterial).setIconIndex(12).setItemName("Obsidian Hoe").setCreativeTab(this.DarkenedSouls);
+		obbyHoe = new ObbyHoe(obbyHoeID, obbyToolMaterial).setUnlocalizedName("Obsidian Hoe").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(obbyHoe,"Tiller of Shadow");
-		obbyShovel = new ObbyShovel(obbyShovelID, obbyToolMaterial).setIconIndex(5).setItemName("Obsidian Shovel").setCreativeTab(this.DarkenedSouls);
+		obbyShovel = new ObbyShovel(obbyShovelID, obbyToolMaterial).setUnlocalizedName("Obsidian Shovel").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(obbyShovel, "Shadow Digger");
-		obbyPickaxe = new ObbyPickaxe(obbyPickaxeID, obbyToolMaterial).setIconIndex(8).setItemName("Obsidian Pickaxe").setCreativeTab(this.DarkenedSouls);
+		obbyPickaxe = new ObbyPickaxe(obbyPickaxeID, obbyToolMaterial).setUnlocalizedName("Obsidian Pickaxe").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(obbyPickaxe, "Shadow Breaker");		
-		smokeScreen = new SmokeScreen(smokeScreenID).setItemName("Smoke Screen").setIconIndex(18).setCreativeTab(this.DarkenedSouls);
+		smokeScreen = new SmokeScreen(smokeScreenID).setUnlocalizedName("Smoke Screen").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(smokeScreen, "Insta-Poof");
-		GlowStick = new GlowStick(GlowStickID).setItemName("Glow Stick").setIconIndex(1).setCreativeTab(this.DarkenedSouls);
+		GlowStick = new GlowStick(GlowStickID).setUnlocalizedName("Glow Stick").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(GlowStick,"Glow Stick");
-		ShadeStick = new ShadeStick(ShadeStickID).setItemName("Shade Stick").setIconIndex(17).setCreativeTab(this.DarkenedSouls);
+		ShadeStick = new ShadeStick(ShadeStickID).setUnlocalizedName("Shade Stick").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(ShadeStick, "Shade Stick");
-		ShadowStoneDust = new ShadowStoneDust(ShadowStoneDustID).setItemName("Shadow Dust").setIconIndex(12).setCreativeTab(this.DarkenedSouls);
+		ShadowStoneDust = new ShadowStoneDust(ShadowStoneDustID).setUnlocalizedName("Shadow Dust").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(ShadowStoneDust, "Shadow Dust");
-		SwordLight = new SwordLight(SwordLightID, lightToolMaterial).setItemName("Sword Light").setIconIndex(9).setCreativeTab(this.DarkenedSouls);
+		SwordLight = new SwordLight(SwordLightID, lightToolMaterial).setUnlocalizedName("Sword Light").setCreativeTab(this.DarkenedSouls);
 		LanguageRegistry.addName(SwordLight,"Sword of Forever Light");
 		
 	}
@@ -359,7 +359,7 @@ public class DarkenedSouls {
 		GameRegistry.addRecipe(new ItemStack(obbySword,1), new Object[]{" X "," X ", " Z ", Character.valueOf('X'), obbyIngot, Character.valueOf('Z'), Item.stick});
 		GameRegistry.addRecipe(new ItemStack(obbyRivet, 9), new Object[]{"X",Character.valueOf('X'), obbyIngot});
 		GameRegistry.addRecipe(new ItemStack(obbyIngot, 1 ), new Object[]{"XXX","XXX","XXX",Character.valueOf('X'),obbyRivet});
-		GameRegistry.addRecipe(new ItemStack(streamFurnaceIdle,1), new Object[]{"XXX","XZX","XXX", Character.valueOf('X'), Block.obsidian, Character.valueOf('Z'), Block.stoneOvenIdle});
+		GameRegistry.addRecipe(new ItemStack(streamFurnaceIdle,1), new Object[]{"XXX","XZX","XXX", Character.valueOf('X'), Block.obsidian, Character.valueOf('Z'), Block.furnaceIdle});
 		GameRegistry.addRecipe(new ItemStack(obbyPlate,1), new Object[]{" Z ","XXX","XXX",Character.valueOf('Z'),obbyHammer, Character.valueOf('X'),obbyIngot});
 		GameRegistry.addRecipe(new ItemStack(obbyArm, 1), new Object[]{" X ","ZXZ"," X ",Character.valueOf('X'), obbyPlate, Character.valueOf('Z'), obbyRivet});
 		GameRegistry.addRecipe(new ItemStack(chestplateObby,1), new Object[]{"XZX","XZX"," Z ", Character.valueOf('X'), obbyArm, Character.valueOf('Z'),obbyPlate});
