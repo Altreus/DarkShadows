@@ -1,6 +1,7 @@
 package advtech.ds.item.obby;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemTool;
 
@@ -13,9 +14,10 @@ public class ObbyShovel extends ItemTool {
     {
         return par1Block == Block.snow ? true : par1Block == Block.blockSnow;
     }
-	  @Override
-	  public String getTextureFile(){
-			return "/advtech/ds/resources/terrain.png";
-	 }
+	@Override
+	public void registerIcons(IconRegister index){
+		//TODO Johulk place file here
+		// iconIndex = index.registerIcon("");
+	}
 
 }

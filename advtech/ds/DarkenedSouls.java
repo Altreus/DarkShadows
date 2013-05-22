@@ -29,7 +29,6 @@ import advtech.ds.dimension.shadow.BlockShadowStone;
 import advtech.ds.dimension.shadow.TeleporterShadow;
 import advtech.ds.dimension.shadow.WorldProviderShadow;
 import advtech.ds.gui.GuiHandler;
-import advtech.ds.gui.GuiIngameHud;
 import advtech.ds.gui.Tab;
 import advtech.ds.gui.TickHandler;
 import advtech.ds.item.items.GlowStick;
@@ -286,20 +285,20 @@ public class DarkenedSouls {
 	}
 	public void addBlocks(){
 		
-		oreObby = new ObbyOre(oreObbyID, 19).setHardness(22.5F).setResistance(2000.0F);
+		oreObby = new ObbyOre(oreObbyID).setHardness(22.5F).setResistance(2000.0F);
 		GameRegistry.registerBlock(oreObby, "Obsidian Ore");
 		LanguageRegistry.addName(oreObby, "Obsidian Ore");
 		streamFurnaceIdle = new BlockStreamFurnace(steamFurnaceIdleID,15, false).setCreativeTab(DarkenedSouls);
 		GameRegistry.registerBlock(streamFurnaceIdle, "Forge");
 		LanguageRegistry.addName(streamFurnaceIdle, "Forge");
 		streamFurnaceActive = new BlockStreamFurnace(steamFurnaceIdleID - 1,15, false).setCreativeTab(DarkenedSouls);
-		ShadeStone = new ShadeStone(ShadeStoneID, 11, Material.glass).setHardness(0.3F).setUnlocalizedName("Shade Stone").setCreativeTab(DarkenedSouls);
+		ShadeStone = new ShadeStone(ShadeStoneID,Material.glass).setHardness(0.3F).setUnlocalizedName("Shade Stone").setCreativeTab(DarkenedSouls);
 		GameRegistry.registerBlock(ShadeStone, "Shade Stone");
 		LanguageRegistry.addName(ShadeStone, "ShadeStone");
-		shadowStone = new BlockShadowStone(shadowStoneID,4).setHardness(50F).setResistance(2000.0F).setUnlocalizedName("shadowStone").setCreativeTab(DarkenedSouls);
+		shadowStone = new BlockShadowStone(shadowStoneID).setHardness(50F).setResistance(2000.0F).setUnlocalizedName("shadowStone").setCreativeTab(DarkenedSouls);
 		GameRegistry.registerBlock(shadowStone, "Shadow Stone");
 		LanguageRegistry.addName(shadowStone, "Shadow Stone");
-		shadowPortal = new BlockShadowPortal(shadowPortalID, 14).setHardness(-1.0F).setStepSound(Block.soundGlassFootstep).setLightValue(0.75F).setUnlocalizedName("portal");
+		shadowPortal = new BlockShadowPortal(shadowPortalID).setHardness(-1.0F).setStepSound(Block.soundGlassFootstep).setLightValue(0.75F).setUnlocalizedName("portal");
 		
 		
 		
@@ -379,7 +378,6 @@ public class DarkenedSouls {
 	
 	@ServerStarted
 	public void serverStarted(FMLServerStartedEvent event) {
-		FMLClientHandler.instance().getClient().ingameGUI = new GuiIngameHud(FMLClientHandler.instance().getClient());
 		shadowTeleporter = new TeleporterShadow(MinecraftServer.getServer().worldServerForDimension(shadowDimensionID));
 	}
 	

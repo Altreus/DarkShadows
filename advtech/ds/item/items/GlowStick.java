@@ -1,5 +1,6 @@
 package advtech.ds.item.items;
 
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
@@ -11,8 +12,10 @@ public class GlowStick extends Item {
 		setCreativeTab(CreativeTabs.tabMaterials);
 		// TODO Auto-generated constructor stub
 	}
-	public String getTextureFile(){
-		return ("/advtech/ds/resources/terrain2.png");
+	@Override
+	public void registerIcons(IconRegister index){
+		//TODO Johulk place file here
+		// iconIndex = index.registerIcon("");
 	}
 
 }

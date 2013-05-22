@@ -67,7 +67,7 @@ public class EntityEnderNinja extends EntityMob {
 	public boolean attackEntityFrom(DamageSource par1DamageSource, int par2)
     {
 		if (par1DamageSource == par1DamageSource.fall) return false;
-        if (this.func_85032_ar())
+        if (this.isEntityInvulnerable())
         {
             return false;
         }
@@ -171,7 +171,7 @@ public class EntityEnderNinja extends EntityMob {
                     {
                         this.setCarried(this.worldObj.getBlockId(var1, var2, var3));
                         this.setCarryingData(this.worldObj.getBlockMetadata(var1, var2, var3));
-                        this.worldObj.setBlockWithNotify(var1, var2, var3, 0);
+                        this.worldObj.setBlock(var1, var2, var3, 0);
                     }
                 }
             }
@@ -185,7 +185,7 @@ public class EntityEnderNinja extends EntityMob {
 
                 if (var4 == 0 && var5 > 0 && Block.blocksList[var5].renderAsNormalBlock())
                 {
-                    this.worldObj.setBlockAndMetadataWithNotify(var1, var2, var3, this.getCarried(), this.getCarryingData());
+                    this.worldObj.setBlock(var1, var2, var3, this.getCarried(), this.getCarryingData(), 3);
                     this.setCarried(0);
                 }
             }
@@ -337,7 +337,7 @@ public class EntityEnderNinja extends EntityMob {
             this.worldObj.spawnParticle("portal", var24, var26, var28, (double)var21, (double)var22, (double)var23);
         }
         this.worldObj.playSoundEffect(posX, posY, posZ, "mob.endermen.portal", 1.0F, 1.0F);
-        this.func_85030_a("mob.endermen.portal", 1.0F, 1.0F);
+        this.playSound("mob.endermen.portal", 1.0F, 1.0F);
     }
     
     protected boolean teleportTo(double par1, double par3, double par5)
@@ -406,7 +406,7 @@ public class EntityEnderNinja extends EntityMob {
             }
 
             this.worldObj.playSoundEffect(var7, var9, var11, "mob.endermen.portal", 1.0F, 1.0F);
-            this.func_85030_a("mob.endermen.portal", 1.0F, 1.0F);
+            this.playSound("mob.endermen.portal", 1.0F, 1.0F);
             return true;
         }
     }
@@ -428,7 +428,7 @@ public class EntityEnderNinja extends EntityMob {
 
     protected int getDropItemId()
     {
-        return Item.enderPearl.shiftedIndex;
+        return Item.enderPearl.itemID;
     }
 
     protected void dropFewItems(boolean par1, int par2)

@@ -1,5 +1,6 @@
 package advtech.ds.item.shadow;
 
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.ItemArmor;
@@ -29,17 +30,18 @@ public class ShadowArmor extends ItemArmor implements IArmorTextureProvider {
 		return maxDamageArray;
 	}
 	@Override
-	public String getTextureFile(){
-		return "/advtech/ds/resources/terrain.png";
+	public void registerIcons(IconRegister index){
+		//TODO Johulk place file here
+		// iconIndex = index.registerIcon("");
 	}
 	@Override
 	public String getArmorTextureFile(ItemStack itemstack) {
-		if(itemstack.itemID == DarkenedSouls.helmetObby.shiftedIndex || itemstack.itemID == DarkenedSouls.chestplateObby.shiftedIndex||
-				itemstack.itemID == DarkenedSouls.bootObby.shiftedIndex){
+		if(itemstack.itemID == DarkenedSouls.helmetObby.itemID || itemstack.itemID == DarkenedSouls.chestplateObby.itemID||
+				itemstack.itemID == DarkenedSouls.bootObby.itemID){
 			return "/advtech/ds/resources/obby_1.png";
 			
 		}
-		if (itemstack.itemID == DarkenedSouls.leggingObby.shiftedIndex){
+		if (itemstack.itemID == DarkenedSouls.leggingObby.itemID){
 		return "/advtech/ds/resources/obby_2.png";
 	}
 		return "/advtech/ds/resources/obby_1.png";

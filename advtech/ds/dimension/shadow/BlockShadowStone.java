@@ -4,7 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.server.MinecraftServer;
@@ -13,14 +13,14 @@ import net.minecraft.world.WorldServer;
 import advtech.ds.DarkenedSouls;
 
 public class BlockShadowStone extends Block {
-
-	public BlockShadowStone(int id, int sprite) {
-		super(id, sprite, Material.rock);
+	public World worldObj;
+	public BlockShadowStone(int id) {
+		super(id, Material.rock);
 		this.setTickRandomly(true);
 	}
 	@Override
-	public String getTextureFile() {
-		return "/advtech/ds/resources/terrain2.png";
+	public void registerIcons(IconRegister index) {
+		
 	}
 	
 	
@@ -33,36 +33,34 @@ public class BlockShadowStone extends Block {
     	((BlockShadowPortal) DarkenedSouls.shadowPortal).tryToCreatePortal(worldObj, posX, posY, posZ - 1);
 	}
 	
-	public static void travelToDimension(Entity user)
-    {
-		int par1 = DarkenedSouls.shadowDimensionID;
-		
-		if (!user.worldObj.isRemote && !user.isDead)
-        {
-            user.worldObj.theProfiler.startSection("changeDimension");
-            MinecraftServer var2 = MinecraftServer.getServer();
-            int var3 = user.dimension;
-            WorldServer var4 = var2.worldServerForDimension(var3);
-            WorldServer var5 = var2.worldServerForDimension(par1);
-            user.dimension = par1;
-            user.worldObj.setEntityDead(user);
-            user.isDead = false;
-            user.worldObj.theProfiler.startSection("reposition");
-            var2.getConfigurationManager().transferEntityToWorld(user, var3, var4, var5);
-            user.worldObj.theProfiler.endStartSection("reloading");
-            Entity var6 = EntityList.createEntityByName(EntityList.getEntityString(user), var5);
+	 /*public void travelToDimension(int par1)
+	    {
+	        if (!this.worldObj.isRemote && !this.isDead)
+	        {
+	            this.worldObj.theProfiler.startSection("changeDimension");
+	            MinecraftServer minecraftserver = MinecraftServer.getServer();
+	            int j = this.dimension;
+	            WorldServer worldserver = minecraftserver.worldServerForDimension(j);
+	            WorldServer worldserver1 = minecraftserver.worldServerForDimension(par1);
+	            this.dimension = par1;
+	            this.worldObj.removeEntity(this);
+	            this.isDead = false;
+	            this.worldObj.theProfiler.startSection("reposition");
+	            minecraftserver.getConfigurationManager().transferEntityToWorld(this, j, worldserver, worldserver1);
+	            this.worldObj.theProfiler.endStartSection("reloading");
+	            Entity entity = EntityList.createEntityByName(EntityList.getEntityString(this), worldserver1);
 
-            if (var6 != null)
-            {
-                var6.copyDataFrom(user, true);
-                var5.spawnEntityInWorld(var6);
-            }
+	            if (entity != null)
+	            {
+	                entity.copyDataFrom(this, true);
+	                worldserver1.spawnEntityInWorld(entity);
+	            }
 
-            user.isDead = true;
-            user.worldObj.theProfiler.endSection();
-            var4.resetUpdateEntityTick();
-            var5.resetUpdateEntityTick();
-            user.worldObj.theProfiler.endSection();
-        }
-    }
+	            this.isDead = true;
+	            this.worldObj.theProfiler.endSection();
+	            worldserver.resetUpdateEntityTick();
+	            worldserver1.resetUpdateEntityTick();
+	            this.worldObj.theProfiler.endSection();
+	        }
+	    }*/
 }

@@ -1,5 +1,6 @@
 package advtech.ds.item.items;
 
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
@@ -9,8 +10,9 @@ public class ObbyRivet extends Item {
 		setMaxStackSize(64);
 		setCreativeTab(CreativeTabs.tabMaterials);
 	}
-	public String getTextureFile(){
-		return "/advtech/ds/resources/terrain.png";
+	@Override
+	public void registerIcons(IconRegister index){
+		//TODO Johulk place file here
+		// iconIndex = index.registerIcon("");
 	}
-
 }

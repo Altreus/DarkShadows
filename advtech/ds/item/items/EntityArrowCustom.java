@@ -237,7 +237,7 @@ public class EntityArrowCustom extends EntityArrow {
                             }
                         }
 
-                        this.func_85030_a("random.bowhit", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
+                        this.playSound("random.bowhit", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
                         this.setDead();
                     }
                     else
@@ -264,7 +264,7 @@ public class EntityArrowCustom extends EntityArrow {
                     this.posX -= this.motionX / (double)var20 * 0.05000000074505806D;
                     this.posY -= this.motionY / (double)var20 * 0.05000000074505806D;
                     this.posZ -= this.motionZ / (double)var20 * 0.05000000074505806D;
-                    this.func_85030_a("random.bowhit", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
+                    this.playSound("random.bowhit", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
                     this.inGround = true;
                     this.arrowShake = 7;
                     this.setIsCritical(false);

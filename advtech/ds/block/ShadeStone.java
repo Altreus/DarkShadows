@@ -4,15 +4,15 @@ import java.util.Random;
 
 import net.minecraft.block.BlockGlowStone;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.util.MathHelper;
 import advtech.ds.DarkenedSouls;
 
 public class ShadeStone extends BlockGlowStone {
 
-	public ShadeStone(int id, int par2, Material par3Material)
+	public ShadeStone(int id, Material par3Material)
     {
-        super(id, par2, Material.glass);
+        super(id, Material.glass);
     }
 
     /**
@@ -22,9 +22,10 @@ public class ShadeStone extends BlockGlowStone {
     {
         return MathHelper.clamp_int(this.quantityDropped(par2Random) + par2Random.nextInt(par1 + 1), 1, 4);
     }
-    @Override
-	public String getTextureFile() {
-		return ("/advtech/ds/resources/terrain2.png");
+	@Override
+	public void registerIcons(IconRegister index){
+		//TODO Johulk place file here
+		// iconIndex = index.registerIcon("");
 	}
 
     /**
@@ -41,6 +42,6 @@ public class ShadeStone extends BlockGlowStone {
     @Override
     public int idDropped(int par1, Random par2Random, int par3)
     {
-        return DarkenedSouls.ShadowStoneDust.shiftedIndex;
+        return DarkenedSouls.ShadowStoneDust.itemID;
     }
 }

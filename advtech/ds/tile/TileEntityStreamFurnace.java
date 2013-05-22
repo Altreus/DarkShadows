@@ -20,6 +20,7 @@ public class TileEntityStreamFurnace extends TileEntity implements IInventory {
 	public int freshBurnTime;
 	public int cookTime;
 	private boolean isActive;
+	private String name;
 	
 	public TileEntityStreamFurnace() {
 		inventory = new ItemStack[4];
@@ -168,11 +169,11 @@ public class TileEntityStreamFurnace extends TileEntity implements IInventory {
 		if (stack == null) {
 			return 0;
 		}
-		int i = stack.getItem().shiftedIndex;
+		int i = stack.getItem().itemID;
 		Item var2 = stack.getItem();
 		
-		if (i == Item.bucketLava.shiftedIndex) return 20000;
-		if (i == Item.bucketWater.shiftedIndex)	return 20000;
+		if (i == Item.bucketLava.itemID) return 20000;
+		if (i == Item.bucketWater.itemID)	return 20000;
 		return GameRegistry.getFuelValue(stack);
 		
 		
@@ -184,7 +185,7 @@ public class TileEntityStreamFurnace extends TileEntity implements IInventory {
 			return false;
 		}
 		
-		ItemStack stack = StreamFurnaceRecipes.smelting().getSmeltingResult(inventory[0].getItem().shiftedIndex);
+		ItemStack stack = StreamFurnaceRecipes.smelting().getSmeltingResult(inventory[0].getItem().itemID);
 		
 		 if (stack == null)
          {
@@ -212,7 +213,7 @@ public class TileEntityStreamFurnace extends TileEntity implements IInventory {
 	
 	public void smeltItem() {
 		if (canSmelt()) {
-			ItemStack stack = StreamFurnaceRecipes.smelting().getSmeltingResult(inventory[0].getItem().shiftedIndex);
+			ItemStack stack = StreamFurnaceRecipes.smelting().getSmeltingResult(inventory[0].getItem().itemID);
 			
 			if (inventory[3] == null) {
 				inventory[3] = stack.copy();
@@ -308,6 +309,18 @@ public class TileEntityStreamFurnace extends TileEntity implements IInventory {
 		}
 
 		tagCompound.setTag("Inventory", itemList);
+	}
+
+	@Override
+	public boolean isInvNameLocalized() {
+		// TODO Auto-generated method stub
+		return this.name != null && this.name.length() > 0;
+	}
+
+	@Override
+	public boolean isStackValidForSlot(int i, ItemStack itemstack) {
+		// TODO Auto-generated method stub
+		return i == 2 ? false : (i == 1 ? isItemFuel(itemstack) : true);
 	}
 	
 }

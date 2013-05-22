@@ -2,6 +2,7 @@ package advtech.ds.item.items;
 
 import java.util.List;
 
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -10,16 +11,20 @@ import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
-import net.minecraft.src.ModLoader;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemBowCustom extends ItemBow {
 
 	public int essence;
 	public boolean showDamage;
+	@SideOnly(Side.CLIENT)
+    private Icon[] iconArray;
 	
 	public ItemBowCustom(int id) {
 		this(id, false);
@@ -96,7 +101,7 @@ public class ItemBowCustom extends ItemBow {
             }
             else
             {
-                player.inventory.consumeInventoryItem(Item.arrow.shiftedIndex);
+                player.inventory.consumeInventoryItem(Item.arrow.itemID);
             }
 
             if (!worldObj.isRemote)
@@ -117,7 +122,7 @@ public class ItemBowCustom extends ItemBow {
 	}
 	
 	public boolean playerCanShoot(EntityPlayer player) {
-		return player.inventory.hasItem(Item.arrow.shiftedIndex) && player.inventory.hasItem(essence);
+		return player.inventory.hasItem(Item.arrow.itemID) && player.inventory.hasItem(essence);
 	}
 	
 	public void shootEffects(ItemStack stack, EntityPlayer player, ItemStack usingItem, int useRemaining) {}
@@ -139,32 +144,23 @@ public class ItemBowCustom extends ItemBow {
         return par1ItemStack;
     }
 	
-	public int getIconIndex(ItemStack stack, int renderPass, EntityPlayer player, ItemStack usingItem, int useRemaining)
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister par1IconRegister)
     {
-        if (usingItem != null && usingItem.getItem() instanceof ItemBow)
+        super.registerIcons(par1IconRegister);
+        this.iconArray = new Icon[bowPullIconNameArray.length];
+
+        for (int i = 0; i < this.iconArray.length; ++i)
         {
-        	shootEffects(stack, player, usingItem, useRemaining);
-            int k = usingItem.getMaxItemUseDuration() - useRemaining;
-            if (k >= 18) {
-            	// failed attempt for shaky screen:
-            	//net.minecraft.client.Minecraft.getMinecraft().effectRenderer
-            	//player.cameraYaw = player.prevCameraYaw = 10;
-            	//player.cameraYaw += 1;
-            	return getIconIndex(stack) + 3;
-            }
-            if (k >  13) return getIconIndex(stack) + 2;
-            if (k >   0) return getIconIndex(stack) + 1;
-           ModLoader.getMinecraftInstance().gameSettings.fovSetting -= (float) k / 100F;
+            this.iconArray[i] = par1IconRegister.registerIcon(bowPullIconNameArray[i]);
         }
-        return getIconIndex(stack);
     }
-	
+    public Icon getItemIconForUseDuration(int par1)
+    {
+        return this.iconArray[par1];
+    }
 	public void addInformation(ItemStack par1ItemStack, List par2List) {
 		if (showDamage) par2List.add("Damage Left: " + (par1ItemStack.getMaxDamage() - par1ItemStack.getItemDamage()) + "/" + par1ItemStack.getMaxDamage());
 	}
 	
-	public String getTextureFile()
-    {
-		return "/TehPers/TexMagic.png";
-    }
 }

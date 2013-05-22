@@ -51,8 +51,8 @@ public class ContainerStreamFurnace extends Container {
 	}
 
 	@Override
-	public void updateCraftingResults() {
-		super.updateCraftingResults();
+	public void detectAndSendChanges() {
+		super.detectAndSendChanges();
 		Iterator var1 = this.crafters.iterator();
 
 		while (var1.hasNext()) {
@@ -109,7 +109,7 @@ public class ContainerStreamFurnace extends Container {
 				if (!mergeItemStack(itemstack1, 3, 39, false)) {
 					return null;
 				}
-			} else if (StreamFurnaceRecipes.smelting().getSmeltingResult(itemstack1.getItem().shiftedIndex) != null) {
+			} else if (StreamFurnaceRecipes.smelting().getSmeltingResult(itemstack1.getItem().itemID) != null) {
 				if (!mergeItemStack(itemstack1, 0, 1, false)) {
 					return null;
 				}

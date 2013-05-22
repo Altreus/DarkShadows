@@ -7,8 +7,8 @@ import net.minecraft.world.World;
 
 public class SoulEnchanter extends BlockContainer {
 
-	protected SoulEnchanter(int par1, int par2, Material par3Material) {
-		super(par1, par2, par3Material);
+	protected SoulEnchanter(int par1, Material par3Material) {
+		super(par1,par3Material);
 		// TODO Auto-generated constructor stub
 	}
 

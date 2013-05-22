@@ -60,7 +60,7 @@ public class TeleporterShadow extends Teleporter {
             var12 = var20.posX;
             var13 = var20.posY;
             var14 = var20.posZ;
-            var20.field_85087_d = worldObj.getTotalWorldTime();
+            var20.lastUpdateTime = worldObj.getTotalWorldTime();
             var19 = false;
         }
         else
@@ -131,11 +131,11 @@ public class TeleporterShadow extends Teleporter {
                 var50 = 1;
             }
 
-            int var30 = user.func_82148_at();
+            int var30 = user.func_82143_as();
 
             if (var50 > -1)
             {
-                int var31 = Direction.field_71578_g[var50];
+                int var31 = Direction.rotateLeft[var50];
                 int var32 = Direction.offsetX[var50];
                 int var33 = Direction.offsetZ[var50];
                 int var34 = Direction.offsetX[var31];
@@ -145,8 +145,8 @@ public class TeleporterShadow extends Teleporter {
 
                 if (var36 && var37)
                 {
-                    var50 = Direction.footInvisibleFaceRemap[var50];
-                    var31 = Direction.footInvisibleFaceRemap[var31];
+                    var50 = Direction.rotateOpposite[var50];
+                    var31 = Direction.rotateOpposite[var31];
                     var32 = Direction.offsetX[var50];
                     var33 = Direction.offsetZ[var50];
                     var34 = Direction.offsetX[var31];
@@ -187,12 +187,12 @@ public class TeleporterShadow extends Teleporter {
                     var40 = 1.0F;
                     var41 = 1.0F;
                 }
-                else if (var50 == Direction.footInvisibleFaceRemap[var30])
+                else if (var50 == Direction.rotateOpposite[var30])
                 {
                     var40 = -1.0F;
                     var41 = -1.0F;
                 }
-                else if (var50 == Direction.enderEyeMetaToDirection[var30])
+                else if (var50 == Direction.rotateRight[var30])
                 {
                     var42 = 1.0F;
                     var43 = -1.0F;
@@ -411,7 +411,7 @@ public class TeleporterShadow extends Teleporter {
                         var23 = var15 + var21;
                         var24 = var16 + (var20 - 1) * var18 - var19 * var30;
                         var33 = var21 < 0;
-                        worldObj.setBlockWithNotify(var22, var23, var24, var33 ? DarkenedSouls.shadowStone.blockID : 0);
+                        worldObj.setBlock(var22, var23, var24, var33 ? DarkenedSouls.shadowStone.blockID : 0);
                     }
                 }
             }
@@ -419,7 +419,6 @@ public class TeleporterShadow extends Teleporter {
 
         for (var19 = 0; var19 < 4; ++var19)
         {
-            worldObj.editingBlocks = true;
 
             for (var20 = 0; var20 < 4; ++var20)
             {
@@ -429,11 +428,10 @@ public class TeleporterShadow extends Teleporter {
                     var23 = var15 + var21;
                     var24 = var16 + (var20 - 1) * var18;
                     var33 = var20 == 0 || var20 == 3 || var21 == -1 || var21 == 3;
-                    worldObj.setBlockWithNotify(var22, var23, var24, var33 ? DarkenedSouls.shadowStone.blockID : 0);
+                    worldObj.setBlock(var22, var23, var24, var33 ? DarkenedSouls.shadowStone.blockID : 0);
                 }
             }
 
-            worldObj.editingBlocks = false;
 
             for (var20 = 0; var20 < 4; ++var20)
             {
@@ -462,7 +460,7 @@ public class TeleporterShadow extends Teleporter {
                 Long var6 = (Long)var3.next();
                 PortalPosition var7 = (PortalPosition)portals.getValueByKey(var6.longValue());
 
-                if (var7 == null || var7.field_85087_d < var4)
+                if (var7 == null || var7.lastUpdateTime < var4)
                 {
                     var3.remove();
                     portals.remove(var6.longValue());

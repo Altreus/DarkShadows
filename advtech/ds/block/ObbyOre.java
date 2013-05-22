@@ -4,19 +4,20 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
-import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.client.renderer.texture.IconRegister;
 
 
 public class ObbyOre extends BlockOre {
-	public ObbyOre(int blockID,int sprite) {
-		super(blockID, sprite);
+	public ObbyOre(int blockID) {
+		super(blockID);
 		setStepSound(Block.soundStoneFootstep);
-		setBlockName("Obsidian Ore");
+		setUnlocalizedName("Obsidian Ore");
 	}
 
 	@Override
-	public String getTextureFile() {
-		return "/advtech/ds/resources/terrain.png";
+	public void registerIcons(IconRegister index){
+		//TODO Johulk place file here
+		// iconIndex = index.registerIcon("");
 	}
 	
 	public int idDropped(int par1, Random par2Random, int par3) {

@@ -1,6 +1,7 @@
 package advtech.ds.item.obby;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
@@ -55,7 +56,7 @@ public class ObbyHoe extends Item {
 	                }
 	                else
 	                {
-	                    par3World.setBlockWithNotify(par4, par5, par6, var13.blockID);
+	                    par3World.setBlock(par4, par5, par6, var13.blockID);
 	                    par1ItemStack.damageItem(1, par2EntityPlayer);
 	                    return true;
 	                }
@@ -65,9 +66,10 @@ public class ObbyHoe extends Item {
 	  public boolean isFull3D(){
 		  return true;
 	  }
-	  @Override
-	  public String getTextureFile(){
-			return "/advtech/ds/resources/terrain.png";
-	 }
+		@Override
+		public void registerIcons(IconRegister index){
+			//TODO Johulk place file here
+			// iconIndex = index.registerIcon("");
+		}
 
 }

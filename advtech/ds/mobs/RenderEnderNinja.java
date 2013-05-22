@@ -102,7 +102,7 @@ public class RenderEnderNinja extends RenderLiving
             GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
             GL11.glDisable(GL11.GL_LIGHTING);
 
-            if (enderNinja.getHasActivePotion())
+            if (enderNinja.isInvisible())
             {
                 GL11.glDepthMask(false);
             }

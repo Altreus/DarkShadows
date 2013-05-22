@@ -414,7 +414,7 @@ public class ChunkProviderShadow implements IChunkProvider {
             var7 = thisChunkX + rand.nextInt(16) + 8;
             var8 = rand.nextInt(120) + 4;
             var9 = thisChunkY + rand.nextInt(16) + 8;
-            (new WorldGenHellLava(Block.lavaMoving.blockID)).generate(this.worldObj, rand, var7, var8, var9);
+            (new WorldGenHellLava(Block.lavaMoving.blockID, false)).generate(this.worldObj, this.rand, chunkX, chunkY, worldBlockId);
         }
 
         var6 = rand.nextInt(rand.nextInt(10) + 1) + 1;
@@ -485,11 +485,6 @@ public class ChunkProviderShadow implements IChunkProvider {
 	}
 
 	@Override
-	public boolean unload100OldestChunks() {
-		return false;
-	}
-
-	@Override
 	public boolean canSave() {
 		return true;
 	}
@@ -516,6 +511,18 @@ public class ChunkProviderShadow implements IChunkProvider {
 
 	@Override
 	public void recreateStructures(int var1, int var2) {
+		
+	}
+
+	@Override
+	public boolean unloadQueuedChunks() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void func_104112_b() {
+		// TODO Auto-generated method stub
 		
 	}
 

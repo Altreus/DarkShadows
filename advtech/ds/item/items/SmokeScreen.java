@@ -3,6 +3,7 @@ package advtech.ds.item.items;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityEnderPearl;
@@ -20,10 +21,11 @@ public class SmokeScreen extends Item{
 		maxStackSize = 16;
 		setCreativeTab(CreativeTabs.tabMisc);
 	}
-	 @Override
-	  public String getTextureFile(){
-			return "/advtech/ds/resources/terrain.png";
-	 }
+	@Override
+	public void registerIcons(IconRegister index){
+		//TODO Johulk place file here
+		// iconIndex = index.registerIcon("");
+	}
 
 	@Override
 	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player){
